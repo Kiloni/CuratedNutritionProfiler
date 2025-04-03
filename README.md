@@ -1,2 +1,2 @@
 # curatedNutritionDataset
-code to develop the curated nutritional dataset
+code to develop a curated nutritional dataset
