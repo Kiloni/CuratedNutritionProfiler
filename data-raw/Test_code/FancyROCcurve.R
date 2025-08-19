@@ -64,8 +64,8 @@ vitamin_c_signatures <- vitamin_c_signatures[vitamin_c_signatures %in% colnames(
 
 # Filter samples for ROC analysis (0.40% vitC = 1, no vitC = 0)
 metadata$DietBinary <- case_when(
-  str_detect(metadata$Treatment, "0.40%") ~ 1,
-  str_detect(metadata$Treatment, "no vitC") ~ 0,
+  str_detect(metadata$Treatment, "0.40% vitC supplementation") ~ 1,
+  str_detect(metadata$Treatment, "no vitC supplementation") ~ 0,
   TRUE ~ NA_real_
 )
 
