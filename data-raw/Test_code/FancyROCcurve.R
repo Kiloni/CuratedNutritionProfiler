@@ -13,6 +13,12 @@ VitCdf_combined <- VitCdf %>%
   group_by(ENSEMBL, SYMBOL) %>%
   summarise(across(where(is.numeric), sum, na.rm = TRUE), .groups = "drop")
 
+# Combine duplicate rows by SYMBOL, summing numeric values
+VitCdf_combined <- VitCdf %>%
+  filter(!is.na(SYMBOL)) %>%
+  group_by(SYMBOL) %>%
+  summarise(across(where(is.numeric), sum, na.rm = TRUE), .groups = "drop")
+
 # Remove rows where all read values (excluding 'ENSEMBL' and 'SYMBOL') are zero
 read_columns <- setdiff(names(VitCdf_combined), c("ENSEMBL", "SYMBOL"))
 VitCdf_cleaned <- VitCdf_combined %>%
@@ -24,13 +30,9 @@ write_xlsx(VitCdf_cleaned, "~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE
 
 # Review the cleaned expression data
 VitCdf_cleaned <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_tpm_cleaned.xlsx")
+VitCdf_cleaned
 
-# Clean and format expression data
-VitCdf_cleaned <- VitCdf_cleaned %>% filter(!is.na(SYMBOL)) %>%
-  column_to_rownames("SYMBOL") %>%
-  select(-ENSEMBL)
-
-expression_matrix <- as.data.frame(t(tpm_data))
+expression_matrix <- as.data.frame(t(VitCdf_cleaned))
 
 # Load metadata from series matrix
 metadata_lines <- readLines("~/Downloads/GSE233598_series_matrix.txt")
