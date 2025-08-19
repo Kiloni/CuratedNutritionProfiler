@@ -60,7 +60,7 @@ rownames(metadata) <- metadata$Sample
 # Define vitamin C signatures
 vitamin_c_signatures <- c("SLC23A1", "SLC23A3", "CHPT1", "BCAS3", "SNRPF", "RER1", "MAF", "GSTA5", 
                           "RGS14", "AKT1", "FADS1")
-vitamin_c_signatures <- vitamin_c_signatures[vitamin_c_signatures %in% colnames(expression_matrix)]
+vitamin_c_signatures <- vitamin_c_signatures[vitamin_c_signatures %in% colnames(VitC_expression_matrix)]
 
 # Filter samples for ROC analysis (0.40% vitC = 1, no vitC = 0)
 metadata$DietBinary <- case_when(
@@ -73,7 +73,7 @@ valid_samples <- metadata %>% filter(!is.na(DietBinary)) %>% rownames()
 
 # Prepare data for ROC
 roc_data <- lapply(vitamin_c_signatures, function(gene) {
-  predictor <- expression_matrix[valid_samples, gene]
+  predictor <- VitC_expression_matrix[valid_samples, gene]
   response <- metadata[valid_samples, "DietBinary"]
   
   roc_obj <- roc(response, predictor)
