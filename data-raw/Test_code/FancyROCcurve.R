@@ -35,7 +35,7 @@ VitCdf_cleaned
 expression_matrix <- as.data.frame(t(VitCdf_cleaned))
 
 # Load metadata from series matrix
-metadata_lines <- readLines("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_series_matrix.txt")
+metadata_lines <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_expression_matrix_by_symbol.xlsx")
 
 # Extract sample titles and treatments
 sample_titles <- metadata_lines[grepl("!Sample_title", metadata_lines)] %>%
