@@ -30,11 +30,11 @@ write_xlsx(VitCdf_cleaned, "~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE
 
 
 # Review and format the cleaned expression data
-VitCdf_cleaned <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_tpm_cleaned.xlsx")
+VitCdf_cleaned <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_tpm_cleaned.xlsx") |>
+  tibble::column_to_rownames(var = "SYMBOL")
 
 # Align rownames between data and matrix files
-VitC_expression_matrix <- as.data.frame(expression_matrix[,2:37], row.names = expression_matrix$SYMBOL)
-expression_matrix <- as.data.frame(t(VitCdf_cleaned)) 
+VitC_expression_matrix <- as.data.frame(t(VitCdf_cleaned)) 
 
 # Load metadata from series matrix
 metadata_lines <- readLines("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_series_matrix.txt")
