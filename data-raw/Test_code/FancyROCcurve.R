@@ -5,7 +5,7 @@ library(pROC)
 library(dplyr)
 library(writexl)
 
-# Load the Excel file with the dataset
+# Load the Excel file with the nutritional dataset
 VitCdf <- read_excel("~/Downloads/GSE233598_tpm.xlsx", sheet = "tpm")
 
 # Combine duplicate rows based on the 'ENSEMBL' column by summing their values
