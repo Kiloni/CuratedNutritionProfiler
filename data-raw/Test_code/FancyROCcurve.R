@@ -23,7 +23,15 @@ write_xlsx(VitCdf_cleaned, "~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE
 
 
 # Review the cleaned expression data
+<<<<<<< HEAD
 VitCdf_cleaned <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_tpm_cleaned.xlsx")
+=======
+<<<<<<< HEAD
+VitCdf_cleaned <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_tpm_cleaned.xlsx")
+=======
+VitCdf_cleaned <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/GSE233598_tpm_cleaned.xlsx")
+>>>>>>> 29990e22a39c05948f7e556bef83e664fafd711a
+>>>>>>> cffd1d0f43c95be4f9137c012e18e0d12bec34e6
 
 # Clean and format expression data
 VitCdf_cleaned <- VitCdf_cleaned %>% filter(!is.na(SYMBOL)) %>%
