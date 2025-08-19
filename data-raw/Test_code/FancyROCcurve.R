@@ -5,7 +5,7 @@ library(pROC)
 library(dplyr)
 library(writexl)
 
-# Load the Excel file with the dataset
+# Load the Excel file with the nutritional dataset
 VitCdf <- read_excel("~/Downloads/GSE233598_tpm.xlsx", sheet = "tpm")
 
 # Combine duplicate rows based on the 'ENSEMBL' column by summing their values
@@ -19,14 +19,14 @@ VitCdf_cleaned <- VitCdf_combined %>%
   filter(rowSums(select(., all_of(read_columns)) != 0) > 0)
 
 # Save the cleaned dataset to a new Excel file
-write_xlsx(df_cleaned, "GSE233598_tpm_cleaned.xlsx")
+write_xlsx(VitCdf_cleaned, "~/Downloads/VitC_GSE233598_tpm_cleaned.xlsx")
 
 
-# Load TPM expression data
-tpm_data <- read_excel("~/Downloads/GSE233598_tpm_cleaned.xlsx", sheet = "tpm")
+# Review the cleaned expression data
+VitCdf_cleaned <- read_excel("~/Downloads/GSE233598_tpm_cleaned.xlsx")
 
 # Clean and format expression data
-tpm_data <- tpm_data %>% filter(!is.na(SYMBOL)) %>%
+VitCdf_cleaned <- VitCdf_cleaned %>% filter(!is.na(SYMBOL)) %>%
   column_to_rownames("SYMBOL") %>%
   select(-ENSEMBL)
 
