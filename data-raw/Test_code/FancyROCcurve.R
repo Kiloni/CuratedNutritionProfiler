@@ -4,6 +4,7 @@ library(tidyverse)
 library(pROC)
 library(dplyr)
 library(writexl)
+library(tibble)
 
 # Load the Excel file with the nutritional dataset
 VitCdf <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/GSE233598_tpm.xlsx", sheet = "tpm")
@@ -28,11 +29,12 @@ VitCdf_cleaned <- VitCdf_combined %>%
 write_xlsx(VitCdf_cleaned, "~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_tpm_cleaned.xlsx")
 
 
-# Review the cleaned expression data
+# Review and format the cleaned expression data
 VitCdf_cleaned <- read_excel("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_tpm_cleaned.xlsx")
-VitCdf_cleaned
 
-expression_matrix <- as.data.frame(t(VitCdf_cleaned))
+# Align rownames between data and matrix files
+VitC_expression_matrix <- as.data.frame(expression_matrix[,2:37], row.names = expression_matrix$SYMBOL)
+expression_matrix <- as.data.frame(t(VitCdf_cleaned)) 
 
 # Load metadata from series matrix
 metadata_lines <- readLines("~/Documents/Johnson Lab/Data/Nutrition Data/VitC_GSE233598_series_matrix.txt")
@@ -48,7 +50,7 @@ treatments <- treatment_lines %>%
 
 # Create metadata dataframe
 metadata <- data.frame(
-  Sample = rownames(expression_matrix),
+  Sample = rownames(VitC_expression_matrix),
   Title = sample_titles,
   Treatment = treatments,
   stringsAsFactors = FALSE
