@@ -50,7 +50,9 @@ NutSignatures = list(
                             "DMKN", "DSC2", "DSP", "EPCAM", "EPPK1", "F11R", "GJB2", "GJB3", 
                             "MAL2", "MARVELD2", "MPZL2", "MUC1", "OCLN", "PATJ", "PCDH7", "PKP3", 
                             "PMEPA1", "PPL", "SCEL", "SFN", "SH3YL1", "SHROOM3", "SYTL1", 
-                            "TACSTD2", "TMEM30B", "TSPAN1", "TSPAN15")
+                            "TACSTD2", "TMEM30B", "TSPAN1", "TSPAN15"),
+  "Vitamin_E" = c("CD36", "SRD5A1", "GCLC", "PKC", "CCNB2", "CDC2", "CDC6", "TGM2", "MMP1", 
+                  "MIR122", "MIR125B")
 )
 
 
