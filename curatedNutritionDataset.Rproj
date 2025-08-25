@@ -13,4 +13,8 @@ Encoding: UTF-8
 RnwWeave: Sweave
 LaTeX: pdfLaTeX
 
+<<<<<<< HEAD
 ProjectName: curatedNutritionDataset
+=======
+ProjectName: CuratedNutritionProfiler
+>>>>>>> e562ddb1c384db678f364d4ae589b610a3e11dca
