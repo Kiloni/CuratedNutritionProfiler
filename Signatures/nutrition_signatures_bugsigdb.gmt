@@ -1,0 +1,13 @@
+Non_alcoholic_fatty_liver_disease	NA	Bacteroides fragilis	Faecalibacterium prausnitzii
+Chronic_fatigue_syndrome	NA	Bacteroides fragilis	Alistipes putredinis	Faecalibacterium prausnitzii
+High_fat_diet	NA	Bilophila wadsworthia	Alistipes putredinis	Bacteroides fragilis
+Diet	NA	Roseburia intestinalis	Bifidobacterium adolescentis
+Response_to_diet	NA	Faecalibacterium prausnitzii	Eubacterium rectale
+Body_fat_percentage	NA	Akkermansia muciniphila	Lactobacillus plantarum
+Response_to_ketogenic_diet	NA	Bacteroides fragilis	Roseburia intestinalis
+Fasting	NA	Faecalibacterium prausnitzii	Bifidobacterium adolescentis
+Diet_measurement	NA	Lactobacillus plantarum	Eubacterium rectale
+Response_to_supplemental_oxygen	NA	Alistipes putredinis	Bilophila wadsworthia
+Diarrhea	NA	Bacteroides fragilis	Lactobacillus plantarum
+Infantile	NA	Bifidobacterium adolescentis	Roseburia intestinalis
+Malnutrition	NA	Faecalibacterium prausnitzii	Eubacterium rectale

@@ -28,7 +28,7 @@ nutrition_conditions <- all_conditions[
 
 # Print and save a CSV of the nutrition-related conditions                                 
 print(nutrition_conditions)
-write.csv(data.frame(Nutrition_Conditions = nutrition_conditions), "Nutrition_Conditions_BugSigDB_Conditions.csv", row.names = FALSE)
+write.csv(data.frame(Nutrition_Conditions = nutrition_conditions), "data-raw/Microbes/Nutrition_Conditions_BugSigDB_Conditions.csv", row.names = FALSE)
 
 # Filter studies with nutrition-related conditions
 nutrition_studies <- bsdb[grepl(paste(nutrition_keywords, collapse = "|"), bsdb$Condition, ignore.case = TRUE),
@@ -41,7 +41,7 @@ nutrition_signatures <- getSignatures(nutrition_studies, tax.id.type = "taxname"
 str(nutrition_signatures)
 
 # Save to a GMT file for enrichment analysis
-writeGMT(nutrition_signatures, "nutrition_signatures_bugsigdb.gmt")
+writeGMT(nutrition_signatures, "Signatures/nutrition_signatures_bugsigdb.gmt")
 
 # Define microbial signatures for each condition
 nutrition_signatures <- list(
