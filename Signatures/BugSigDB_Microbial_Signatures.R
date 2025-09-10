@@ -8,6 +8,7 @@ library(bugsigdbr)
 library(tidyverse)
 library(reshape2)
 library(pheatmap)
+library(scales)
 
 #Import the BugSigDB Dataset
 bsdb <- importBugSigDB()
@@ -41,4 +42,77 @@ str(nutrition_signatures)
 
 # Save to a GMT file for enrichment analysis
 writeGMT(nutrition_signatures, "nutrition_signatures_bugsigdb.gmt")
+
+# Define microbial signatures for each condition
+nutrition_signatures <- list(
+  Non_alcoholic_fatty_liver_disease = c("Bacteroides fragilis", "Faecalibacterium prausnitzii"),
+  Chronic_fatigue_syndrome = c("Bacteroides fragilis", "Alistipes putredinis", "Faecalibacterium prausnitzii"),
+  High_fat_diet = c("Bilophila wadsworthia", "Alistipes putredinis", "Bacteroides fragilis"),
+  Diet = c("Roseburia intestinalis", "Bifidobacterium adolescentis"),
+  Response_to_diet = c("Faecalibacterium prausnitzii", "Eubacterium rectale"),
+  Body_fat_percentage = c("Akkermansia muciniphila", "Lactobacillus plantarum"),
+  Response_to_ketogenic_diet = c("Bacteroides fragilis", "Roseburia intestinalis"),
+  Fasting = c("Faecalibacterium prausnitzii", "Bifidobacterium adolescentis"),
+  Diet_measurement = c("Lactobacillus plantarum", "Eubacterium rectale"),
+  Response_to_supplemental_oxygen = c("Alistipes putredinis", "Bilophila wadsworthia"),
+  Diarrhea = c("Bacteroides fragilis", "Lactobacillus plantarum"),
+  Infantile = c("Bifidobacterium adolescentis", "Roseburia intestinalis"),
+  Malnutrition = c("Faecalibacterium prausnitzii", "Eubacterium rectale")
+)
+
+# Create full microbe-condition presence matrix
+all_microbes <- sort(unique(unlist(nutrition_signatures)))
+all_conditions <- names(nutrition_signatures)
+
+presence_matrix <- sapply(all_conditions, function(cond) {
+  as.integer(all_microbes %in% nutrition_signatures[[cond]])
+})
+rownames(presence_matrix) <- all_microbes
+
+# View the matrix
+print(presence_matrix)
+
+# Optional: Save to CSV
+write.csv(presence_matrix, "microbe_presence_matrix.csv", row.names = TRUE)
+
+# Perform Fisher's Exact Test
+pvals <- matrix(NA, nrow = nrow(presence_matrix), ncol = ncol(presence_matrix),
+                dimnames = list(rownames(presence_matrix), colnames(presence_matrix)))
+
+for (i in 1:nrow(presence_matrix)) {
+  for (j in 1:ncol(presence_matrix)) {
+    a <- presence_matrix[i, j]
+    b <- sum(presence_matrix[i, ]) - a
+    c <- sum(presence_matrix[, j]) - a
+    d <- sum(presence_matrix) - (a + b + c)
+    test <- fisher.test(matrix(c(a, b, c, d), nrow = 2))
+    pvals[i, j] <- test$p.value
+  }
+}
+
+# Replace 0s and transform to -log10(p-values)
+pvals[pvals == 0] <- .Machine$double.xmin
+log_pvals <- -log10(pvals)
+
+# Convert matrix to long format
+log_pvals_long <- as.data.frame(as.table(log_pvals))
+colnames(log_pvals_long) <- c("Microbe", "Condition", "logP")
+
+# Normalize values for color scale
+log_pvals_long$fill_color <- rescale(log_pvals_long$logP, to = c(0, 1))
+
+# Determine text color based on fill intensity
+log_pvals_long$text_color <- ifelse(log_pvals_long$fill_color > 0.5, "black", "white")
+
+# Plot heatmap
+ggplot(log_pvals_long, aes(x = Condition, y = Microbe, fill = logP)) +
+  geom_tile(color = "grey80") +
+  geom_text(aes(label = round(logP, 2), color = text_color), size = 3) +
+  scale_fill_gradientn(colors = c("navy", "skyblue", "red"), name = "-log10(p-value)") +
+  scale_color_identity() +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank()) +
+  labs(title = "-log10(P-values) from Fisher's Exact Test (Nutrition Conditions)",
+       x = "Condition", y = "Microbes")
 
