@@ -73,7 +73,7 @@ rownames(presence_matrix) <- all_microbes
 print(presence_matrix)
 
 # Optional: Save to CSV
-write.csv(presence_matrix, "microbe_presence_matrix.csv", row.names = TRUE)
+write.csv(presence_matrix, "data-raw/Microbes/BugSigDB_microbe_presence_matrix.csv", row.names = TRUE)
 
 # Perform Fisher's Exact Test
 pvals <- matrix(NA, nrow = nrow(presence_matrix), ncol = ncol(presence_matrix),

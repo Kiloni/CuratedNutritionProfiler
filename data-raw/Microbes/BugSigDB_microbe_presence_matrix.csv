@@ -1,0 +1,10 @@
+"","Non_alcoholic_fatty_liver_disease","Chronic_fatigue_syndrome","High_fat_diet","Diet","Response_to_diet","Body_fat_percentage","Response_to_ketogenic_diet","Fasting","Diet_measurement","Response_to_supplemental_oxygen","Diarrhea","Infantile","Malnutrition"
+"Akkermansia muciniphila",0,0,0,0,0,1,0,0,0,0,0,0,0
+"Alistipes putredinis",0,1,1,0,0,0,0,0,0,1,0,0,0
+"Bacteroides fragilis",1,1,1,0,0,0,1,0,0,0,1,0,0
+"Bifidobacterium adolescentis",0,0,0,1,0,0,0,1,0,0,0,1,0
+"Bilophila wadsworthia",0,0,1,0,0,0,0,0,0,1,0,0,0
+"Eubacterium rectale",0,0,0,0,1,0,0,0,1,0,0,0,1
+"Faecalibacterium prausnitzii",1,1,0,0,1,0,0,1,0,0,0,0,1
+"Lactobacillus plantarum",0,0,0,0,0,1,0,0,1,0,1,0,0
+"Roseburia intestinalis",0,0,0,1,0,0,1,0,0,0,0,1,0
