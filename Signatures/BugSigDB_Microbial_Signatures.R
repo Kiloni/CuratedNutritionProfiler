@@ -9,6 +9,9 @@ library(tidyverse)
 library(reshape2)
 library(pheatmap)
 library(scales)
+library(dplyr)
+library(tidyr)
+library(ggplot2)
 
 #Import the BugSigDB Dataset
 bsdb <- importBugSigDB()
@@ -197,3 +200,49 @@ pheatmap(log_pvals,
          legend = TRUE,
          treeheight_row = 0,             # Disable row clustering tree
          treeheight_col = 0)             # Disable column clustering tree
+
+# Convert log_pvals matrix to long format
+
+log_pvals_long <- as.data.frame(as.table(log_pvals))
+colnames(log_pvals_long) <- c("Microbe", "Condition", "logP")
+
+# Filter top 50 most significant associations
+top50 <- log_pvals_long %>%
+  arrange(desc(logP)) %>%
+  slice(1:50)
+
+# Normalize logP for color scaling
+top50 <- top50 %>%
+  mutate(fill_color = rescale(logP, to = c(0, 1)),
+         text_color = ifelse(fill_color > 0.5, "white", "black"))
+
+# Plot with ggplot2
+ggplot(top50, aes(x = Condition, y = Microbe, fill = logP)) +
+  geom_tile(color = "grey80") +
+  geom_text(aes(label = round(logP, 2), color = text_color), size = 3) +
+  scale_fill_gradientn(colors = c("navy", "skyblue", "red"), name = "-log10(p-value)") +
+  scale_color_identity() +
+  theme_minimal(base_size = 12) +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1),
+        panel.grid = element_blank()) +
+  labs(title = "Top 50 Microbe-Condition Associations",
+       x = "Condition", y = "Microbe")
+
+
+
+# Pivot back to matrix format
+top_matrix <- top50 %>%
+  pivot_wider(names_from = Condition, values_from = logP, values_fill = 0) %>%
+  column_to_rownames("Microbe") %>%
+  as.matrix()
+
+# Plot high-resolution heatmap
+png("top50_microbe_condition_heatmap.png", width = 3000, height = 2000, res = 300)
+pheatmap(top_matrix,
+         color = colorRampPalette(c("navy", "skyblue", "red"))(100),
+         main = "Top 50 Microbe-Condition Associations (-log10 p-values)",
+         fontsize_row = 10,
+         fontsize_col = 10,
+         angle_col = 45,
+         border_color = "grey80")
+dev.off()
