@@ -1,0 +1,12 @@
+Microbe_Species,Regulation_in_ASD,Vitamin_B12,Carnitine,Fiber_SCFA,Tryptophan,Glutathione,Magnesium,Reg_Factor,Adj_Vitamin_B12,Adj_Carnitine,Adj_Fiber_SCFA,Adj_Tryptophan,Adj_Glutathione,Adj_Magnesium
+Clostridium bolteae,Upregulated,-0.5,-1,-0.8,-0.2,-0.5,-0.2,1,-0.5,-1,-0.8,-0.2,-0.5,-0.2
+Clostridium perfringens,Upregulated,-0.2,-0.8,-0.5,-0.5,-0.8,0,1,-0.2,-0.8,-0.5,-0.5,-0.8,0
+Desulfovibrio piger,Upregulated,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA
+Desulfovibrio desulfuricans,Upregulated,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA
+Lactobacillus reuteri,Downregulated,0.8,0,0.5,1,0,0.5,-1,-0.8,-0,-0.5,-1,-0,-0.5
+Escherichia coli,Variable (Strain dependent),NA,NA,NA,NA,NA,NA,0,NA,NA,NA,NA,NA,NA
+Bifidobacterium metabolic types,Downregulated,NA,NA,NA,NA,NA,NA,-1,NA,NA,NA,NA,NA,NA
+Faecalibacterium prausnitzii,Downregulated,NA,NA,NA,NA,NA,NA,-1,NA,NA,NA,NA,NA,NA
+Roseburia intestinalis,Downregulated,NA,NA,NA,NA,NA,NA,-1,NA,NA,NA,NA,NA,NA
+Sutterella wadsworthensis,Upregulated,NA,NA,NA,NA,NA,NA,1,NA,NA,NA,NA,NA,NA
+Akkermansia muciniphila,Downregulated,NA,NA,NA,NA,NA,NA,-1,NA,NA,NA,NA,NA,NA

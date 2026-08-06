@@ -1,0 +1,12 @@
+Microbe_Species,Target_Gene_or_Marker,Regulation_in_ASD,Functional_Relevance,Reference
+Clostridium bolteae,16S rRNA / wzy (Capsular Polysaccharide),Upregulated,Produces specific capsular polysaccharides; historically linked to GI severity.,Pequegnat et al. (2013)
+Clostridium perfringens,cpe (Enterotoxin gene) / plc (Alpha-toxin),Upregulated,Toxin production disrupts gut barrier (leaky gut); associated with GI symptoms.,Finegold et al.
+Desulfovibrio piger,dsrA / dsrB (Dissimilatory sulfite reductase),Upregulated,Reduces sulfate to toxic Hydrogen Sulfide (H2S); inhibits mitochondrial function.,Finegold / Kang et al.
+Desulfovibrio desulfuricans,16S rRNA / nifH (Nitrogenase),Upregulated,Sulfur reducer; correlates with severity of autism manifestations.,Tomova et al.
+Lactobacillus reuteri,oxytocin-pathway genes (unknown mechanism),Downregulated,Restores social deficits in mouse models via vagus nerve/oxytocin signaling.,Sgritta et al. (2019)
+Escherichia coli,gadB (Glutamate decarboxylase),Variable (Strain dependent),Converts Glutamate (excitatory) to GABA (inhibitory); imbalance affects gut-brain signaling.,Strandwitz et al.
+Bifidobacterium metabolic types,adh (Alcohol dehydrogenase),Downregulated,Reduction impairs detoxification of alcohols/aldehydes; increases oxidative stress.,Wan et al. (2020)
+Faecalibacterium prausnitzii,but (Butyryl-CoA:acetate CoA-transferase),Downregulated,Major butyrate producer; butyrate maintains blood-brain barrier integrity.,Liu et al. (2019)
+Roseburia intestinalis,16S rRNA / butyrate kinase,Downregulated,Crucial for anti-inflammatory SCFA production; depletion linked to gut inflammation.,Kang et al.
+Sutterella wadsworthensis,16S rRNA (V4 region),Upregulated,Found in ileal biopsies; distinct from other dysbiosis; role remains unclear but highly specific.,Williams et al.
+Akkermansia muciniphila,mucin-degradation genes,Downregulated,Regulates mucus layer thickness; depletion leads to increased permeability.,Yap et al. (2021)

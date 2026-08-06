@@ -1,0 +1,13 @@
+Gene_Symbol,Ensembl_ID,Category,Regulation_Direction,Tissue,Study_Source,Function_Notes
+CHD8,ENSG00000100888,High Confidence (SFARI 1),Downregulated (Mutation),Brain/Systemic,SFARI Gene,Chromatin remodeling; major regulator of other ASD genes
+SHANK3,ENSG00000251322,High Confidence (SFARI 1),Downregulated (Mutation),Synapse,SFARI Gene,Synaptic scaffolding protein; Phelan-McDermid syndrome
+SCN2A,ENSG00000136531,High Confidence (SFARI 1),Variable,Brain,SFARI Gene,"Sodium channel, voltage-gated; seizure comorbidity"
+ADNP,ENSG00000196497,High Confidence (SFARI 1),Downregulated,Brain,SFARI Gene,Activity-dependent neuroprotector
+A2BP1 (RBFOX1),ENSG00000078328,Transcriptomic Signature,Downregulated,Cortex,Voineagu et al. (2011),Neuronal splicing factor; convergent downregulation
+STX1A,ENSG00000106089,Transcriptomic Signature,Downregulated,Cortex,Voineagu et al. (2011),Synaptic vesicle exocytosis
+SYT1,ENSG00000067715,Transcriptomic Signature,Downregulated,Cortex,Voineagu et al. (2011),Calcium sensor for synaptic transmission
+IL17A,ENSG00000112115,Immune Signature,Upregulated,Blood/Cortex,Choi et al. / Voineagu,Pro-inflammatory cytokine; maternal immune activation marker
+GFAP,ENSG00000131095,Immune Signature,Upregulated,Cortex,Voineagu et al. (2011),Astrocyte marker; indicates gliosis/inflammation
+AIF1 (Iba1),ENSG00000204472,Immune Signature,Upregulated,Cortex,Voineagu et al. (2011),Microglia marker; indicates neuroinflammation
+FOS,ENSG00000170345,Blood Signature,Upregulated,Peripheral Blood,Kong et al. (2012),Immediate early gene; predictive blood biomarker
+DYRK1A,ENSG00000157540,High Confidence (SFARI 1),Downregulated,Brain,SFARI Gene,Kinase involved in brain growth; Down Syndrome critical region
