@@ -1,6 +1,0 @@
-Study_ID,Year,Authors,Sequencing_Technique,Data_Type,Key_Finding,Major_Confounders_Tracked,Accession_ID
-Yap_Australian_Biobank,2021,Yap et al.,Shotgun Metagenomics,Stool Microbiome,"Microbiome diversity correlates with dietary diversity, not ASD diagnosis","Detailed Diet (FFQ), Age, Sex, Stool Consistency (Bristol)",PRJEB41566
-MTT_Trial_Ph1,2017,Kang et al.,16S rRNA (V4),Longitudinal Stool,Fecal transplant increased Bifidobacterium & Prevotella; improved GI/ASD symptoms,"Antibiotic use history, GI Severity Score (GSRS)",PRJNA388274
-American_Gut_ASD,2018,McDonald et al.,16S rRNA,Citizen Science Stool,Identified associations with antibiotics and diet over diagnosis,"Antibiotics (recent), Diet, Geography, BMI",EBI: ERP012803
-Son_Metagenomics,2015,Son et al.,Shotgun Metagenomics,Stool & Urine Metabolomics,Altered SCFA levels; correlation with severity,Neurodevelopmental severity scores,PRJNA282013
-China_Multi_Omics,2020,Wan et al.,Shotgun + Metabolomics,Stool + Plasma,Identified impaired detoxification enzymes in ASD microbiome,"Diet patterns, constipation status",PRJNA606751
