@@ -130,6 +130,400 @@ Capture:
 - Study accession
 
 ---
+############################################################
+# Phase I — Programmatic Multi-Kingdom Discovery
+# NutrientSignatureProfiler
+#
+# Goal:
+# Build matched Disease → Host Tissue → Microbiome
+# inventories while simultaneously identifying
+# independent validation cohorts.
+############################################################
+
+###############################
+# Required Packages
+###############################
+
+library(GEOquery)
+library(dplyr)
+library(tidyr)
+library(stringr)
+library(data.table)
+library(purrr)
+library(janitor)
+
+###############################
+# Disease Targets
+###############################
+
+disease_queries <- c(
+
+  "multiple sclerosis microbiome",
+  "multiple sclerosis gut microbiome",
+
+  "systemic lupus erythematosus microbiome",
+  "systemic lupus gut microbiome",
+
+  "rheumatoid arthritis microbiome",
+  "rheumatoid arthritis gut microbiome",
+
+  "chronic fatigue syndrome microbiome",
+  "ME/CFS microbiome",
+
+  "autoimmune disease microbiome"
+)
+
+###############################
+# Discovery Containers
+###############################
+
+geo_candidate_catalog <- list()
+
+sra_candidate_catalog <- list()
+
+validation_catalog <- list()
+
+###############################
+# GEO Dataset Discovery
+###############################
+
+message(
+  "Starting GEO discovery..."
+)
+
+for(query in disease_queries){
+
+  message(
+    paste(
+      "Searching GEO:",
+      query
+    )
+  )
+
+  # Claude agent should:
+  #
+  # 1. Search GEO
+  # 2. Retrieve matching GSE IDs
+  # 3. Extract metadata
+  # 4. Score validation suitability
+  #
+  # Example metadata structure
+
+  candidate_row <- data.frame(
+
+      disease_query = query,
+
+      accession = NA,
+
+      title = NA,
+
+      platform = NA,
+
+      sample_count = NA,
+
+      host_omics_available = FALSE,
+
+      microbiome_available = FALSE,
+
+      dietary_metadata_available = FALSE,
+
+      pmid = NA,
+
+      stringsAsFactors = FALSE
+  )
+
+  geo_candidate_catalog[[query]] <-
+      candidate_row
+}
+
+###############################
+# SRA Dataset Discovery
+###############################
+
+message(
+  "Starting SRA discovery..."
+)
+
+for(query in disease_queries){
+
+  message(
+    paste(
+      "Searching SRA:",
+      query
+    )
+  )
+
+  candidate_row <- data.frame(
+
+      disease_query = query,
+
+      accession = NA,
+
+      sequencing_platform = NA,
+
+      paired_end = FALSE,
+
+      read_length = NA,
+
+      sample_count = NA,
+
+      original_project_id = NA,
+
+      stringsAsFactors = FALSE
+  )
+
+  sra_candidate_catalog[[query]] <-
+      candidate_row
+}
+
+###############################
+# Combine Candidate Studies
+###############################
+
+geo_tbl <- bind_rows(
+  geo_candidate_catalog
+)
+
+sra_tbl <- bind_rows(
+  sra_candidate_catalog
+)
+
+###############################
+# Validation Eligibility Rules
+###############################
+
+validation_filter <- function(dataset){
+
+  pass <- TRUE
+
+  ################################
+  # Human Cohort Required
+  ################################
+
+  if(
+     !is.na(dataset$organism)
+     &&
+     dataset$organism !=
+     "Homo sapiens"
+  ){
+
+     pass <- FALSE
+  }
+
+  ################################
+  # Microbiome Data Required
+  ################################
+
+  if(
+     !is.na(dataset$microbiome_available)
+     &&
+     dataset$microbiome_available == FALSE
+  ){
+
+     pass <- FALSE
+  }
+
+  ################################
+  # Minimum Sample Threshold
+  ################################
+
+  if(
+     !is.na(dataset$sample_count)
+     &&
+     dataset$sample_count < 20
+  ){
+
+     pass <- FALSE
+  }
+
+  return(pass)
+}
+
+###############################
+# Validation Cohort Catalogue
+###############################
+
+candidate_tbl <-
+  bind_rows(
+      geo_tbl,
+      sra_tbl
+  )
+
+candidate_tbl <-
+  candidate_tbl %>%
+  mutate(
+
+      validation_eligible =
+      TRUE
+
+  )
+
+###############################
+# Metadata Harmonization
+###############################
+
+candidate_tbl <-
+  candidate_tbl %>%
+
+  clean_names() %>%
+
+  mutate(
+
+      disease =
+      str_to_title(
+        disease_query
+      ),
+
+      discovery_status =
+      "Candidate",
+
+      validation_status =
+      ifelse(
+          validation_eligible,
+          "Eligible",
+          "Reject"
+      )
+  )
+
+###############################
+# Discovery vs Validation Split
+###############################
+
+set.seed(123)
+
+candidate_tbl <-
+  candidate_tbl %>%
+  mutate(
+
+    cohort_type =
+    sample(
+      c(
+        "Discovery",
+        "Validation"
+      ),
+
+      size = n(),
+
+      replace = TRUE,
+
+      prob = c(
+        0.70,
+        0.30
+      )
+    )
+  )
+
+###############################
+# Comorbidity Schema
+###############################
+
+candidate_tbl <-
+  candidate_tbl %>%
+  mutate(
+
+      cancer_comorbidity = NA,
+
+      metabolic_comorbidity = NA,
+
+      autoimmune_comorbidity = NA,
+
+      other_comorbidity = NA
+  )
+
+###############################
+# Required Traceability Fields
+###############################
+
+candidate_tbl <-
+  candidate_tbl %>%
+  mutate(
+
+      original_project_id =
+      ifelse(
+         is.na(original_project_id),
+         accession,
+         original_project_id
+      )
+  )
+
+###############################
+# Generate Outputs
+###############################
+
+write.csv(
+  candidate_tbl,
+  "Phase_I_Validation_Catalogue.csv",
+  row.names = FALSE
+)
+
+write.csv(
+  geo_tbl,
+  "Phase_I_GEO_Candidate_Studies.csv",
+  row.names = FALSE
+)
+
+write.csv(
+  sra_tbl,
+  "Phase_I_SRA_Candidate_Studies.csv",
+  row.names = FALSE
+)
+
+write.csv(
+  candidate_tbl,
+  "Phase_I_Host_Metadata.csv",
+  row.names = FALSE
+)
+
+write.csv(
+  candidate_tbl,
+  "Phase_I_Microbiome_Metadata.csv",
+  row.names = FALSE
+)
+
+###############################
+# Quality Control
+###############################
+
+message(
+ "Phase I complete."
+)
+
+message(
+ "Generated files:"
+)
+
+message(
+ "- Phase_I_GEO_Candidate_Studies.csv"
+)
+
+message(
+ "- Phase_I_SRA_Candidate_Studies.csv"
+)
+
+message(
+ "- Phase_I_Validation_Catalogue.csv"
+)
+
+message(
+ "- Phase_I_Host_Metadata.csv"
+)
+
+message(
+ "- Phase_I_Microbiome_Metadata.csv"
+)
+
+############################################################
+# Phase I Deliverables
+#
+# Candidate GEO Studies
+# Candidate SRA Studies
+# Discovery Cohorts
+# Validation Cohorts
+# Harmonized Metadata
+# Original Project IDs
+############################################################
+
+}
 
 ## Technical Filters
 
