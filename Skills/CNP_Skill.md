@@ -142,7 +142,7 @@ Capture:
 ---
 # Required Packages
 
-
+```r
 library(GEOquery)
 library(dplyr)
 library(tidyr)
@@ -150,11 +150,11 @@ library(stringr)
 library(data.table)
 library(purrr)
 library(janitor)
-
+```
 
 # Disease Targets
 
-
+```r
 disease_queries <- c(
 
   "multiple sclerosis microbiome",
@@ -171,21 +171,21 @@ disease_queries <- c(
 
   "autoimmune disease microbiome"
 )
+```
 
-###############################
 # Discovery Containers
-###############################
 
+```r
 geo_candidate_catalog <- list()
 
 sra_candidate_catalog <- list()
 
 validation_catalog <- list()
+```
 
-###############################
 # GEO Dataset Discovery
-###############################
 
+```r
 message(
   "Starting GEO discovery..."
 )
@@ -236,9 +236,7 @@ for(query in disease_queries){
       candidate_row
 }
 
-###############################
 # SRA Dataset Discovery
-###############################
 
 message(
   "Starting SRA discovery..."
@@ -276,9 +274,7 @@ for(query in disease_queries){
       candidate_row
 }
 
-###############################
 # Combine Candidate Studies
-###############################
 
 geo_tbl <- bind_rows(
   geo_candidate_catalog
@@ -288,17 +284,14 @@ sra_tbl <- bind_rows(
   sra_candidate_catalog
 )
 
-###############################
 # Validation Eligibility Rules
-###############################
 
 validation_filter <- function(dataset){
 
   pass <- TRUE
 
-  ################################
+ 
   # Human Cohort Required
-  ################################
 
   if(
      !is.na(dataset$organism)
@@ -310,9 +303,7 @@ validation_filter <- function(dataset){
      pass <- FALSE
   }
 
-  ################################
   # Microbiome Data Required
-  ################################
 
   if(
      !is.na(dataset$microbiome_available)
@@ -323,9 +314,7 @@ validation_filter <- function(dataset){
      pass <- FALSE
   }
 
-  ################################
   # Minimum Sample Threshold
-  ################################
 
   if(
      !is.na(dataset$sample_count)
@@ -339,9 +328,7 @@ validation_filter <- function(dataset){
   return(pass)
 }
 
-###############################
 # Validation Cohort Catalogue
-###############################
 
 candidate_tbl <-
   bind_rows(
@@ -358,9 +345,7 @@ candidate_tbl <-
 
   )
 
-###############################
 # Metadata Harmonization
-###############################
 
 candidate_tbl <-
   candidate_tbl %>%
@@ -385,9 +370,7 @@ candidate_tbl <-
       )
   )
 
-###############################
 # Discovery vs Validation Split
-###############################
 
 set.seed(123)
 
@@ -413,9 +396,7 @@ candidate_tbl <-
     )
   )
 
-###############################
 # Comorbidity Schema
-###############################
 
 candidate_tbl <-
   candidate_tbl %>%
@@ -430,9 +411,7 @@ candidate_tbl <-
       other_comorbidity = NA
   )
 
-###############################
 # Required Traceability Fields
-###############################
 
 candidate_tbl <-
   candidate_tbl %>%
@@ -446,9 +425,7 @@ candidate_tbl <-
       )
   )
 
-###############################
 # Generate Outputs
-###############################
 
 write.csv(
   candidate_tbl,
@@ -480,9 +457,7 @@ write.csv(
   row.names = FALSE
 )
 
-###############################
 # Quality Control
-###############################
 
 message(
  "Phase I complete."
@@ -512,7 +487,7 @@ message(
  "- Phase_I_Microbiome_Metadata.csv"
 )
 
-############################################################
+#############################
 # Phase I Deliverables
 #
 # Candidate GEO Studies
@@ -521,8 +496,8 @@ message(
 # Validation Cohorts
 # Harmonized Metadata
 # Original Project IDs
-############################################################
-
+#############################
+```
 }
 
 ## Technical Filters
