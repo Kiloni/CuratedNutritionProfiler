@@ -137,6 +137,7 @@ Capture:
 # Goal:
 # Build matched Disease → Host Tissue → Microbiome
 # inventories while simultaneously identifying
+# independent validation cohorts.
 
 ---
 # Required Packages
@@ -150,9 +151,9 @@ library(data.table)
 library(purrr)
 library(janitor)
 
-###############################
+
 # Disease Targets
-###############################
+
 
 disease_queries <- c(
 
@@ -207,6 +208,7 @@ for(query in disease_queries){
   #
   # Example metadata structure
 
+  
   candidate_row <- data.frame(
 
       disease_query = query,
