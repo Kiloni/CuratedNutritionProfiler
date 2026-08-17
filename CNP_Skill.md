@@ -130,19 +130,17 @@ Capture:
 - Study accession
 
 ---
-############################################################
+
 # Phase I — Programmatic Multi-Kingdom Discovery
 # NutrientSignatureProfiler
 #
 # Goal:
 # Build matched Disease → Host Tissue → Microbiome
 # inventories while simultaneously identifying
-# independent validation cohorts.
-############################################################
 
-###############################
+---
 # Required Packages
-###############################
+
 
 library(GEOquery)
 library(dplyr)
