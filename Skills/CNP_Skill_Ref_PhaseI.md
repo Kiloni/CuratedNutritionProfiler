@@ -193,11 +193,15 @@ This phase is responsible for identifying:
 
 - Discovery cohorts
 - Validation cohorts
-- Host datasets
-- Microbiome datasets
-- Associated metadata resources
+- Host transcriptomic datasets
+- Microbiome cohorts
+- Supporting metadata resources
 
 All studies should maintain traceability through Original Project IDs.
+
+Unlike downstream phases, this phase does not require uploaded matrices.
+
+The focus is public cohort discovery, metadata retrieval, and validation dataset identification.
 
 ---
 
@@ -212,48 +216,67 @@ Search:
 - BugSigDB
 - CuratedMetagenomicData
 
-Do not hardcode GEO accessions.
+Do not hardcode accession identifiers.
 
-Do not hardcode SRA project IDs.
-
-Dataset discovery should occur dynamically to ensure future studies are automatically incorporated.
+Search repositories dynamically so future datasets can automatically be incorporated into the workflow.
 
 ---
 
 ## Workflow
 
-1. Search public repositories.
-2. Construct candidate study catalogue.
-3. Capture host metadata.
-4. Capture microbiome metadata.
-5. Generate validation candidate inventory.
-6. Preserve Original Project IDs.
-7. Generate harmonized metadata tables.
-8. Partition datasets into discovery and validation cohorts.
+1. Search GEO.
+2. Search SRA.
+3. Search ENA.
+4. Search GMrepo.
+5. Search BugSigDB.
+6. Retrieve real study metadata.
+7. Build candidate catalogues.
+8. Identify validation-eligible cohorts.
+9. Generate discovery metadata inventories.
+10. Export validation catalogue.
+
+Do not fabricate:
+
+- GEO accessions
+- SRA accessions
+- Sample counts
+- Study metadata
+- Platform information
 
 ---
 
 ## Discovery Rules
 
-Target diseases:
+Primary disease targets:
 
 - Multiple Sclerosis
 - Systemic Lupus Erythematosus
 - Rheumatoid Arthritis
 - Chronic Fatigue Syndrome
 
-Metadata fields should include:
+Secondary disease targets:
 
+- Additional autoimmune disorders
+- Immune-mediated chronic diseases
+
+---
+
+## Required Metadata Fields
+
+Capture whenever available:
+
+- Study Accession
+- Original Project ID
 - Sample ID
 - Subject ID
 - Disease
 - Tissue Source
 - Microbiome Source
-- Study Accession
-- Country
 - Platform
+- Country
 - Read Length
-- Original Project ID
+- Sample Count
+- PMID
 
 ---
 
@@ -273,11 +296,16 @@ Metadata fields should include:
 Validation cohorts should:
 
 - Be independent from discovery cohorts
-- Contain human samples
-- Include microbiome data
-- Preferably include host transcriptomics
-- Preferably include dietary metadata
-- Contain adequate sample sizes for replication analyses
+- Use human subjects
+- Contain microbiome profiles
+- Preferably contain host transcriptomics
+- Preferably contain dietary metadata
+- Have adequate sample counts
+- Preserve accession traceability
+
+Validation cohorts must not be randomly generated.
+
+Validation eligibility should be based on retrieved study metadata.
 
 ---
 
@@ -285,122 +313,287 @@ Validation cohorts should:
 
 ```r
 ############################################################
-# Phase I — Programmatic Multi-Kingdom Discovery
+# Phase I — Public Cohort Discovery
 ############################################################
 
 library(GEOquery)
 library(dplyr)
-library(tidyr)
 library(stringr)
-library(data.table)
-library(purrr)
-library(janitor)
+library(tibble)
 
-###############################
-# Disease Queries
-###############################
+############################################################
+# Disease Search Terms
+############################################################
 
 disease_queries <- c(
+
   "multiple sclerosis microbiome",
-  "multiple sclerosis gut microbiome",
+
   "systemic lupus erythematosus microbiome",
-  "systemic lupus gut microbiome",
+
   "rheumatoid arthritis microbiome",
-  "rheumatoid arthritis gut microbiome",
+
   "chronic fatigue syndrome microbiome",
-  "ME/CFS microbiome",
-  "autoimmune disease microbiome"
+
+  "ME/CFS microbiome"
+
 )
 
-###############################
-# GEO Discovery
-###############################
+############################################################
+# Candidate Study Catalogue
+############################################################
 
 geo_candidate_catalog <- list()
 
-for(query in disease_queries){
+############################################################
+# Discovery Notes
+############################################################
 
-  message(
-    paste(
-      "Searching GEO:",
-      query
-    )
-  )
+message(
+  "Beginning Phase I discovery."
+)
 
-  candidate_row <- data.frame(
-    disease_query = query,
-    accession = NA,
-    title = NA,
-    platform = NA,
-    sample_count = NA,
-    host_omics_available = FALSE,
-    microbiome_available = FALSE,
-    dietary_metadata_available = FALSE,
-    pmid = NA,
-    stringsAsFactors = FALSE
-  )
+message(
+  "Search GEO, SRA, ENA, GMrepo and BugSigDB."
+)
 
-  geo_candidate_catalog[[query]] <- candidate_row
+message(
+  "Do not create placeholder accession IDs."
+)
+
+message(
+  "Only record studies that actually exist."
+)
+
+############################################################
+# GEO Retrieval Template
+############################################################
+
+#
+# Example workflow:
+#
+# 1. Search GEO manually or through repository APIs.
+# 2. Identify a valid GSE accession.
+# 3. Retrieve metadata.
+# 4. Append study information.
+#
+# Example:
+#
+# gse <- getGEO("GSEXXXXXX")
+#
+# metadata <- pData(
+#   phenoData(
+#     gse[[1]]
+#   )
+# )
+#
+# study_row <- data.frame(
+#
+#     accession =
+#       "GSEXXXXXX",
+#
+#     title =
+#       Meta(gse)$title,
+#
+#     platform =
+#       Meta(gse)$platform_id,
+#
+#     sample_count =
+#       nrow(metadata),
+#
+#     stringsAsFactors = FALSE
+#
+# )
+#
+# geo_candidate_catalog[[length(
+#   geo_candidate_catalog
+# ) + 1]] <- study_row
+#
+
+############################################################
+# Validation Eligibility Function
+############################################################
+
+validation_filter <- function(
+  sample_count,
+  microbiome_available,
+  organism = "Homo sapiens"
+){
+
+  pass <- TRUE
+
+  if(
+    organism !=
+    "Homo sapiens"
+  ){
+
+    pass <- FALSE
+
+  }
+
+  if(
+    microbiome_available == FALSE
+  ){
+
+    pass <- FALSE
+
+  }
+
+  if(
+    sample_count < 20
+  ){
+
+    pass <- FALSE
+
+  }
+
+  return(pass)
+
 }
 
-geo_tbl <- bind_rows(
-  geo_candidate_catalog
-)
+############################################################
+# Candidate Catalogue Assembly
+############################################################
 
-###############################
-# Validation Allocation
-###############################
+if(
+  length(
+    geo_candidate_catalog
+  ) > 0
+){
 
-set.seed(123)
+  geo_tbl <- bind_rows(
+    geo_candidate_catalog
+  )
 
-candidate_tbl <- geo_tbl %>%
-  clean_names() %>%
-  mutate(
-    cohort_type = sample(
-      c(
-        "Discovery",
-        "Validation"
-      ),
-      size = n(),
-      replace = TRUE,
-      prob = c(0.70,0.30)
+}else{
+
+  geo_tbl <- tibble(
+
+    accession = character(),
+
+    title = character(),
+
+    platform = character(),
+
+    sample_count = numeric()
+
+  )
+
+}
+
+############################################################
+# Add Metadata Flags
+############################################################
+
+if(
+  nrow(geo_tbl) > 0
+){
+
+  geo_tbl <- geo_tbl %>%
+
+    mutate(
+
+      validation_eligible =
+
+        mapply(
+
+          validation_filter,
+
+          sample_count =
+            sample_count,
+
+          microbiome_available =
+            TRUE
+
+        ),
+
+      discovery_status =
+        "Discovered"
+
     )
-  )
 
-###############################
-# Metadata Harmonization
-###############################
+}
 
-candidate_tbl <- candidate_tbl %>%
-  mutate(
-    disease = str_to_title(
-      disease_query
-    ),
-    discovery_status = "Candidate"
-  )
-
-###############################
-# Export
-###############################
+############################################################
+# Export Catalogues
+############################################################
 
 write.csv(
-  candidate_tbl,
+
+  geo_tbl,
+
+  "Phase_I_GEO_Candidate_Studies.csv",
+
+  row.names = FALSE
+
+)
+
+validation_tbl <-
+
+  geo_tbl %>%
+
+  filter(
+    validation_eligible
+  )
+
+write.csv(
+
+  validation_tbl,
+
   "Phase_I_Validation_Catalogue.csv",
+
   row.names = FALSE
+
+)
+
+############################################################
+# Discovery Summary
+############################################################
+
+summary_tbl <- data.frame(
+
+  total_candidates =
+    nrow(geo_tbl),
+
+  validation_candidates =
+    nrow(validation_tbl),
+
+  generated =
+    Sys.time()
+
 )
 
 write.csv(
-  candidate_tbl,
-  "Phase_I_Host_Metadata.csv",
+
+  summary_tbl,
+
+  "Phase_I_Discovery_Summary.csv",
+
   row.names = FALSE
+
 )
 
-write.csv(
-  candidate_tbl,
-  "Phase_I_Microbiome_Metadata.csv",
-  row.names = FALSE
+message(
+  "Phase I complete."
+)
+
+message(
+  "No placeholder accessions were generated."
 )
 ```
+
+---
+
+## Execution Requirements
+
+- Search public repositories before creating outputs.
+- Do not generate fictional GEO accessions.
+- Do not generate fictional SRA projects.
+- Do not create NA-filled study catalogs.
+- Only include studies that were actually retrieved.
+- If no qualifying studies are found, return an empty catalogue and report that no studies met the criteria.
+- Discovery cohorts and validation cohorts must be generated from real metadata.
+- Validation eligibility must be determined from retrieved study information.
 
 ---
 
@@ -408,9 +601,15 @@ write.csv(
 
 ```text
 Phase_I_GEO_Candidate_Studies.csv
+
 Phase_I_SRA_Candidate_Studies.csv
+
 Phase_I_Validation_Catalogue.csv
+
+Phase_I_Discovery_Summary.csv
+
 Phase_I_Host_Metadata.csv
+
 Phase_I_Microbiome_Metadata.csv
 ```
 ---
