@@ -633,13 +633,138 @@ This phase establishes disease-level signatures for downstream validation.
 
 ## Workflow
 
-1. Normalize host expression.
-2. Correct batch effects.
-3. Harmonize microbiome signatures.
-4. Build weighted meta-signatures.
-5. Remove metabolic confounders.
-6. Construct cleaned signature objects.
-7. Export harmonized matrices.
+1. Retrieve raw host count matrices and microbiome abundance matrices, with subject-level covariates, from GEO/SRA.
+2. Normalize host expression.
+3. Correct batch effects.
+4. Harmonize microbiome signatures.
+5. Build weighted meta-signatures.
+6. Remove metabolic confounders.
+7. Construct cleaned signature objects.
+8. Flag dietary-stress cluster taxa.
+9. Export harmonized matrices.
+
+---
+
+## Raw Matrix Retrieval from GEO Supplementary Files
+
+Purpose:
+
+Retrieve the raw host count matrices, raw microbiome abundance matrices, and
+subject-level covariates (age, sex, BMI, diet) that every later step in this
+phase depends on, keyed off the accessions discovered in Phase I. This step
+did not previously exist in this skill; every downstream step silently
+assumed its output (`host_counts.csv`, a `metadata` object) already existed.
+
+Reference implementation:
+
+```r
+library(GEOquery)
+library(Biobase)
+library(dplyr)
+library(tidyr)
+library(purrr)
+library(readr)
+library(stringr)
+
+geo_candidates <- read_csv("Phase_I_GEO_Candidate_Studies.csv")
+sra_candidates <- read_csv("Phase_I_SRA_Candidate_Studies.csv")
+
+fetch_geo_eset <- function(accession) {
+  tryCatch(
+    getGEO(accession, GSEMatrix = TRUE, getGPL = FALSE)[[1]],
+    error = function(e) { message(accession, " -> FAILED: ", conditionMessage(e)); NULL }
+  )
+}
+
+esets <- geo_candidates %>%
+  pull(accession) %>%
+  unique() %>%
+  set_names() %>%
+  map(fetch_geo_eset) %>%
+  compact()
+
+# Platform matters downstream: not every host accession is RNA-seq
+# (e.g. NanoString panels report already-processed counts, not raw
+# library-size-scaled reads). Tag it here so normalization can branch
+# correctly instead of blindly applying an RNA-seq-only method.
+platform_lookup <- geo_candidates %>%
+  select(accession, platform)
+
+is_rnaseq_platform <- function(x) str_detect(str_to_lower(x), "rna-?seq|hiseq|novaseq|nextseq")
+
+build_host_long <- function(accession) {
+  eset <- esets[[accession]]
+  if (is.null(eset) || nrow(exprs(eset)) == 0) return(NULL)
+  platform <- platform_lookup %>% filter(accession == !!accession) %>% pull(platform)
+  as.data.frame(exprs(eset)) %>%
+    tibble::rownames_to_column("feature_id") %>%
+    pivot_longer(-feature_id, names_to = "sample_id", values_to = "value") %>%
+    mutate(accession = accession, platform = platform, is_rnaseq = is_rnaseq_platform(platform))
+}
+
+host_long <- geo_candidates %>%
+  pull(accession) %>% unique() %>%
+  map(build_host_long) %>% compact() %>% bind_rows() %>%
+  mutate(sample_id = paste(accession, sample_id, sep = "__"))  # avoid cross-study ID collisions
+
+host_counts_wide <- host_long %>%
+  select(feature_id, sample_id, value) %>%
+  pivot_wider(names_from = sample_id, values_from = value) %>%
+  tibble::column_to_rownames("feature_id")
+
+write.csv(host_counts_wide, "host_counts.csv")
+
+host_sample_platform_map <- host_long %>%
+  distinct(sample_id, accession, platform, is_rnaseq)
+
+fetch_geo_covariates <- function(accession) {
+  eset <- esets[[accession]]
+  if (is.null(eset)) return(NULL)
+  pdata <- pData(eset)
+  covariate_cols <- grep("age|sex|gender|bmi|body.?fat|diet", colnames(pdata), ignore.case = TRUE, value = TRUE)
+  pdata %>%
+    select(geo_accession, any_of(covariate_cols)) %>%
+    mutate(accession = accession, sample_id = paste(accession, geo_accession, sep = "__"), study_id = accession)
+}
+
+phase2_sample_metadata <- geo_candidates %>%
+  pull(accession) %>% unique() %>%
+  map_dfr(fetch_geo_covariates)
+
+write_csv(phase2_sample_metadata, "Phase_II_Sample_Metadata.csv")
+```
+
+Microbiome raw abundance retrieval (`microbe_counts.csv`) is not a single
+file download the way host supplementary files are: GEO/SRA/ENA do not
+standardize a processed abundance-table format the way array platforms do
+for expression data. Resolve it either from the paper's own Supplementary
+Data (check first) or by running a full 16S (DADA2/QIIME2) or shotgun
+(MetaPhlAn4/HUMAnN3) pipeline against FASTQ files resolved from the linked
+BioProject:
+
+```r
+library(rentrez)
+
+sra_candidates <- read_csv("Phase_I_SRA_Candidate_Studies.csv")
+
+fetch_bioproject_run_list <- function(bioproject_accession) {
+  tryCatch(
+    entrez_search(db = "sra", term = paste0(bioproject_accession, "[BioProject]"), retmax = 10000),
+    error = function(e) { message(bioproject_accession, " -> FAILED: ", conditionMessage(e)); NULL }
+  )
+}
+
+sra_run_lists <- sra_candidates %>%
+  pull(accession) %>% unique() %>% set_names() %>%
+  map(fetch_bioproject_run_list) %>% compact()
+```
+
+Standard output:
+
+```text
+host_counts.csv
+Phase_II_Sample_Metadata.csv
+```
 
 ---
 
@@ -647,7 +772,10 @@ This phase establishes disease-level signatures for downstream validation.
 
 Purpose:
 
-Generate normalized host transcriptomic matrices suitable for integrative analyses.
+Generate normalized host transcriptomic matrices suitable for integrative
+analyses. Only true RNA-seq samples are routed through this method — a
+NanoString or microarray sample forced through `edgeR::cpm()` produces a
+number, but not a methodologically valid one.
 
 Reference implementation:
 
@@ -659,14 +787,29 @@ counts <- read.csv(
   row.names = 1
 )
 
-dge <- DGEList(
-  counts
-)
+rnaseq_samples <- host_sample_platform_map %>% filter(is_rnaseq) %>% pull(sample_id)
 
-tpm_matrix <- cpm(
-  dge,
-  normalized.lib.sizes = TRUE
-)
+if (length(rnaseq_samples) > 0) {
+
+  dge <- DGEList(
+    counts[, rnaseq_samples, drop = FALSE]
+  )
+
+  tpm_matrix <- cpm(
+    dge,
+    normalized.lib.sizes = TRUE
+  )
+
+} else {
+
+  message("No RNA-seq-platform samples available -- non-RNA-seq samples ",
+          "in host_counts.csv need a platform-appropriate normalization ",
+          "(not edgeR/CPM) before they can be added here.")
+  tpm_matrix <- counts[, character(0), drop = FALSE]
+
+}
+
+write.csv(tpm_matrix, "Phase_II_Host_Harmonized.csv")
 ```
 
 Standard output:
@@ -688,10 +831,19 @@ Reference implementation:
 ```r
 library(limma)
 
+batch_vector <- phase2_sample_metadata %>%
+  filter(sample_id %in% colnames(tpm_matrix)) %>%
+  arrange(match(sample_id, colnames(tpm_matrix))) %>%
+  pull(study_id)
+
+stopifnot(length(batch_vector) == ncol(tpm_matrix))
+
 expr_corrected <- removeBatchEffect(
-  expression_matrix,
-  batch = metadata$study_id
+  tpm_matrix,
+  batch = batch_vector
 )
+
+write.csv(expr_corrected, "Phase_II_Host_Harmonized.csv")
 ```
 
 Standard output:
@@ -702,31 +854,107 @@ Phase_II_Host_Harmonized.csv
 
 ---
 
-## Metabolic Noise Regression
+## Harmonize Microbiome Signatures
 
 Purpose:
 
-Remove microbiome signals associated with BMI, body fat, and dietary fat before biomarker construction.
+Normalize compositional microbiome abundance data and remove study-level
+batch effects, mirroring the host TPM-normalization-plus-batch-correction
+pair above. This step previously had no reference implementation despite
+being named in the Workflow list and having its own Standard Output —
+regression was run directly on raw counts, which skips normalization
+entirely.
 
 Reference implementation:
 
 ```r
+microbe_counts_path <- "microbe_counts.csv"
+
+if (file.exists(microbe_counts_path)) {
+
+  microbe_raw <- read.csv(microbe_counts_path, row.names = 1)  # taxa x samples
+
+  # Total-sum-scaling to relative abundance, then a centered log-ratio
+  # (CLR) transform with a small pseudocount for zeros -- standard
+  # handling for compositional microbiome data.
+  relabund <- sweep(microbe_raw, 2, colSums(microbe_raw), "/")
+  pseudo <- relabund + 1e-6
+  clr_matrix <- apply(pseudo, 2, function(x) log(x) - mean(log(x)))
+  rownames(clr_matrix) <- rownames(microbe_raw)
+
+  microbe_batch_vector <- phase2_sample_metadata %>%
+    filter(sample_id %in% colnames(clr_matrix)) %>%
+    arrange(match(sample_id, colnames(clr_matrix))) %>%
+    pull(study_id)
+
+  if (length(unique(microbe_batch_vector)) > 1) {
+    microbe_harmonized <- removeBatchEffect(clr_matrix, batch = microbe_batch_vector)
+  } else {
+    microbe_harmonized <- clr_matrix  # nothing to batch-correct against
+  }
+
+  write.csv(microbe_harmonized, "Phase_II_Microbe_Harmonized.csv")
+
+} else {
+
+  message(microbe_counts_path, " does not exist -- see Raw Matrix ",
+          "Retrieval section above. Microbiome harmonization, metabolic ",
+          "noise regression, and dietary-stress cluster detection all ",
+          "depend on this file and are skipped without it.")
+
+}
+```
+
+Standard output:
+
+```text
+Phase_II_Microbe_Harmonized.csv
+```
+
+---
+
+## Metabolic Noise Regression
+
+Purpose:
+
+Remove microbiome signals associated with BMI, body fat, and dietary fat
+before biomarker construction. Runs on the harmonized matrix from the
+previous step, not on raw counts.
+
+Reference implementation:
+
+```r
+microbe_matrix <- t(microbe_harmonized)  # samples x taxa
+
+microbe_metadata <- phase2_sample_metadata %>%
+  filter(sample_id %in% rownames(microbe_matrix)) %>%
+  arrange(match(sample_id, rownames(microbe_matrix)))
+
+required_cols <- c("bmi", "body_fat", "dietary_fat", "age", "sex")
+missing_cols <- setdiff(required_cols, colnames(microbe_metadata))
+if (length(missing_cols) > 0) {
+  stop("microbe_metadata is missing required covariate column(s): ",
+       paste(missing_cols, collapse = ", "))
+}
+
 microbe_adjusted <- list()
 
 for(feature in colnames(microbe_matrix)){
 
   fit <- lm(
     microbe_matrix[,feature] ~
-      metadata$bmi +
-      metadata$body_fat +
-      metadata$dietary_fat +
-      metadata$age +
-      metadata$sex
+      microbe_metadata$bmi +
+      microbe_metadata$body_fat +
+      microbe_metadata$dietary_fat +
+      microbe_metadata$age +
+      microbe_metadata$sex
   )
 
   microbe_adjusted[[feature]] <- resid(fit)
 
 }
+
+write.csv(as.data.frame(microbe_adjusted), "Phase_II_Cleaned_Signatures.csv")
 ```
 
 Standard output:
@@ -737,40 +965,13 @@ Phase_II_Cleaned_Signatures.csv
 
 ---
 
-## BugSigDB Consensus Signature Construction
+## Dietary-Stress Cluster Detection
 
 Purpose:
 
-Construct weighted disease meta-signatures.
-
-Reference implementation:
-
-```r
-library(dplyr)
-
-lor_results <- signatures %>%
-  group_by(
-      taxon,
-      disease
-  ) %>%
-  summarise(
-      weighted_lor =
-        weighted.mean(
-          lor,
-          sample_size
-        )
-  )
-```
-
-Standard output:
-
-```text
-Phase_II_Harmonized_LOR.csv
-```
-
----
-
-## Dietary-Stress Cluster Detection
+Monitor taxa known to track broad metabolic/dietary state rather than
+disease-specific biology, so a signature isn't reported as disease-specific
+without checking it against these confounders first.
 
 Monitor:
 
@@ -787,15 +988,140 @@ Assess associations with:
 
 These organisms help distinguish disease biology from broad metabolic effects.
 
+Reference implementation:
+
+```r
+dietary_stress_taxa <- c(
+  "Akkermansia muciniphila",
+  "Bacteroides fragilis",
+  "Bilophila wadsworthia"
+)
+
+present_taxa <- intersect(dietary_stress_taxa, rownames(microbe_harmonized))
+
+test_association <- function(taxon_abundance, covariate) {
+  if (is.null(covariate) || length(unique(na.omit(covariate))) < 2) return(NA_real_)
+  tryCatch(cor.test(taxon_abundance, as.numeric(covariate))$p.value, error = function(e) NA_real_)
+}
+
+dsc_metadata <- phase2_sample_metadata %>%
+  filter(sample_id %in% colnames(microbe_harmonized)) %>%
+  arrange(match(sample_id, colnames(microbe_harmonized)))
+
+dietary_stress_flags <- purrr::map_dfr(present_taxa, function(taxon) {
+  taxon_abundance <- as.numeric(microbe_harmonized[taxon, ])
+  tibble::tibble(
+    taxon = taxon,
+    present = TRUE,
+    assoc_bmi_p = test_association(taxon_abundance, dsc_metadata$bmi),
+    assoc_dietary_fat_p = test_association(taxon_abundance, dsc_metadata$dietary_fat),
+    assoc_chronic_fatigue_p = test_association(taxon_abundance, dsc_metadata$chronic_fatigue)
+  )
+})
+
+missing_taxa <- setdiff(dietary_stress_taxa, present_taxa)
+if (length(missing_taxa) > 0) {
+  dietary_stress_flags <- dplyr::bind_rows(
+    dietary_stress_flags,
+    tibble::tibble(taxon = missing_taxa, present = FALSE,
+                    assoc_bmi_p = NA_real_, assoc_dietary_fat_p = NA_real_,
+                    assoc_chronic_fatigue_p = NA_real_)
+  )
+}
+
+write_csv(dietary_stress_flags, "Phase_II_Dietary_Stress_Cluster_Flags.csv")
+```
+
+Standard output:
+
+```text
+Phase_II_Dietary_Stress_Cluster_Flags.csv
+```
+
+---
+
+## BugSigDB Consensus Signature Construction
+
+Purpose:
+
+Construct weighted disease meta-signatures from per-study log-odds-ratios.
+Requires a `signatures` table with real `lor` and `sample_size` columns —
+e.g. pulled from the BugSigDB API — which is a different object from a
+literature-direction-only table (taxon/disease/direction, no `lor` or
+`sample_size`) that a discovery-stage literature search alone produces.
+
+Reference implementation:
+
+```r
+library(dplyr)
+library(readr)
+
+bugsigdb_signatures_path <- "Phase_II_BugSigDB_Signatures.csv"
+
+if (file.exists(bugsigdb_signatures_path)) {
+
+  signatures <- read_csv(bugsigdb_signatures_path)
+
+  required_cols <- c("taxon", "disease", "lor", "sample_size")
+  missing_cols <- setdiff(required_cols, colnames(signatures))
+  if (length(missing_cols) > 0) {
+    stop(bugsigdb_signatures_path, " is missing required column(s): ",
+         paste(missing_cols, collapse = ", "))
+  }
+
+  lor_results <- signatures %>%
+    group_by(
+        taxon,
+        disease
+    ) %>%
+    summarise(
+        weighted_lor =
+          weighted.mean(
+            lor,
+            sample_size
+          ),
+        .groups = "drop"
+    )
+
+  write_csv(lor_results, "Phase_II_Harmonized_LOR.csv")
+
+} else {
+
+  message(bugsigdb_signatures_path, " does not exist -- weighted-LOR ",
+          "consensus construction skipped. A literature-direction-only ",
+          "table may stand in for discovery purposes, but is not the ",
+          "same schema and should not be treated as equivalent output.")
+
+}
+```
+
+Standard output:
+
+```text
+Phase_II_Harmonized_LOR.csv
+```
+
 ---
 
 ## Standard Outputs
 
+Supporting / intermediate files (produced during this phase, consumed by
+later steps within it):
+
+```text
+host_counts.csv
+Phase_II_Sample_Metadata.csv
+microbe_counts.csv
+```
+
+Final deliverables:
+
 ```text
 Phase_II_Host_Harmonized.csv
 Phase_II_Microbe_Harmonized.csv
-Phase_II_Harmonized_LOR.csv
 Phase_II_Cleaned_Signatures.csv
+Phase_II_Dietary_Stress_Cluster_Flags.csv
+Phase_II_Harmonized_LOR.csv
 ```
 
 ---
