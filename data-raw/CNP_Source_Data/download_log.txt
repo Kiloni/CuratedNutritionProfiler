@@ -1,0 +1,193 @@
+2026-11-04 11:17:06  ==== CNP source-data download started; output: /Users/kiloni/RStudio Projects/curatedNutritionDataset/data-raw/CNP_Source_Data 
+2026-11-04 11:17:06  GSE134933 (Vitamin_A) 
+2026-11-04 11:17:06    ok  GSE134933_series_matrix.txt.gz  2.8 Kb 
+2026-11-04 11:17:07    ok  GSE134933_family.soft.gz  3.1 Kb 
+2026-11-04 11:17:07    ok  GSE134933_2018-2-27_expression.genes.protein_coding.xls.gz  4.3 Mb 
+2026-11-04 11:17:08    ok  GSE134933_DE.results_set1_kidneys.xls.gz  17.8 Mb 
+2026-11-04 11:17:10    (no NCBI-generated counts for GSE134933) 
+2026-11-04 11:17:10  GSE299530 (Vitamin_A) 
+2026-11-04 11:17:10    ok  GSE299530-GPL35938_series_matrix.txt.gz  3.1 Kb 
+2026-11-04 11:17:11    ok  GSE299530-GPL35939_series_matrix.txt.gz  3.6 Kb 
+2026-11-04 11:17:11    ok  GSE299530_family.soft.gz  4.5 Kb 
+2026-11-04 11:17:11    ok  GSE299530_2021_Combined-Microbiome-Data_LogCPM_Family.csv.gz  16.7 Kb 
+2026-11-04 11:17:12    ok  GSE299530_features_combined_2021.txt.gz  1.3 Mb 
+2026-11-04 11:17:14    (no NCBI-generated counts for GSE299530) 
+2026-11-04 11:17:14  GSE266352 (Vitamin_A) 
+2026-11-04 11:17:14    ok  GSE266352_series_matrix.txt.gz  2.5 Kb 
+2026-11-04 11:17:14    ok  GSE266352_family.soft.gz  2.7 Kb 
+2026-11-04 11:17:15    ok  GSE266352_Hanse_et_al_Patient_Table.xlsx  11 Kb 
+2026-11-04 11:17:15    ok  GSE266352_LAMN_VS_ADENO_Named_RawCounts.csv.gz  654.1 Kb 
+2026-11-04 11:17:15    ok  GSE266352_LAMN_vs_ADENO_DESEQ2.named.csv.gz  39.4 Kb 
+2026-11-04 11:17:16    ok  GSE266352_raw_counts_GRCh38.p13_NCBI.tsv.gz  426.8 Kb 
+2026-11-04 11:17:17    ok  GSE266352_norm_counts_TPM_GRCh38.p13_NCBI.tsv.gz  708.9 Kb 
+2026-11-04 11:17:18    ok  GSE266352_norm_counts_FPKM_GRCh38.p13_NCBI.tsv.gz  711.6 Kb 
+2026-11-04 11:17:19  GDS4860 (Vitamin_A) 
+2026-11-04 11:17:19    ok  GDS4860_full.soft.gz  11.2 Mb 
+2026-11-04 11:17:20    ok  GDS4860.soft.gz  2.7 Mb 
+2026-11-04 11:17:20  GSE46268 (Vitamin_A) 
+2026-11-04 11:17:21    ok  GSE46268_series_matrix.txt.gz  2.5 Mb 
+2026-11-04 11:17:21    ok  GSE46268_family.soft.gz  16.5 Mb 
+2026-11-04 11:17:23    ok  GSE46268_RAW.tar  65.9 Mb 
+2026-11-04 11:17:24    ok  filelist.txt  1.6 Kb 
+2026-11-04 11:17:26    (no NCBI-generated counts for GSE46268) 
+2026-11-04 11:17:26  GSE37313 (Vitamin_A) 
+2026-11-04 11:17:27    ok  GSE37313_series_matrix.txt.gz  4 Mb 
+2026-11-04 11:17:27    ok  GSE37313_family.soft.gz  8.6 Mb 
+2026-11-04 11:17:28    ok  GSE37313_RAW.tar  2.8 Mb 
+2026-11-04 11:17:29    ok  GSE37313_non-normalized.txt.gz  3.2 Mb 
+2026-11-04 11:17:29    ok  filelist.txt  181 bytes 
+2026-11-04 11:17:31    (no NCBI-generated counts for GSE37313) 
+2026-11-04 11:17:31  GSE271249 (Vitamin_A) 
+2026-11-04 11:17:31    ok  GSE271249-GPL11154_series_matrix.txt.gz  2.6 Kb 
+2026-11-04 11:17:32    ok  GSE271249-GPL30173_series_matrix.txt.gz  2.1 Kb 
+2026-11-04 11:17:32    ok  GSE271249_family.soft.gz  4.4 Kb 
+2026-11-04 11:17:33    SKIPPED (7.12 GB > cap): https://ftp.ncbi.nlm.nih.gov/geo/series/GSE271nnn/GSE271249/suppl/GSE271249_RAW.tar 
+2026-11-04 11:17:33    ok  filelist.txt  2.2 Kb 
+2026-11-04 11:17:35    (no NCBI-generated counts for GSE271249) 
+2026-11-04 11:17:35  GSE271214 (Vitamin_A) 
+2026-11-04 11:17:35    ok  GSE271214_series_matrix.txt.gz  2.8 Kb 
+2026-11-04 11:17:35    ok  GSE271214_family.soft.gz  3 Kb 
+2026-11-04 11:17:41    ok  GSE271214_RAW.tar  150 Mb 
+2026-11-04 11:17:41    ok  filelist.txt  1.6 Kb 
+2026-11-04 11:17:43    (no NCBI-generated counts for GSE271214) 
+2026-11-04 11:17:43  GSE103417 (Vitamin_B12) 
+2026-11-04 11:17:44    ok  GSE103417_series_matrix.txt.gz  5.8 Mb 
+2026-11-04 11:17:45    ok  GSE103417_family.soft.gz  14.5 Mb 
+2026-11-04 11:17:55    ok  GSE103417_RAW.tar  350.2 Mb 
+2026-11-04 11:17:56    ok  filelist.txt  2.6 Kb 
+2026-11-04 11:17:58    (no NCBI-generated counts for GSE103417) 
+2026-11-04 11:17:58  GSE104164 (Vitamin_B12) 
+2026-11-04 11:17:58    ok  GSE104164_series_matrix.txt.gz  2.4 Mb 
+2026-11-04 11:17:59    ok  GSE104164_family.soft.gz  13.6 Mb 
+2026-11-04 11:18:00    ok  GSE104164_MDD-rat-cerebellum_normalized-data_with_annotation.txt.gz  3.8 Mb 
+2026-11-04 11:18:01    ok  GSE104164_RAW.tar  21.4 Mb 
+2026-11-04 11:18:01    ok  filelist.txt  800 bytes 
+2026-11-04 11:18:04    (no NCBI-generated counts for GSE104164) 
+2026-11-04 11:18:04  GSE161763 (Vitamin_B12) 
+2026-11-04 11:18:05    ok  GSE161763_series_matrix.txt.gz  3.9 Kb 
+2026-11-04 11:18:05    ok  GSE161763_family.soft.gz  4.1 Kb 
+2026-11-04 11:18:25    ok  GSE161763_RAW.tar  1 Gb 
+2026-11-04 11:18:27    ok  GSE161763_RONIN_Brain_ChIPseq_all_peaks.txt.gz  2.5 Mb 
+2026-11-04 11:18:28    ok  GSE161763_RONIN_F80L_RNAseq_raw_counts.txt.gz  461.5 Kb 
+2026-11-04 11:18:28    ok  filelist.txt  368 bytes 
+2026-11-04 11:18:30    (no NCBI-generated counts for GSE161763) 
+2026-11-04 11:18:30  GSE99113 (Vitamin_B12) 
+2026-11-04 11:18:31    ok  GSE99113_series_matrix.txt.gz  2 Kb 
+2026-11-04 11:18:31    ok  GSE99113_family.soft.gz  2.1 Kb 
+2026-11-04 11:18:32    ok  GSE99113_JC_NS190_AstrocyteB12.txt.gz  591.7 Kb 
+2026-11-04 11:18:34    (no NCBI-generated counts for GSE99113) 
+2026-11-04 11:18:34  GSE233598 (Vitamin_C) 
+2026-11-04 11:18:34    ok  GSE233598_series_matrix.txt.gz  3.7 Kb 
+2026-11-04 11:18:35    ok  GSE233598_family.soft.gz  4.2 Kb 
+2026-11-04 11:18:36    ok  GSE233598_tpm.xlsx  10.6 Mb 
+2026-11-04 11:18:38    (no NCBI-generated counts for GSE233598) 
+2026-11-04 11:18:38  GSE190371 (Vitamin_C) 
+2026-11-04 11:18:38    ok  GSE190371_series_matrix.txt.gz  2.6 Kb 
+2026-11-04 11:18:39    ok  GSE190371_family.soft.gz  3 Kb 
+2026-11-04 11:18:40    ok  GSE190371_DMRs_delta0.01.anno.txt.gz  9.8 Mb 
+2026-11-04 11:18:43    ok  GSE190371_RAW.tar  142.9 Mb 
+2026-11-04 11:18:44    ok  GSE190371_scRNA-markergenes.txt.gz  43.5 Kb 
+2026-11-04 11:18:44    ok  filelist.txt  1.3 Kb 
+2026-11-04 11:18:46    (no NCBI-generated counts for GSE190371) 
+2026-11-04 11:18:46  GSE63086 (Vitamin_D) 
+2026-11-04 11:18:46    ok  GSE63086_series_matrix.txt.gz  3.2 Kb 
+2026-11-04 11:18:46    ok  GSE63086_family.soft.gz  3.4 Kb 
+2026-11-04 11:18:47    ok  GSE63086_FPKMs.D.treatment.HNRNPC.KD.txt.gz  2.6 Mb 
+2026-11-04 11:18:48    ok  GSE63086_raw_counts_GRCh38.p13_NCBI.tsv.gz  625.8 Kb 
+2026-11-04 11:18:50    ok  GSE63086_norm_counts_TPM_GRCh38.p13_NCBI.tsv.gz  986.7 Kb 
+2026-11-04 11:18:51    ok  GSE63086_norm_counts_FPKM_GRCh38.p13_NCBI.tsv.gz  991.8 Kb 
+2026-11-04 11:18:52  GSE283020 (Vitamin_D) 
+2026-11-04 11:18:53    ok  GSE283020_series_matrix.txt.gz  2.7 Kb 
+2026-11-04 11:18:53    ok  GSE283020_family.soft.gz  3 Kb 
+2026-11-04 11:18:54    ok  GSE283020_mouse_vitd_def_th2_matrix.csv.gz  462.1 Kb 
+2026-11-04 11:18:56    (no NCBI-generated counts for GSE283020) 
+2026-11-04 11:18:56  GSE15947 (Vitamin_D) 
+2026-11-04 11:18:57    ok  GSE15947_series_matrix.txt.gz  7 Mb 
+2026-11-04 11:18:57    ok  GSE15947_family.soft.gz  22 Mb 
+2026-11-04 11:19:02    ok  GSE15947_RAW.tar  115.4 Mb 
+2026-11-04 11:19:03    ok  filelist.txt  1.4 Kb 
+2026-11-04 11:19:05    (no NCBI-generated counts for GSE15947) 
+2026-11-04 11:19:05  GSE221690 (Vitamin_D) 
+2026-11-04 11:19:05    ok  GSE221690_series_matrix.txt.gz  3 Kb 
+2026-11-04 11:19:06    ok  GSE221690_family.soft.gz  3.2 Kb 
+2026-11-04 11:19:06    ok  GSE221690_complete.RNA.invitro.totalRNA.cpm.csv.gz  2.2 Mb 
+2026-11-04 11:19:07    ok  GSE221690_raw_counts_GRCh38.p13_NCBI.tsv.gz  1.1 Mb 
+2026-11-04 11:19:09    ok  GSE221690_norm_counts_TPM_GRCh38.p13_NCBI.tsv.gz  1.8 Mb 
+2026-11-04 11:19:10    ok  GSE221690_norm_counts_FPKM_GRCh38.p13_NCBI.tsv.gz  1.8 Mb 
+2026-11-04 11:19:11  GSE124395 (Vitamin_D) 
+2026-11-04 11:19:12    ok  GSE124395_series_matrix.txt.gz  22.4 Kb 
+2026-11-04 11:19:12    ok  GSE124395_family.soft.gz  28.3 Kb 
+2026-11-04 11:19:12    ok  GSE124395_File_Descriptions.txt.gz  305 bytes 
+2026-11-04 11:19:13    ok  GSE124395_Normalhumanlivercellatlasdata.txt.gz  26.8 Mb 
+2026-11-04 11:19:14    ok  GSE124395_Normalhumanliverdata.RData.gz  42.7 Mb 
+2026-11-04 11:19:34    ok  GSE124395_RAW.tar  87.5 Mb 
+2026-11-04 11:19:34    ok  GSE124395_celseq_barcodes.192.txt.gz  910 bytes 
+2026-11-04 11:19:35    ok  GSE124395_clusterpartition.txt.gz  32 Kb 
+2026-11-04 11:19:35    ok  filelist.txt  24.3 Kb 
+2026-11-04 11:19:37    (no NCBI-generated counts for GSE124395) 
+2026-11-04 11:19:37  GSE148011 (Vitamin_K) 
+2026-11-04 11:19:37    ok  GSE148011_series_matrix.txt.gz  2.8 Kb 
+2026-11-04 11:19:38    ok  GSE148011_family.soft.gz  3.3 Kb 
+2026-11-04 11:19:39    ok  GSE148011_RAW.tar  4.7 Mb 
+2026-11-04 11:19:39    ok  filelist.txt  1.5 Kb 
+2026-11-04 11:19:41    (no NCBI-generated counts for GSE148011) 
+2026-11-04 11:19:41  GSE143307 (Vitamin_K) 
+2026-11-04 11:19:44    ok  GSE143307_series_matrix.txt.gz  182.7 Mb 
+2026-11-04 11:19:53    ok  GSE143307_family.soft.gz  432.2 Mb 
+2026-11-04 11:20:25    ok  GSE143307_RAW.tar  836.8 Mb 
+2026-11-04 11:20:26    ok  filelist.txt  7.8 Kb 
+2026-11-04 11:20:28    (no NCBI-generated counts for GSE143307) 
+2026-11-04 11:20:28  GSE246328 (Iron) 
+2026-11-04 11:20:29    ok  GSE246328_series_matrix.txt.gz  3.6 Kb 
+2026-11-04 11:20:29    ok  GSE246328_family.soft.gz  4.3 Kb 
+2026-11-04 11:20:30    ok  GSE246328_GAN-DIO-NASH-Senescence_counts.txt.gz  1.9 Mb 
+2026-11-04 11:20:32    (no NCBI-generated counts for GSE246328) 
+2026-11-04 11:20:32  GSE12375 (Omega_3) 
+2026-11-04 11:20:33    ok  GSE12375_series_matrix.txt.gz  8.2 Mb 
+2026-11-04 11:20:34    ok  GSE12375_family.soft.gz  13.1 Mb 
+2026-11-04 11:20:44    ok  GSE12375_RAW.tar  189.5 Mb 
+2026-11-04 11:20:45    ok  filelist.txt  5.2 Kb 
+2026-11-04 11:20:46    (no NCBI-generated counts for GSE12375) 
+2026-11-04 11:20:46  GSE296260 (Unverified) 
+2026-11-04 11:20:48    ok  GSE296260_series_matrix.txt.gz  4.1 Kb 
+2026-11-04 11:20:48    ok  GSE296260_family.soft.gz  4.4 Kb 
+2026-11-04 11:20:49    ok  GSE296260_countTable.logCPM.txt.gz  2.5 Mb 
+2026-11-04 11:20:51    (no NCBI-generated counts for GSE296260) 
+2026-11-04 11:20:51  ---- GWAS Catalog studies 
+2026-11-04 11:20:53    GCST90265907: 1 studies 
+2026-11-04 11:20:53    GCST90265907: 0 associations 
+2026-11-04 11:20:54    GCST90300747: 1 studies 
+2026-11-04 11:20:56    GCST90300747: 0 associations 
+2026-11-04 11:20:58    GCST90255448: 1 studies 
+2026-11-04 11:21:00    GCST90255448: 2 associations 
+2026-11-04 11:21:02    GCST90300148: 1 studies 
+2026-11-04 11:21:03    GCST90300148: 0 associations 
+2026-11-04 11:21:04    GCST90013572: 1 studies 
+2026-11-04 11:21:05    GCST90013572: 0 associations 
+2026-11-04 11:21:06    GCST90176068: 1 studies 
+2026-11-04 11:21:07    GCST90176068: 0 associations 
+2026-11-04 11:21:08    GCST90257552: 1 studies 
+2026-11-04 11:21:09    GCST90257552: 0 associations 
+2026-11-04 11:21:11    GCST90258157: 1 studies 
+2026-11-04 11:21:12    GCST90258157: 0 associations 
+2026-11-04 11:21:14    GCST002559: 1 studies 
+2026-11-04 11:21:16    GCST002559: 8 associations 
+2026-11-04 11:21:17    GCST90448636: 1 studies 
+2026-11-04 11:21:21    GCST90448636: 24 associations 
+2026-11-04 11:21:23    GCST90277442: 1 studies 
+2026-11-04 11:21:26    GCST90277442: 11 associations 
+2026-11-04 11:21:27    GCST001762: 1 studies 
+2026-11-04 11:23:41    GCST001762: 949 associations 
+2026-11-04 11:23:44    GCST001216: 1 studies 
+2026-11-04 11:23:45    GCST001216: 2 associations 
+2026-11-04 11:23:47    GCST009391: 1 studies 
+2026-11-04 11:28:47    GCST009391: 2148 associations 
+2026-11-04 11:28:48    GCST90139670: 1 studies 
+2026-11-04 11:28:49    GCST90139670: 3 associations 
+2026-11-04 11:28:49  ---- GWAS Catalog traits 
+2026-11-04 11:28:50    EFO_0004857: 0 associations 
+2026-11-04 11:28:52    OBA_1000995: 10 associations 
+2026-11-04 11:28:53    EFO_0010540: 7 associations 
+2026-11-04 11:28:54    OBA_2040014: 2 associations 
+2026-11-04 11:28:57    EFO_0010519: 14 associations 
+2026-11-04 11:28:57  ==== Done. Manifest: /Users/kiloni/RStudio Projects/curatedNutritionDataset/data-raw/CNP_Source_Data/download_manifest.csv 
