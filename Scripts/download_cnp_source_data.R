@@ -51,7 +51,9 @@ SKIP_PROCESSED <- TRUE
 #   GSE266352 LAMN vs CRC metastases | GSE124395 liver cell atlas | GSE246328 NASH diet, no iron arm
 #   GSE296260 ccRCC vs kidney | GSE143307 DNA methylation (vitamin K responders)
 #   GSE271214 / GSE271249 RA-treated hESC, 2 per arm (RAW tar 7.1 GB) | GDS4860 subset of GSE46268
-EXCLUDED <- c("GSE266352", "GSE124395", "GSE246328", "GSE296260", "GSE143307", "GSE271214", "GSE271249", "GDS4860")
+#   GSE19292 CodeLink rat array without gene symbols, 2 vs 2
+EXCLUDED <- c("GSE266352", "GSE124395", "GSE246328", "GSE296260", "GSE143307", "GSE271214", "GSE271249", "GDS4860",
+              "GSE19292")
 
 options(timeout = 3600)   # allow up to 1 h per file
 if (!requireNamespace("jsonlite", quietly = TRUE)) install.packages("jsonlite")
@@ -107,6 +109,22 @@ Vitamin_E,GSE110747,"Vitamin E-enriched vs control diet x exercise, mouse liver 
 Vitamin_E,GSE8150,"Old mice +/- tocopherol supplementation, brain - added 2026-11-04"
 Vitamin_E,GSE8146,"Old mice +/- tocopherol supplementation, heart - added 2026-11-04"
 Vitamin_E,GSE195619,"HepaRG oleic acid +/- vitamin E sources - added 2026-11-04"
+Vitamin_B1,GSE31553,"Benfotiamine vs none, human myotubes x glucose - added 2026-11-04 (2nd pass)"
+Vitamin_B1,GSE19292,"Thiamine supplementation vs none, OLETF rat liver - added 2026-11-04 (2nd pass)"
+Vitamin_B3,GSE345595,"Niacin-free vs control diet, ANDY mouse liver - added 2026-11-04 (2nd pass)"
+Vitamin_B3,GSE345344,"Niacin-free diet and recovery, ANDY mouse liver - added 2026-11-04 (2nd pass)"
+Vitamin_B3,GSE300498,"Tryptophan/niacin-free and methionine-restricted diets, mouse intestine - added 2026-11-04 (2nd pass)"
+Vitamin_B3,GSE92499,"Nicotinamide supplementation x diet, mouse liver - added 2026-11-04 (2nd pass)"
+Vitamin_B5,GSE130705,"Pank1/Pank2 double knockout (CoA deficiency), mouse brain - added 2026-11-04 (2nd pass)"
+Vitamin_B5,GSE187456,"Coenzyme A vs untreated, mouse Tc0 CD8 T cells - added 2026-11-04 (2nd pass)"
+Iron,GSE162493,"Iron-deficient vs control diet, mouse heart - added 2026-11-04 (2nd pass)"
+Iron,GSE157667,"Iron-deficient vs adequate, mouse placenta - added 2026-11-04 (2nd pass)"
+Iron,GSE30533,"Iron-deficient vs control diet, rat liver - added 2026-11-04 (2nd pass)"
+Iron,GSE175739,"Heart failure patients with vs without iron deficiency, whole blood - added 2026-11-04 (2nd pass)"
+Iron,GSE314015,"Deferoxamine vs vehicle, human endothelial cells - added 2026-11-04 (2nd pass)"
+Omega_3,GSE48368,"Fish oil vs high-oleic sunflower oil, human PBMC wk 0/3/7 - added 2026-11-04 (2nd pass)"
+Omega_3,GSE29680,"DHA-rich n-3 vs placebo, Alzheimer patient PBMC - added 2026-11-04 (2nd pass)"
+Vitamin_C,GSE295923,"Gulo-/- embryos +/- maternal vitamin C, E8.5 headfold - added 2026-11-04 (2nd pass)"
 ', stringsAsFactors = FALSE)
 
 gwas_studies <- read.csv(text = '

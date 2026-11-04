@@ -332,6 +332,17 @@ Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,LR �
 Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Score · singscore,0.5,0,1,,2,2,Score,singscore
 Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,LR · singscore,0.5,0,1,0.5,2,2,Logistic regression,singscore
 Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Random forest,1,1,1,0.75,2,2,Random forest,genes
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,Score · GSVA,0.361904761904762,0.151675705720899,0.572133818088624,,15,14,Score,GSVA
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,LR · GSVA,0.361904761904762,0.151675705720899,0.572133818088624,0.413793103448276,15,14,Logistic regression,GSVA
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,Score · ssGSEA,0.80952380952381,0.63514125427117,0.983906364776449,,15,14,Score,ssGSEA
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,LR · ssGSEA,0.80952380952381,0.63514125427117,0.983906364776449,0.758620689655172,15,14,Logistic regression,ssGSEA
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,Score · PLAGE,0.876190476190476,0.750545605650401,1,,15,14,Score,PLAGE
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,LR · PLAGE,0.876190476190476,0.750545605650401,1,0.724137931034483,15,14,Logistic regression,PLAGE
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,Score · zScore,0.276190476190476,0.0810653511909077,0.471315601190045,,15,14,Score,zScore
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,LR · zScore,0.276190476190476,0.0810653511909077,0.471315601190045,0.344827586206897,15,14,Logistic regression,zScore
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,Score · singscore,0.5,0.268886561202153,0.731113438797847,,15,14,Score,singscore
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,LR · singscore,0.5,0.268886561202153,0.731113438797847,0.620689655172414,15,14,Logistic regression,singscore
+Vitamin_C,Vitamin C,GSE295923 embryo headfold · mouse Gulo-/- maternal vitC,External,Random forest,0.633333333333333,0.408403516128046,0.858263150538621,0.655172413793103,15,14,Random forest,genes
 B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),Score · GSVA,1,1,1,,3,3,Score,GSVA
 B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),LR · GSVA,1,1,1,1,3,3,Logistic regression,GSVA
 B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (leave-pair-out),LR · GSVA,1,,,,3,3,Logistic regression,GSVA
@@ -832,3 +843,181 @@ Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Intern
 Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),LR · singscore,0.667826086956522,,,,25,23,Logistic regression,singscore
 Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),Random forest,0.38,0.216787305912704,0.543212694087296,0.395833333333333,25,23,Random forest,genes
 Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),Random forest,0.425217391304348,,,,25,23,Random forest,genes
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,Score · GSVA,0.622291021671827,0.432549418575407,0.812032624768246,,19,17,Score,GSVA
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,LR · GSVA,0.622291021671827,0.432549418575407,0.812032624768246,0.527777777777778,19,17,Logistic regression,GSVA
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,Score · ssGSEA,0.606811145510836,0.410418389969591,0.803203901052081,,19,17,Score,ssGSEA
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,LR · ssGSEA,0.606811145510836,0.410418389969591,0.803203901052081,0.611111111111111,19,17,Logistic regression,ssGSEA
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,Score · PLAGE,0.606811145510836,0.416781371473288,0.796840919548384,,19,17,Score,PLAGE
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,LR · PLAGE,0.606811145510836,0.416781371473288,0.796840919548384,0.611111111111111,19,17,Logistic regression,PLAGE
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,Score · zScore,0.678018575851393,0.495857819193165,0.860179332509622,,19,17,Score,zScore
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,LR · zScore,0.678018575851393,0.495857819193165,0.860179332509622,0.611111111111111,19,17,Logistic regression,zScore
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,Score · singscore,0.647058823529412,0.458325219274173,0.835792427784651,,19,17,Score,singscore
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,LR · singscore,0.647058823529412,0.458325219274173,0.835792427784651,0.694444444444445,19,17,Logistic regression,singscore
+Omega_3_FattyAcids,Omega-3,"GSE48368 PBMC · human fish oil vs HOSO, 7 wk",External,Random forest,0.544891640866873,0.348492375550476,0.741290906183271,0.5,19,17,Random forest,genes
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,Score · GSVA,0.363636363636364,0.0503257202074551,0.676947007065272,,5,11,Score,GSVA
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,LR · GSVA,0.363636363636364,0.0503257202074551,0.676947007065272,0.375,5,11,Logistic regression,GSVA
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,Score · ssGSEA,0.218181818181818,0,0.455098988123377,,5,11,Score,ssGSEA
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,LR · ssGSEA,0.218181818181818,0,0.455098988123377,0.375,5,11,Logistic regression,ssGSEA
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,Score · PLAGE,0.109090909090909,0,0.28036488974453,,5,11,Score,PLAGE
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,LR · PLAGE,0.109090909090909,0,0.28036488974453,0.3125,5,11,Logistic regression,PLAGE
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,Score · zScore,0.218181818181818,0,0.535119329407797,,5,11,Score,zScore
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,LR · zScore,0.218181818181818,0,0.535119329407797,0.375,5,11,Logistic regression,zScore
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,Score · singscore,0.109090909090909,0,0.299999885847517,,5,11,Score,singscore
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,LR · singscore,0.109090909090909,0,0.299999885847517,0.3125,5,11,Logistic regression,singscore
+Omega_3_FattyAcids,Omega-3,"GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo",External,Random forest,0.618181818181818,0.305073899227987,0.931289737135649,0.625,5,11,Random forest,genes
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),Score · GSVA,0.583333333333333,0.192248979817786,0.974417686848881,,6,6,Score,GSVA
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),LR · GSVA,0,0,0,0,6,6,Logistic regression,GSVA
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (leave-pair-out),LR · GSVA,0.0555555555555556,,,,6,6,Logistic regression,GSVA
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),Score · ssGSEA,0.527777777777778,0.1336734230167,0.921882132538855,,6,6,Score,ssGSEA
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),LR · ssGSEA,0,0,0,0.0833333333333333,6,6,Logistic regression,ssGSEA
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (leave-pair-out),LR · ssGSEA,0.0833333333333333,,,,6,6,Logistic regression,ssGSEA
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),Score · PLAGE,0.972222222222222,0.895227565313907,1,,6,6,Score,PLAGE
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),LR · PLAGE,0.694444444444445,0.309471159902867,1,0.833333333333333,6,6,Logistic regression,PLAGE
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (leave-pair-out),LR · PLAGE,0.833333333333333,,,,6,6,Logistic regression,PLAGE
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),Score · zScore,0.555555555555556,0.184700178266298,0.926410932844813,,6,6,Score,zScore
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),LR · zScore,0.222222222222222,0,0.506164487158313,0.416666666666667,6,6,Logistic regression,zScore
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (leave-pair-out),LR · zScore,0.333333333333333,,,,6,6,Logistic regression,zScore
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),Score · singscore,0.666666666666667,0.318909833914878,1,,6,6,Score,singscore
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),LR · singscore,0.611111111111111,0.240255733821854,0.981966488400369,0.583333333333333,6,6,Logistic regression,singscore
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (leave-pair-out),LR · singscore,0.666666666666667,,,,6,6,Logistic regression,singscore
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (LOOCV),Random forest,1,1,1,0.916666666666667,6,6,Random forest,genes
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,Internal (leave-pair-out),Random forest,0.972222222222222,,,,6,6,Random forest,genes
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),Score · GSVA,0.638888888888889,0.416458120493479,0.861319657284299,,18,12,Score,GSVA
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),LR · GSVA,0.574074074074074,0.328901618746524,0.819246529401624,0.7,18,12,Logistic regression,GSVA
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (leave-pair-out),LR · GSVA,0.638888888888889,,,,18,12,Logistic regression,GSVA
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),Score · ssGSEA,0.675925925925926,0.472442122425523,0.879409729426329,,18,12,Score,ssGSEA
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),LR · ssGSEA,0.657407407407407,0.449302272377687,0.865512542437127,0.733333333333333,18,12,Logistic regression,ssGSEA
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (leave-pair-out),LR · ssGSEA,0.675925925925926,,,,18,12,Logistic regression,ssGSEA
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),Score · PLAGE,0.611111111111111,0.400578558157421,0.821643664064801,,18,12,Score,PLAGE
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),LR · PLAGE,0.560185185185185,0.337396418104649,0.782973952265722,0.6,18,12,Logistic regression,PLAGE
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (leave-pair-out),LR · PLAGE,0.611111111111111,,,,18,12,Logistic regression,PLAGE
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),Score · zScore,0.611111111111111,0.400578558157421,0.821643664064801,,18,12,Score,zScore
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),LR · zScore,0.560185185185185,0.337396418104649,0.782973952265722,0.6,18,12,Logistic regression,zScore
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (leave-pair-out),LR · zScore,0.611111111111111,,,,18,12,Logistic regression,zScore
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),Score · singscore,0.740740740740741,0.554998934129357,0.926482547352125,,18,12,Score,singscore
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),LR · singscore,0.708333333333333,0.51033958426649,0.906327082400177,0.733333333333333,18,12,Logistic regression,singscore
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (leave-pair-out),LR · singscore,0.740740740740741,,,,18,12,Logistic regression,singscore
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (LOOCV),Random forest,0.75462962962963,0.549510076183975,0.959749183075285,0.7,18,12,Random forest,genes
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,Internal (leave-pair-out),Random forest,0.789351851851852,,,,18,12,Random forest,genes
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,Score · GSVA,0.636363636363636,0.255426687650758,1,,4,11,Score,GSVA
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,LR · GSVA,0.636363636363636,0.255426687650758,1,0.6,4,11,Logistic regression,GSVA
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,Score · ssGSEA,0.795454545454545,0.543472031936422,1,,4,11,Score,ssGSEA
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,LR · ssGSEA,0.795454545454545,0.543472031936422,1,0.6,4,11,Logistic regression,ssGSEA
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,Score · PLAGE,0.727272727272727,0.364660055138839,1,,4,11,Score,PLAGE
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,LR · PLAGE,0.727272727272727,0.364660055138839,1,0.6,4,11,Logistic regression,PLAGE
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,Score · zScore,0.727272727272727,0.364660055138839,1,,4,11,Score,zScore
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,LR · zScore,0.727272727272727,0.364660055138839,1,0.6,4,11,Logistic regression,zScore
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,Score · singscore,0.795454545454545,0.543472031936422,1,,4,11,Score,singscore
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,LR · singscore,0.795454545454545,0.543472031936422,1,0.6,4,11,Logistic regression,singscore
+B3_Niacin,Vitamin B3,GSE345344 liver · mouse niacin-free diet / recovery,External,Random forest,0.840909090909091,0.632610320234396,1,0.733333333333333,4,11,Random forest,genes
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,Score · GSVA,0.25,0,0.739990996135013,,4,2,Score,GSVA
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,LR · GSVA,0.25,0,0.739990996135013,0.333333333333333,4,2,Logistic regression,GSVA
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,Score · ssGSEA,0.375,0,0.904250765084265,,4,2,Score,ssGSEA
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,LR · ssGSEA,0.375,0,0.904250765084265,0.5,4,2,Logistic regression,ssGSEA
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,Score · PLAGE,0.5,0,1,,4,2,Score,PLAGE
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,LR · PLAGE,0.5,0,1,0.5,4,2,Logistic regression,PLAGE
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,Score · zScore,0.5,0,1,,4,2,Score,zScore
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,LR · zScore,0.5,0,1,0.5,4,2,Logistic regression,zScore
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,Score · singscore,0.375,0,0.904250765084265,,4,2,Score,singscore
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,LR · singscore,0.375,0,0.904250765084265,0.5,4,2,Logistic regression,singscore
+B3_Niacin,Vitamin B3,GSE300498 intestine · mouse tryptophan/niacin-free diet,External,Random forest,0.375,0,1,0.666666666666667,4,2,Random forest,genes
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,Score · GSVA,0.4375,0.224643719702259,0.650356280297741,,12,20,Score,GSVA
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,LR · GSVA,0.4375,0.224643719702259,0.650356280297741,0.5,12,20,Logistic regression,GSVA
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,Score · ssGSEA,0.6125,0.401995361885605,0.823004638114396,,12,20,Score,ssGSEA
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,LR · ssGSEA,0.6125,0.401995361885605,0.823004638114396,0.59375,12,20,Logistic regression,ssGSEA
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,Score · PLAGE,0.425,0.215633837026789,0.634366162973211,,12,20,Score,PLAGE
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,LR · PLAGE,0.425,0.215633837026789,0.634366162973211,0.4375,12,20,Logistic regression,PLAGE
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,Score · zScore,0.479166666666667,0.269683178852097,0.688650154481237,,12,20,Score,zScore
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,LR · zScore,0.479166666666667,0.269683178852097,0.688650154481237,0.46875,12,20,Logistic regression,zScore
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,Score · singscore,0.458333333333333,0.253409887090463,0.663256779576204,,12,20,Score,singscore
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,LR · singscore,0.458333333333333,0.253409887090463,0.663256779576204,0.5,12,20,Logistic regression,singscore
+B3_Niacin,Vitamin B3,GSE92499 liver · mouse nicotinamide supplementation,External,Random forest,0.58125,0.371010429363405,0.791489570636595,0.46875,12,20,Random forest,genes
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),Score · GSVA,0.977272727272727,0.927019600400748,1,,11,12,Score,GSVA
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),LR · GSVA,0.909090909090909,0.730912365041813,1,0.91304347826087,11,12,Logistic regression,GSVA
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (leave-pair-out),LR · GSVA,0.950757575757576,,,,11,12,Logistic regression,GSVA
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),Score · ssGSEA,0.992424242424242,0.971425699631065,1,,11,12,Score,ssGSEA
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),LR · ssGSEA,0.833333333333333,0.612598792905752,1,0.91304347826087,11,12,Logistic regression,ssGSEA
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (leave-pair-out),LR · ssGSEA,0.912878787878788,,,,11,12,Logistic regression,ssGSEA
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),Score · PLAGE,0.909090909090909,0.78973291079858,1,,11,12,Score,PLAGE
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),LR · PLAGE,0.871212121212121,0.719129103429942,1,0.826086956521739,11,12,Logistic regression,PLAGE
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (leave-pair-out),LR · PLAGE,0.909090909090909,,,,11,12,Logistic regression,PLAGE
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),Score · zScore,1,1,1,,11,12,Score,zScore
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),LR · zScore,1,1,1,0.956521739130435,11,12,Logistic regression,zScore
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (leave-pair-out),LR · zScore,1,,,,11,12,Logistic regression,zScore
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),Score · singscore,1,1,1,,11,12,Score,singscore
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),LR · singscore,1,1,1,1,11,12,Logistic regression,singscore
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (leave-pair-out),LR · singscore,1,,,,11,12,Logistic regression,singscore
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (LOOCV),Random forest,0.916666666666667,0.778868161168355,1,0.869565217391304,11,12,Random forest,genes
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),Internal (leave-pair-out),Random forest,0.939393939393939,,,,11,12,Random forest,genes
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,Score · GSVA,1,1,1,,3,3,Score,GSVA
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,LR · GSVA,1,1,1,0.833333333333333,3,3,Logistic regression,GSVA
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,Score · ssGSEA,0.888888888888889,0.580910261255627,1,,3,3,Score,ssGSEA
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,LR · ssGSEA,0.888888888888889,0.580910261255627,1,0.666666666666667,3,3,Logistic regression,ssGSEA
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,Score · PLAGE,0.888888888888889,0.580910261255627,1,,3,3,Score,PLAGE
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,LR · PLAGE,0.888888888888889,0.580910261255627,1,0.833333333333333,3,3,Logistic regression,PLAGE
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,Score · zScore,0.333333333333333,0,0.866767964039479,,3,3,Score,zScore
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,LR · zScore,0.333333333333333,0,0.795301274783226,0.333333333333333,3,3,Logistic regression,zScore
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,Score · singscore,1,1,1,,3,3,Score,singscore
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,LR · singscore,1,1,1,1,3,3,Logistic regression,singscore
+B5_Pantothenic Acid,Vitamin B5,GSE187456 Tc0 T cells · mouse coenzyme A,External,Random forest,0.555555555555556,0,1,0.666666666666667,3,3,Random forest,genes
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),Score · GSVA,0.92,0.778062276435222,1,,10,10,Score,GSVA
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),LR · GSVA,0.88,0.682701285568387,1,0.85,10,10,Logistic regression,GSVA
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (leave-pair-out),LR · GSVA,0.92,,,,10,10,Logistic regression,GSVA
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),Score · ssGSEA,0.59,0.316072097750354,0.863927902249647,,10,10,Score,ssGSEA
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),LR · ssGSEA,0.08,0,0.195399554787152,0.2,10,10,Logistic regression,ssGSEA
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (leave-pair-out),LR · ssGSEA,0.26,,,,10,10,Logistic regression,ssGSEA
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),Score · PLAGE,1,1,1,,10,10,Score,PLAGE
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),LR · PLAGE,1,1,1,1,10,10,Logistic regression,PLAGE
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (leave-pair-out),LR · PLAGE,1,,,,10,10,Logistic regression,PLAGE
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),Score · zScore,0.95,0.864817320519173,1,,10,10,Score,zScore
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),LR · zScore,0.83,0.60161770162758,1,0.9,10,10,Logistic regression,zScore
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (leave-pair-out),LR · zScore,0.95,,,,10,10,Logistic regression,zScore
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),Score · singscore,0.55,0.268995871554959,0.831004128445041,,10,10,Score,singscore
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),LR · singscore,0,0,0,0.05,10,10,Logistic regression,singscore
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (leave-pair-out),LR · singscore,0.04,,,,10,10,Logistic regression,singscore
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (LOOCV),Random forest,0.97,0.904017780197086,1,0.95,10,10,Random forest,genes
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,Internal (leave-pair-out),Random forest,0.99,,,,10,10,Random forest,genes
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,Score · GSVA,0.805555555555556,0.527947372135867,1,,6,6,Score,GSVA
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,LR · GSVA,0.805555555555556,0.527947372135867,1,0.833333333333333,6,6,Logistic regression,GSVA
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,Score · ssGSEA,1,1,1,,6,6,Score,ssGSEA
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,LR · ssGSEA,1,1,1,1,6,6,Logistic regression,ssGSEA
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,Score · PLAGE,1,1,1,,6,6,Score,PLAGE
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,LR · PLAGE,1,1,1,0.916666666666667,6,6,Logistic regression,PLAGE
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,Score · zScore,0.805555555555556,0.515417457173949,1,,6,6,Score,zScore
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,LR · zScore,0.805555555555556,0.515417457173949,1,0.75,6,6,Logistic regression,zScore
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,Score · singscore,1,1,1,,6,6,Score,singscore
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,LR · singscore,1,1,1,1,6,6,Logistic regression,singscore
+Iron_Homeostasis,Iron,GSE157667 placenta · mouse iron deficiency,External,Random forest,0.444444444444444,0.0370270155241567,0.851861873364732,0.416666666666667,6,6,Random forest,genes
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,Score · GSVA,0.76,0.413801335638543,1,,5,5,Score,GSVA
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,LR · GSVA,0.76,0.413801335638543,1,0.8,5,5,Logistic regression,GSVA
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,Score · ssGSEA,0.76,0.436754458773396,1,,5,5,Score,ssGSEA
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,LR · ssGSEA,0.76,0.436754458773396,1,0.6,5,5,Logistic regression,ssGSEA
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,Score · PLAGE,0.72,0.365035425262228,1,,5,5,Score,PLAGE
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,LR · PLAGE,0.62,0.249157411047693,0.990842588952307,0.6,5,5,Logistic regression,PLAGE
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,Score · zScore,0.72,0.365035425262228,1,,5,5,Score,zScore
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,LR · zScore,0.72,0.365035425262228,1,0.6,5,5,Logistic regression,zScore
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,Score · singscore,0.76,0.436754458773396,1,,5,5,Score,singscore
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,LR · singscore,0.76,0.436754458773396,1,0.6,5,5,Logistic regression,singscore
+Iron_Homeostasis,Iron,GSE30533 liver · rat iron-deficient diet,External,Random forest,0.8,0.408007203091989,1,0.7,5,5,Random forest,genes
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,Score · GSVA,0.387755102040816,0.0677609821159096,0.707749221965723,,7,7,Score,GSVA
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,LR · GSVA,0.387755102040816,0.0677609821159096,0.707749221965723,0.428571428571429,7,7,Logistic regression,GSVA
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,Score · ssGSEA,0.510204081632653,0.17714364189427,0.843264521371036,,7,7,Score,ssGSEA
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,LR · ssGSEA,0.510204081632653,0.17714364189427,0.843264521371036,0.428571428571429,7,7,Logistic regression,ssGSEA
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,Score · PLAGE,0.530612244897959,0.199156925054999,0.862067564740919,,7,7,Score,PLAGE
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,LR · PLAGE,0.571428571428571,0.276815587857633,0.86604155499951,0.571428571428571,7,7,Logistic regression,PLAGE
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,Score · zScore,0.448979591836735,0.10957457362865,0.788384610044819,,7,7,Score,zScore
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,LR · zScore,0.448979591836735,0.10957457362865,0.788384610044819,0.571428571428571,7,7,Logistic regression,zScore
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,Score · singscore,0.510204081632653,0.17714364189427,0.843264521371036,,7,7,Score,singscore
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,LR · singscore,0.510204081632653,0.17714364189427,0.843264521371036,0.428571428571429,7,7,Logistic regression,singscore
+Iron_Homeostasis,Iron,GSE175739 whole blood · heart-failure patients,External,Random forest,0.428571428571429,0.0939135674875278,0.763229289655329,0.5,7,7,Random forest,genes
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,Score · GSVA,0.833333333333333,0.506672669243324,1,,6,6,Score,GSVA
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,LR · GSVA,0.833333333333333,0.506672669243324,1,0.833333333333333,6,6,Logistic regression,GSVA
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,Score · ssGSEA,0,0,0,,6,6,Score,ssGSEA
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,LR · ssGSEA,0,0,0,0,6,6,Logistic regression,ssGSEA
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,Score · PLAGE,0,0,0,,6,6,Score,PLAGE
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,LR · PLAGE,0,0,0,0,6,6,Logistic regression,PLAGE
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,Score · zScore,0,0,0,,6,6,Score,zScore
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,LR · zScore,0,0,0,0,6,6,Logistic regression,zScore
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,Score · singscore,0,0,0,,6,6,Score,singscore
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,LR · singscore,0,0,0,0,6,6,Logistic regression,singscore
+Iron_Homeostasis,Iron,GSE314015 endothelial cells · human iron chelation,External,Random forest,1,1,1,1,6,6,Random forest,genes

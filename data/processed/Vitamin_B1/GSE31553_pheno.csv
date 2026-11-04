@@ -1,0 +1,13 @@
+sample,condition,glucose,donor
+GSM489256,No_benfotiamine,Normal,I
+GSM489257,No_benfotiamine,Normal,III
+GSM489258,No_benfotiamine,Normal,II
+GSM489259,No_benfotiamine,High,II
+GSM489260,No_benfotiamine,High,I
+GSM489261,No_benfotiamine,High,III
+GSM783244,Benfotiamine,Normal,I
+GSM783245,Benfotiamine,Normal,III
+GSM783246,Benfotiamine,Normal,II
+GSM783247,Benfotiamine,High,II
+GSM783248,Benfotiamine,High,I
+GSM783249,Benfotiamine,High,III

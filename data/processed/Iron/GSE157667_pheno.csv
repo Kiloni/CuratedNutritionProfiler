@@ -1,0 +1,13 @@
+sample,condition,sex
+A1,Iron_adequate,Female
+A2,Iron_adequate,Female
+A3,Iron_adequate,Female
+D1,Iron_deficient,Female
+D2,Iron_deficient,Female
+D3,Iron_deficient,Female
+MA1,Iron_adequate,Male
+MA2,Iron_adequate,Male
+MA3,Iron_adequate,Male
+MD1,Iron_deficient,Male
+MD2,Iron_deficient,Male
+MD3,Iron_deficient,Male

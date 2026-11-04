@@ -17,3 +17,7 @@ Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,1,1,1,1,1,1
 Vitamin_K_GSE148011_Down,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,1,1,1,1,1,1
 Vitamin_K_GWAS,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,0.36,0.82,0.75,0.57,0.57,1
 Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",0.54,0.67,0.57,0.61,0.64,0.38
+B1_Thiamine,Vitamin B1,GSE31553 myotubes · human benfotiamine,0,0,0.69,0.22,0.61,1
+B3_Niacin,Vitamin B3,GSE345595 liver · mouse niacin-free diet,0.57,0.66,0.56,0.56,0.71,0.75
+B5_Pantothenic Acid,Vitamin B5,GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency),0.91,0.83,0.87,1,1,0.92
+Iron_Homeostasis,Iron,GSE162493 heart · mouse iron-deficient diet,0.88,0.08,1,0.83,0,0.97

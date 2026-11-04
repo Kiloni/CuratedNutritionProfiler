@@ -1,0 +1,13 @@
+sample,condition,cell_type
+AC1,Vehicle,Coronary_artery_EC
+AC2,Vehicle,Coronary_artery_EC
+AC3,Vehicle,Coronary_artery_EC
+AD1,Deferoxamine,Coronary_artery_EC
+AD2,Deferoxamine,Coronary_artery_EC
+AD3,Deferoxamine,Coronary_artery_EC
+LC1,Vehicle,Lymphatic_EC
+LC2,Vehicle,Lymphatic_EC
+LC3,Vehicle,Lymphatic_EC
+LD1,Deferoxamine,Lymphatic_EC
+LD2,Deferoxamine,Lymphatic_EC
+LD3,Deferoxamine,Lymphatic_EC

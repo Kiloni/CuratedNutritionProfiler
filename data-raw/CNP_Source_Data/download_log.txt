@@ -358,3 +358,185 @@
 2026-11-04 12:36:40    EFO_0004618: 6 associations 
 2026-11-04 12:37:00    EFO_0010469: 224 associations 
 2026-11-04 12:37:00  ==== Done. Manifest: /Users/kiloni/RStudio Projects/curatedNutritionDataset/data-raw/CNP_Source_Data/download_manifest.csv 
+2026-11-04 13:13:03  ==== CNP source-data download started; output: /Users/kiloni/RStudio Projects/curatedNutritionDataset/data-raw/CNP_Source_Data 
+2026-11-04 13:13:03  GSE134933: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE299530: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE266352: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GDS4860: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GSE46268: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE37313: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE271249: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GSE271214: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GSE103417: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE104164: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE161763: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE99113: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE233598: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE190371: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE63086: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE283020: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE15947: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE221690: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE124395: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GSE148011: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE143307: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GSE246328: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GSE12375: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE296260: excluded from validation - skipped (see EXCLUDED) 
+2026-11-04 13:13:03  GSE345689: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE139892: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE275393: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE324232: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE271941: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE343742: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE344237: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE267133: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE237219: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE272401: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE1063: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE110747: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE8150: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE8146: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE195619: already processed into data/processed - skipped 
+2026-11-04 13:13:03  GSE31553 (Vitamin_B1) 
+2026-11-04 13:13:03    ok  GSE31553_series_matrix.txt.gz  2.4 Mb 
+2026-11-04 13:13:04    ok  GSE31553_family.soft.gz  10.6 Mb 
+2026-11-04 13:13:05    ok  GSE31553_RAW.tar  6.3 Mb 
+2026-11-04 13:13:06    ok  GSE31553_non-normalized_GSM489256-GSM489261.txt.gz  9.5 Mb 
+2026-11-04 13:13:06    ok  GSE31553_non-normalized_GSM783244-GSM783249.txt.gz  9.5 Mb 
+2026-11-04 13:13:07    ok  filelist.txt  172 bytes 
+2026-11-04 13:13:08    (no NCBI-generated counts for GSE31553) 
+2026-11-04 13:13:08  GSE19292 (Vitamin_B1) 
+2026-11-04 13:13:09    ok  GSE19292_series_matrix.txt.gz  689.2 Kb 
+2026-11-04 13:13:09    ok  GSE19292_family.soft.gz  2.1 Mb 
+2026-11-04 13:13:10    ok  GSE19292_RAW.tar  3.7 Mb 
+2026-11-04 13:13:11    ok  filelist.txt  303 bytes 
+2026-11-04 13:13:12    (no NCBI-generated counts for GSE19292) 
+2026-11-04 13:13:12  GSE345595 (Vitamin_B3) 
+2026-11-04 13:13:13    ok  GSE345595-GPL30172_series_matrix.txt.gz  3.6 Kb 
+2026-11-04 13:13:13    ok  GSE345595-GPL37305_series_matrix.txt.gz  5.4 Kb 
+2026-11-04 13:13:13    ok  GSE345595_family.soft.gz  6.1 Kb 
+2026-11-04 13:13:14    ok  GSE345595_aging_liver_counts_matrix.csv.gz  1.6 Mb 
+2026-11-04 13:13:16    (no NCBI-generated counts for GSE345595) 
+2026-11-04 13:13:16  GSE345344 (Vitamin_B3) 
+2026-11-04 13:13:16    ok  GSE345344_series_matrix.txt.gz  3.5 Kb 
+2026-11-04 13:13:17    ok  GSE345344_family.soft.gz  3.5 Kb 
+2026-11-04 13:13:17    ok  GSE345344_recovery_liver_counts_matrix.csv.gz  672.5 Kb 
+2026-11-04 13:13:19    (no NCBI-generated counts for GSE345344) 
+2026-11-04 13:13:19  GSE300498 (Vitamin_B3) 
+2026-11-04 13:13:19    ok  GSE300498_series_matrix.txt.gz  3.1 Kb 
+2026-11-04 13:13:20    ok  GSE300498_family.soft.gz  3.4 Kb 
+2026-11-04 13:13:20    ok  GSE300498_processed_data.txt.gz  856.7 Kb 
+2026-11-04 13:13:22    (no NCBI-generated counts for GSE300498) 
+2026-11-04 13:13:22  GSE92499 (Vitamin_B3) 
+2026-11-04 13:13:23    ok  GSE92499_series_matrix.txt.gz  4.2 Mb 
+2026-11-04 13:13:23    ok  GSE92499_family.soft.gz  11 Mb 
+2026-11-04 13:13:24    ok  GSE92499_RAW.tar  3.1 Mb 
+2026-11-04 13:13:25    ok  GSE92499_non-normalized.txt.gz  3.1 Mb 
+2026-11-04 13:13:25    ok  filelist.txt  173 bytes 
+2026-11-04 13:13:27    (no NCBI-generated counts for GSE92499) 
+2026-11-04 13:13:27  GSE130705 (Vitamin_B5) 
+2026-11-04 13:13:27    ok  GSE130705_series_matrix.txt.gz  3.1 Kb 
+2026-11-04 13:13:27    ok  GSE130705_family.soft.gz  3.5 Kb 
+2026-11-04 13:13:35    ok  GSE130705_RAW.tar  7 Mb 
+2026-11-04 13:13:35    ok  filelist.txt  1.9 Kb 
+2026-11-04 13:13:37    (no NCBI-generated counts for GSE130705) 
+2026-11-04 13:13:37  GSE187456 (Vitamin_B5) 
+2026-11-04 13:13:38    ok  GSE187456_series_matrix.txt.gz  3.1 Kb 
+2026-11-04 13:13:38    ok  GSE187456_family.soft.gz  3.3 Kb 
+2026-11-04 13:13:41    ok  GSE187456_RAW.tar  1.7 Mb 
+2026-11-04 13:13:41    ok  GSE187456_stpaul_saibil_ohashi_2021_counts.txt.gz  477.4 Kb 
+2026-11-04 13:13:41    ok  filelist.txt  770 bytes 
+2026-11-04 13:13:43    (no NCBI-generated counts for GSE187456) 
+2026-11-04 13:13:43  GSE162493 (Iron) 
+2026-11-04 13:13:44    ok  GSE162493_series_matrix.txt.gz  2.5 Kb 
+2026-11-04 13:13:44    ok  GSE162493_family.soft.gz  2.9 Kb 
+2026-11-04 13:13:45    ok  GSE162493_featuresCount.txt.gz  2.4 Mb 
+2026-11-04 13:13:46    (no NCBI-generated counts for GSE162493) 
+2026-11-04 13:13:46  GSE157667 (Iron) 
+2026-11-04 13:13:47    ok  GSE157667_series_matrix.txt.gz  2.3 Kb 
+2026-11-04 13:13:47    ok  GSE157667_family.soft.gz  2.6 Kb 
+2026-11-04 13:13:48    ok  GSE157667_featurecounts_mus_rm.txt.gz  729.7 Kb 
+2026-11-04 13:13:50    (no NCBI-generated counts for GSE157667) 
+2026-11-04 13:13:50  GSE30533 (Iron) 
+2026-11-04 13:13:50    ok  GSE30533_series_matrix.txt.gz  1.8 Mb 
+2026-11-04 13:13:51    ok  GSE30533_family.soft.gz  8.5 Mb 
+2026-11-04 13:13:53    ok  GSE30533_RAW.tar  25.3 Mb 
+2026-11-04 13:13:53    ok  filelist.txt  752 bytes 
+2026-11-04 13:13:55    (no NCBI-generated counts for GSE30533) 
+2026-11-04 13:13:55  GSE175739 (Iron) 
+2026-11-04 13:13:56    ok  GSE175739_series_matrix.txt.gz  4.1 Mb 
+2026-11-04 13:13:56    ok  GSE175739_family.soft.gz  7 Mb 
+2026-11-04 13:14:10    ok  GSE175739_RAW.tar  104.9 Mb 
+2026-11-04 13:14:10    ok  filelist.txt  1.1 Kb 
+2026-11-04 13:14:14    (no NCBI-generated counts for GSE175739) 
+2026-11-04 13:14:14  GSE314015 (Iron) 
+2026-11-04 13:14:14    ok  GSE314015_series_matrix.txt.gz  2.3 Kb 
+2026-11-04 13:14:15    ok  GSE314015_family.soft.gz  2.5 Kb 
+2026-11-04 13:14:15    ok  GSE314015_Artery_DFOvCon.csv.gz  841.5 Kb 
+2026-11-04 13:14:16    ok  GSE314015_LEC_DFOvCon.csv.gz  824.1 Kb 
+2026-11-04 13:14:16    ok  GSE314015_NormalizedCounts.csv.gz  1.1 Mb 
+2026-11-04 13:14:17    ok  GSE314015_counts.csv.gz  717.7 Kb 
+2026-11-04 13:14:18    (no NCBI-generated counts for GSE314015) 
+2026-11-04 13:14:18  GSE48368 (Omega_3) 
+2026-11-04 13:14:19    ok  GSE48368_series_matrix.txt.gz  24.7 Mb 
+2026-11-04 13:14:20    ok  GSE48368_family.soft.gz  53.5 Mb 
+2026-11-04 13:14:21    ok  GSE48368_RAW.tar  26.2 Mb 
+2026-11-04 13:14:22    ok  GSE48368_non-normalized.txt.gz  17.8 Mb 
+2026-11-04 13:14:23    ok  filelist.txt  260 bytes 
+2026-11-04 13:14:24    (no NCBI-generated counts for GSE48368) 
+2026-11-04 13:14:24  GSE29680 (Omega_3) 
+2026-11-04 13:14:25    ok  GSE29680_series_matrix.txt.gz  507.4 Kb 
+2026-11-04 13:14:25    ok  GSE29680_family.soft.gz  4.1 Mb 
+2026-11-04 13:14:30    ok  GSE29680_RAW.tar  27.9 Mb 
+2026-11-04 13:14:30    ok  filelist.txt  1.6 Kb 
+2026-11-04 13:14:32    (no NCBI-generated counts for GSE29680) 
+2026-11-04 13:14:32  GSE295923 (Vitamin_C) 
+2026-11-04 13:14:32    ok  GSE295923_series_matrix.txt.gz  4.1 Kb 
+2026-11-04 13:14:33    ok  GSE295923_family.soft.gz  4.6 Kb 
+2026-11-04 13:14:43    ok  GSE295923_RAW.tar  69.1 Mb 
+2026-11-04 13:14:44    ok  filelist.txt  6.2 Kb 
+2026-11-04 13:14:45    (no NCBI-generated counts for GSE295923) 
+2026-11-04 13:14:45  ---- GWAS Catalog studies 
+2026-11-04 13:14:47    GCST90265907: 1 studies 
+2026-11-04 13:14:48    GCST90265907: 0 associations 
+2026-11-04 13:14:50    GCST90300747: 1 studies 
+2026-11-04 13:14:52    GCST90300747: 0 associations 
+2026-11-04 13:14:53    GCST90255448: 1 studies 
+2026-11-04 13:14:54    GCST90255448: 2 associations 
+2026-11-04 13:14:55    GCST90300148: 1 studies 
+2026-11-04 13:14:56    GCST90300148: 0 associations 
+2026-11-04 13:14:57    GCST90013572: 1 studies 
+2026-11-04 13:14:58    GCST90013572: 0 associations 
+2026-11-04 13:14:59    GCST90176068: 1 studies 
+2026-11-04 13:14:59    GCST90176068: 0 associations 
+2026-11-04 13:15:01    GCST90257552: 1 studies 
+2026-11-04 13:15:01    GCST90257552: 0 associations 
+2026-11-04 13:15:02    GCST90258157: 1 studies 
+2026-11-04 13:15:03    GCST90258157: 0 associations 
+2026-11-04 13:15:04    GCST002559: 1 studies 
+2026-11-04 13:15:06    GCST002559: 8 associations 
+2026-11-04 13:15:07    GCST90448636: 1 studies 
+2026-11-04 13:15:09    GCST90448636: 24 associations 
+2026-11-04 13:15:10    GCST90277442: 1 studies 
+2026-11-04 13:15:12    GCST90277442: 11 associations 
+2026-11-04 13:15:13    GCST001762: 1 studies 
+2026-11-04 13:16:40    GCST001762: 949 associations 
+2026-11-04 13:16:41    GCST001216: 1 studies 
+2026-11-04 13:16:42    GCST001216: 2 associations 
+2026-11-04 13:16:43    GCST009391: 1 studies 
+2026-11-04 13:19:59    GCST009391: 2148 associations 
+2026-11-04 13:20:00    GCST90139670: 1 studies 
+2026-11-04 13:20:02    GCST90139670: 3 associations 
+2026-11-04 13:20:02  ---- GWAS Catalog traits 
+2026-11-04 13:20:02    EFO_0004857: 0 associations 
+2026-11-04 13:20:04    OBA_1000995: 10 associations 
+2026-11-04 13:20:06    EFO_0010540: 7 associations 
+2026-11-04 13:20:07    OBA_2040014: 2 associations 
+2026-11-04 13:20:10    EFO_0010519: 14 associations 
+2026-11-04 13:20:13    EFO_0004621: 21 associations 
+2026-11-04 13:20:16    EFO_0007898: 18 associations 
+2026-11-04 13:20:16    EFO_0004738: 1 associations 
+2026-11-04 13:20:18    EFO_0004618: 6 associations 
+2026-11-04 13:20:38    EFO_0010469: 224 associations 
+2026-11-04 13:20:38  ==== Done. Manifest: /Users/kiloni/RStudio Projects/curatedNutritionDataset/data-raw/CNP_Source_Data/download_manifest.csv 

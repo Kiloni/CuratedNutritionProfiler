@@ -73,7 +73,8 @@ panels <- list(
     signatures = c(Vitamin_D_Aigner_35 = "GSE63086")),
   "Vitamin C" = list(space = "human", datasets = list(
       D("GSE233598", "GSE233598", "Vitamin_C", "Gulo_0pct", c("Gulo_0.40pct", "WT"), "sex", "GSE233598 liver · mouse Gulo-/- no vitC"),
-      D("GSE190371", "GSE190371", "Vitamin_C", "VitC_deficient", "Control", NULL, "GSE190371 kidney · mouse Gulo-/- (pseudobulk)")),
+      D("GSE190371", "GSE190371", "Vitamin_C", "VitC_deficient", "Control", NULL, "GSE190371 kidney · mouse Gulo-/- (pseudobulk)"),
+      D("GSE295923", "GSE295923", "Vitamin_C", "VitC_minus", "VitC_plus", c("background", "sex"), "GSE295923 embryo headfold · mouse Gulo-/- maternal vitC")),
     signatures = c(Vitamin_C = "GSE233598")),
   "Vitamin B12 / methyl donors" = list(space = "human", datasets = list(
       D("GSE161763", "GSE161763", "Vitamin_B12", "cblX_F80L", "Control", NULL, "GSE161763 brain · mouse cblX (Ronin F80L)"),
@@ -111,8 +112,30 @@ panels <- list(
     # identical candidate Vitamin_K_GSE148011_Up is not repeated here
     signatures = c(Vitamin_K = "GSE148011", Vitamin_K_GSE148011_Down = "GSE148011", Vitamin_K_GWAS = "GSE148011")),
   "Omega-3" = list(space = "native", datasets = list(
-      D("GSE12375", "GSE12375", "Omega_3", "MUFA_END", "EPADHA_END", NULL, "GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo")),
-    signatures = c(Omega_3_FattyAcids = "GSE12375"))
+      D("GSE12375", "GSE12375", "Omega_3", "MUFA_END", "EPADHA_END", NULL, "GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo"),
+      D("GSE48368", "GSE48368", "Omega_3", "HOSO_wk7", "FO_wk7", NULL, "GSE48368 PBMC · human fish oil vs HOSO, 7 wk"),
+      D("GSE29680", "GSE29680", "Omega_3", "Placebo_after", "n3_after", NULL, "GSE29680 PBMC · Alzheimer patients n-3 vs placebo, 6 mo")),
+    signatures = c(Omega_3_FattyAcids = "GSE12375")),
+  "Vitamin B1" = list(space = "human", datasets = list(
+      D("GSE31553", "GSE31553", "Vitamin_B1", "No_benfotiamine", "Benfotiamine", c("glucose", "donor"), "GSE31553 myotubes · human benfotiamine")),
+    signatures = c(B1_Thiamine = "GSE31553")),
+  "Vitamin B3" = list(space = "human", datasets = list(
+      D("GSE345595", "GSE345595", "Vitamin_B3", c("ND1DL", "ND1DS", "ND2D"), c("CD1D", "CD2W"), "doxycycline", "GSE345595 liver · mouse niacin-free diet"),
+      D("GSE345344", "GSE345344", "Vitamin_B3", "NFD", c("CD", "Rec"), NULL, "GSE345344 liver · mouse niacin-free diet / recovery"),
+      D("GSE300498", "GSE300498", "Vitamin_B3", c("TNR", "MTNR"), "C", "strain", "GSE300498 intestine · mouse tryptophan/niacin-free diet"),
+      D("GSE92499", "GSE92499", "Vitamin_B3", "No_NAM", c("Low_NAM", "High_NAM"), "diet", "GSE92499 liver · mouse nicotinamide supplementation")),
+    signatures = c(B3_Niacin = "GSE345595")),
+  "Vitamin B5" = list(space = "human", datasets = list(
+      D("GSE130705", "GSE130705", "Vitamin_B5", "Pank1_Pank2_dKO", "WT", c("sex", "day"), "GSE130705 brain · mouse Pank1/2 knockout (CoA deficiency)"),
+      D("GSE187456", "GSE187456", "Vitamin_B5", "Untreated", "CoA", "mouse", "GSE187456 Tc0 T cells · mouse coenzyme A")),
+    signatures = c(`B5_Pantothenic Acid` = "GSE130705")),
+  "Iron" = list(space = "human", datasets = list(
+      D("GSE162493", "GSE162493", "Iron", "Iron_deficient", "Control", NULL, "GSE162493 heart · mouse iron-deficient diet"),
+      D("GSE157667", "GSE157667", "Iron", "Iron_deficient", "Iron_adequate", "sex", "GSE157667 placenta · mouse iron deficiency"),
+      D("GSE30533", "GSE30533", "Iron", "Iron_deficient", "Control", NULL, "GSE30533 liver · rat iron-deficient diet"),
+      D("GSE175739", "GSE175739", "Iron", "Iron_deficient", "Iron_replete", "pair", "GSE175739 whole blood · heart-failure patients"),
+      D("GSE314015", "GSE314015", "Iron", "Deferoxamine", "Vehicle", "cell_type", "GSE314015 endothelial cells · human iron chelation")),
+    signatures = c(Iron_Homeostasis = "GSE162493"))
 )
 tested <- unlist(lapply(panels, function(p) names(p$signatures)))
 untested <- setdiff(names(NutSignatures), tested)
@@ -543,6 +566,13 @@ for (pn in names(panels)) {
   L-carnitine together with resveratrol, and GSE272401 gives vitamins D and K together. GSE271941
   compares two folic-acid doses (moderate vs fortified), not deficiency. GSE139892 uses a
   B6-pathway inhibitor rather than a deficient diet. GSE237219 has only 2 controls.
+* **Second-pass datasets (2026-11-04).** B1 has only one usable dataset (benfotiamine in
+  myotubes), so it is tested internally only. `B3_Niacin` has three genes, and CETP has no mouse
+  ortholog, so only two genes are scored in the rodent datasets. GSE300498 has one sample per
+  strain per diet. B5 is tested on a genetic CoA deficiency (Pank1/Pank2 knockout) and on CoA
+  treatment, not on dietary pantothenate deficiency. GSE175739 (iron) and GSE29680 (omega-3)
+  are **patient** cohorts (heart failure; Alzheimer's disease), the first step towards the
+  apply stage.
 * **GWAS-based candidates.** `Vitamin_K_GWAS` uses the GWAS Catalog's suggestive threshold
   (p ≤ 1e-5) because vitamin K measurement has no genome-wide significant hits. GWAS genes
   affect circulating nutrient levels; they need not change expression in nutrient-exposed tissue.
