@@ -211,11 +211,12 @@ download_gse <- function(acc, group, role) {
       sprintf("%s_raw_counts_GRCh38.p13_NCBI.tsv.gz", acc),
       sprintf("%s_norm_counts_TPM_GRCh38.p13_NCBI.tsv.gz", acc),
       sprintf("%s_norm_counts_FPKM_GRCh38.p13_NCBI.tsv.gz", acc),
-      "Human.GRCh38.p13.annot.tsv.gz",
       sprintf("%s_raw_counts_GRCm39_NCBI.tsv.gz", acc),
       sprintf("%s_norm_counts_TPM_GRCm39_NCBI.tsv.gz", acc),
-      sprintf("%s_norm_counts_FPKM_GRCm39_NCBI.tsv.gz", acc),
-      "Mouse.GRCm39.annot.tsv.gz")
+      sprintf("%s_norm_counts_FPKM_GRCm39_NCBI.tsv.gz", acc))
+    # NCBI's gene-annotation files (Human.GRCh38.p13.annot.tsv.gz etc.) are not served at
+    # this URL (404 as of 2026-11-04); GeneIDs are mapped with org.Hs.eg.db / org.Mm.eg.db
+    # in Scripts/process_cnp_source_data.R instead.
     got_counts <- FALSE
     for (f in gen) {
       is_annot <- grepl("annot", f)

@@ -1,0 +1,92 @@
+## `r r$signature`
+
+*Panel:* `r r$panel` · *Training set:* `r r$train` · *Signature size:* `r length(NutSignatures[[r$signature]])` genes ·
+*Score direction learned in training:* `r paste(sprintf("%s %s", names(r$directions), r$directions), collapse = "; ")`
+
+```{r, results = "asis"}
+cat(kable(r$coverage, format = "html", row.names = FALSE,
+          col.names = c("Dataset", "Species", "Signature genes", "Found in data", "Coverage")) |>
+      kable_styling(bootstrap_options = c("condensed"), full_width = FALSE, font_size = 12))
+```
+
+```{r, fig.height = h_box, fig.width = w_box, eval = !all(is.na(r$scores$GSVA))}
+sc <- r$scores |>
+  pivot_longer(all_of(ALGS), names_to = "algorithm", values_to = "score") |>
+  group_by(dataset, algorithm) |> mutate(z = as.numeric(scale(score))) |> ungroup() |>
+  mutate(role = case_when(y == 1 ~ names(ROLE_COLS)[1], y == 0 ~ names(ROLE_COLS)[2], TRUE ~ names(ROLE_COLS)[3]),
+         algorithm = factor(algorithm, levels = ALGS),
+         dataset = factor(dataset, levels = r$labels[r$labels %in% dataset]))
+print(ggplot(sc, aes(condition, z, fill = role)) +
+  geom_boxplot(outlier.shape = NA, alpha = 0.75, width = 0.65) +
+  geom_jitter(width = 0.12, size = 1, alpha = 0.7, show.legend = FALSE) +
+  facet_grid(algorithm ~ dataset, scales = "free_x", space = "free_x",
+             labeller = labeller(dataset = label_wrap_gen(22))) +
+  scale_fill_manual(values = ROLE_COLS, drop = FALSE) +
+  labs(x = NULL, y = "Signature score (z within dataset)", fill = NULL,
+       title = paste(r$signature, "— GSVA, ssGSEA, PLAGE, zScore and singscore by study arm")) +
+  theme(axis.text.x = element_text(angle = 35, hjust = 1, size = 7), legend.position = "bottom",
+        strip.text.x = element_text(size = 7.5), strip.text.y = element_text(size = 8)))
+```
+
+**ANOVA p-values.** *All arms* = one-way ANOVA across every study arm; *case vs control* =
+group effect after the listed covariates.
+
+```{r, results = "asis"}
+fmt <- function(p) ifelse(is.na(p), "—", ifelse(p < 0.001, formatC(p, format = "e", digits = 1), sprintf("%.3f", p)))
+at <- r$anova |>
+  mutate(cell = paste0(fmt(p_all_arms), " / ", fmt(p_case_vs_control))) |>
+  select(dataset, role, adjusted_for, algorithm, cell) |>
+  pivot_wider(names_from = algorithm, values_from = cell)
+cat(kable(at, format = "html", row.names = FALSE, escape = FALSE,
+          col.names = c("Dataset", "Role", "Adjusted for", ALGS)) |>
+      add_header_above(c(" " = 3, "p (all arms) / p (case vs control)" = length(ALGS))) |>
+      kable_styling(bootstrap_options = c("condensed", "striped"), font_size = 12) |> scroll_box(width = "100%"))
+```
+
+`r if (is.null(r$metrics)) "> **Not scorable:** fewer than two signature genes are present in the training data, so no score, ANOVA, ROC or model could be computed. See *Caveats* at the end of the report." else ""`
+
+```{r, fig.height = h_roc, fig.width = 11, eval = !is.null(r$metrics)}
+rd <- r$rocs |> mutate(method = factor(method, levels = names(METHOD_COLS)))
+leg <- r$metrics |> filter(model != "Score", role != "Internal (leave-pair-out)") |>
+  mutate(method = factor(method, levels = names(METHOD_COLS))) |> arrange(method) |>
+  mutate(txt = sprintf("%s: %.2f", sub("Random forest", "RF", method), AUC)) |>
+  group_by(dataset) |> summarise(lab = paste(txt, collapse = "\n"), .groups = "drop")
+lvl <- unique(c(r$train, r$labels))
+mk <- function(x) ifelse(x == r$train, paste0(x, "\n[training — leave-one-out]"), paste0(x, "\n[external]"))
+rd$panel <- factor(mk(rd$dataset), levels = mk(lvl[lvl %in% rd$dataset]))
+leg$panel <- factor(mk(leg$dataset), levels = levels(rd$panel))
+print(ggplot(rd, aes(fpr, tpr, colour = method)) +
+  geom_abline(linetype = 2, colour = "grey60") +
+  geom_step(linewidth = 0.8, direction = "hv", alpha = 0.9) +
+  geom_label(data = leg, aes(x = 0.99, y = 0.01, label = lab), inherit.aes = FALSE,
+             hjust = 1, vjust = 0, size = 2.5, label.size = 0, fill = alpha("white", 0.85), lineheight = 0.9) +
+  facet_wrap(~ panel, ncol = 3) + coord_equal() +
+  scale_colour_manual(values = METHOD_COLS, drop = FALSE) +
+  labs(x = "False positive rate (1 - specificity)", y = "True positive rate (sensitivity)", colour = NULL,
+       title = paste(r$signature, "— ROC curves: logistic regression per scoring algorithm, and random forest")) +
+  theme(legend.position = "bottom", strip.text = element_text(size = 8)) +
+  guides(colour = guide_legend(nrow = 1)))
+```
+
+```{r, results = "asis", eval = !is.null(r$metrics)}
+mt <- r$metrics |>
+  mutate(method = factor(method, levels = c(paste("Score ·", ALGS), names(METHOD_COLS)))) |>
+  arrange(factor(role, levels = c("Internal (LOOCV)", "Internal (leave-pair-out)", "External")), match(dataset, r$labels), method) |>
+  mutate(across(c(AUC, accuracy), ~ round(.x, 2)), role = as.character(role),
+         `95% CI` = ifelse(is.na(CI_low), "—", sprintf("%.2f–%.2f", CI_low, CI_high)),
+         accuracy = ifelse(is.na(accuracy), "—", accuracy),
+         role = ifelse(role == "Internal (LOOCV)" & model == "Score", "Internal (in-sample)", role)) |>
+  select(dataset, role, method, AUC, `95% CI`, accuracy, n_case, n_control)
+cat(kable(mt, format = "html", row.names = FALSE,
+          col.names = c("Dataset", "Validation", "Model", "AUC", "95% CI", "Accuracy (p ≥ 0.5)", "n case", "n control")) |>
+      kable_styling(bootstrap_options = c("condensed", "striped"), font_size = 12) |>
+      collapse_rows(columns = 1:2, valign = "top") |> scroll_box(height = "420px"))
+```
+
+```{r, fig.height = h_imp, fig.width = 8, eval = !is.null(r$importance)}
+im <- head(r$importance[order(-r$importance$MeanDecreaseGini), ], 20)
+print(ggplot(im, aes(reorder(gene, MeanDecreaseGini), MeanDecreaseGini)) +
+  geom_col(fill = METHOD_COLS[["Random forest"]], width = 0.7) + coord_flip() +
+  labs(x = NULL, y = "Mean decrease in Gini impurity",
+       title = paste(r$signature, "— random-forest gene importance (full training set, top 20)")))
+```

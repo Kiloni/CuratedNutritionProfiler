@@ -1,0 +1,9 @@
+signature,LR · GSVA,LR · ssGSEA,LR · PLAGE,LR · zScore,LR · singscore,Random forest,External sets
+A_Retinol_GWAS,0.45,0.79,0.8,0.32,0.67,0.59,4
+A_Retinol_MSigDB_Filtered,0.3,0.52,0.34,0.31,0.52,0.64,4
+A_Retinol_GLM_43,0.72,0.86,0.8,0.57,0.84,0.6,4
+A_Retinol_Quiles_20,0.78,0.72,0.62,0.62,0.59,0.61,4
+Vitamin_D_Aigner_35,0.44,0.35,0.34,0.45,0.41,0.56,4
+Vitamin_C,0,0.5,1,0.75,0.5,1,1
+B12_Cobalamin,0.44,0.73,0.51,0.47,0.27,0.42,3
+B9_Folate,0.55,0.51,0.5,0.57,0.51,0.57,3

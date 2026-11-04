@@ -1,0 +1,10 @@
+signature,panel,Training,LR · GSVA,LR · ssGSEA,LR · PLAGE,LR · zScore,LR · singscore,Random forest
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,0.3,0.57,0.51,0.51,0.41,0.39
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,0.16,0.53,0.01,0.39,0.39,0.52
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,0.86,0.78,1,1,0.73,1
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,0.69,0.77,0.8,0.68,0.73,0.85
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",0.28,0.17,0.03,0.53,0.53,1
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,0.6,0.72,0.86,0.17,0.6,0.96
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),1,0,1,1,0.44,1
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,0,0.67,1,0.5,0.67,0.83
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",0.54,0.67,0.57,0.61,0.64,0.38

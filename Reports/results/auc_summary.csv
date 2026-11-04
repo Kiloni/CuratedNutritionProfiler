@@ -1,0 +1,451 @@
+signature,panel,dataset,role,method,AUC,CI_low,CI_high,accuracy,n_case,n_control,model,algorithm
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · GSVA,0.51171875,0.301489181629403,0.721948318370598,,16,16,Score,GSVA
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · GSVA,0.296875,0.108756848282141,0.484993151717859,0.46875,16,16,Logistic regression,GSVA
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · GSVA,0.36328125,,,,16,16,Logistic regression,GSVA
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · ssGSEA,0.609375,0.401669960965755,0.817080039034245,,16,16,Score,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · ssGSEA,0.57421875,0.358992639345681,0.78944486065432,0.625,16,16,Logistic regression,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · ssGSEA,0.609375,,,,16,16,Logistic regression,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · PLAGE,0.5703125,0.356745013894647,0.783879986105353,,16,16,Score,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · PLAGE,0.51171875,0.291893732065666,0.731543767934334,0.5625,16,16,Logistic regression,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · PLAGE,0.5703125,,,,16,16,Logistic regression,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · zScore,0.56640625,0.35902129325389,0.773791206746111,,16,16,Score,zScore
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · zScore,0.51171875,0.301489181629403,0.721948318370598,0.53125,16,16,Logistic regression,zScore
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · zScore,0.5625,,,,16,16,Logistic regression,zScore
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · singscore,0.55859375,0.348810766453172,0.768376733546828,,16,16,Score,singscore
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · singscore,0.40625,0.197344343803648,0.615155656196352,0.5,16,16,Logistic regression,singscore
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · singscore,0.515625,,,,16,16,Logistic regression,singscore
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Random forest,0.390625,0.18934065883182,0.59190934116818,0.4375,16,16,Random forest,genes
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),Random forest,0.4140625,,,,16,16,Random forest,genes
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · GSVA,0.530612244897959,0.188079003711235,0.873145486084683,,7,7,Score,GSVA
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · GSVA,0.530612244897959,0.188079003711235,0.873145486084683,0.642857142857143,7,7,Logistic regression,GSVA
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · ssGSEA,0.775510204081633,0.511192026391436,1,,7,7,Score,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · ssGSEA,0.775510204081633,0.511192026391436,1,0.642857142857143,7,7,Logistic regression,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · PLAGE,0.408163265306122,0.0579316867034593,0.758394843908786,,7,7,Score,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · PLAGE,0.408163265306122,0.0579316867034593,0.758394843908786,0.5,7,7,Logistic regression,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · zScore,0.551020408163265,0.206159621007532,0.895881195318998,,7,7,Score,zScore
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · zScore,0.551020408163265,0.206159621007532,0.895881195318998,0.5,7,7,Logistic regression,zScore
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · singscore,0.530612244897959,0.193572447270082,0.867652042525837,,7,7,Score,singscore
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · singscore,0.530612244897959,0.193572447270082,0.867652042525837,0.5,7,7,Logistic regression,singscore
+A_Retinol_GWAS,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Random forest,0.510204081632653,0.166117393740766,0.85429076952454,0.571428571428571,7,7,Random forest,genes
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · GSVA,0.111111111111111,0,0.419089738744373,,3,3,Score,GSVA
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · GSVA,0.111111111111111,0,0.419089738744373,0.166666666666667,3,3,Logistic regression,GSVA
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · ssGSEA,1,1,1,,3,3,Score,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · ssGSEA,1,1,1,1,3,3,Logistic regression,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · PLAGE,1,1,1,,3,3,Score,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · PLAGE,1,1,1,1,3,3,Logistic regression,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · zScore,0,0,0,,3,3,Score,zScore
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · zScore,0,0,0,0,3,3,Logistic regression,zScore
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · singscore,1,1,1,,3,3,Score,singscore
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · singscore,1,1,1,1,3,3,Logistic regression,singscore
+A_Retinol_GWAS,Vitamin A,GSE134933 liver · mouse VAD diet,External,Random forest,0.666666666666667,0.0133453384866487,1,0.666666666666667,3,3,Random forest,genes
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · GSVA,0.395061728395062,0.0740511042306524,0.716072352559471,,9,9,Score,GSVA
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · GSVA,0.395061728395062,0.0740511042306524,0.716072352559471,0.388888888888889,9,9,Logistic regression,GSVA
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · ssGSEA,0.666666666666667,0.390247388853296,0.943085944480037,,9,9,Score,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · ssGSEA,0.666666666666667,0.390247388853296,0.943085944480037,0.666666666666667,9,9,Logistic regression,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · PLAGE,0.654320987654321,0.361946482323617,0.946695492985025,,9,9,Score,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · PLAGE,0.654320987654321,0.361946482323617,0.946695492985025,0.666666666666667,9,9,Logistic regression,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · zScore,0.382716049382716,0.0721344058825245,0.693297692882908,,9,9,Score,zScore
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · zScore,0.382716049382716,0.0721344058825245,0.693297692882908,0.388888888888889,9,9,Logistic regression,zScore
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · singscore,0.716049382716049,0.451259837811599,0.9808389276205,,9,9,Score,singscore
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · singscore,0.716049382716049,0.451259837811599,0.9808389276205,0.722222222222222,9,9,Logistic regression,singscore
+A_Retinol_GWAS,Vitamin A,GSE37313 liver · rat VAD diet,External,Random forest,0.234567901234568,0.00533323188532575,0.46380257058381,0.277777777777778,9,9,Random forest,genes
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · GSVA,0.5,0.0100090038649866,0.989990996135013,,4,4,Score,GSVA
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · GSVA,0.5,0.0100090038649866,0.989990996135013,0.5,4,4,Logistic regression,GSVA
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · ssGSEA,0.8125,0.48077452745611,1,,4,4,Score,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · ssGSEA,0.8125,0.48077452745611,1,0.625,4,4,Logistic regression,ssGSEA
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · PLAGE,0.9375,0.76426202195629,1,,4,4,Score,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · PLAGE,0.9375,0.76426202195629,1,0.75,4,4,Logistic regression,PLAGE
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · zScore,0.25,0,0.650075973029609,,4,4,Score,zScore
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · zScore,0.25,0,0.650075973029609,0.5,4,4,Logistic regression,zScore
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · singscore,0.625,0.135009003864987,1,,4,4,Score,singscore
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · singscore,0.625,0.135009003864987,1,0.5,4,4,Logistic regression,singscore
+A_Retinol_GWAS,Vitamin A,GSE46268 monocytes · human ATRA,External,Random forest,0.8125,0.48077452745611,1,0.75,4,4,Random forest,genes
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · GSVA,0.53125,0.320556245662703,0.741943754337297,,16,16,Score,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · GSVA,0.16015625,0.0241444390987528,0.296168060901247,0.28125,16,16,Logistic regression,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · GSVA,0.21875,,,,16,16,Logistic regression,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · ssGSEA,0.60546875,0.399141693902645,0.811795806097356,,16,16,Score,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · ssGSEA,0.53125,0.315860543621119,0.746639456378882,0.5625,16,16,Logistic regression,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · ssGSEA,0.6015625,,,,16,16,Logistic regression,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · PLAGE,0.53125,0.322045266118376,0.740454733881624,,16,16,Score,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · PLAGE,0.01171875,0,0.0352750278566419,0.0625,16,16,Logistic regression,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · PLAGE,0.08984375,,,,16,16,Logistic regression,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · zScore,0.52734375,0.314895338439255,0.739792161560745,,16,16,Score,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · zScore,0.390625,0.182619156986228,0.598630843013772,0.53125,16,16,Logistic regression,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · zScore,0.48046875,,,,16,16,Logistic regression,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · singscore,0.56640625,0.355731043464521,0.77708145653548,,16,16,Score,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · singscore,0.39453125,0.183707706740256,0.605354793259745,0.53125,16,16,Logistic regression,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · singscore,0.4609375,,,,16,16,Logistic regression,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Random forest,0.51953125,0.309301681629403,0.729760818370598,0.46875,16,16,Random forest,genes
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),Random forest,0.51171875,,,,16,16,Random forest,genes
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · GSVA,0.530612244897959,0.188079003711235,0.873145486084683,,7,7,Score,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · GSVA,0.530612244897959,0.188079003711235,0.873145486084683,0.428571428571429,7,7,Logistic regression,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · ssGSEA,0.530612244897959,0.193572447270082,0.867652042525837,,7,7,Score,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · ssGSEA,0.530612244897959,0.193572447270082,0.867652042525837,0.571428571428571,7,7,Logistic regression,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · PLAGE,0.489795918367347,0.14570923047546,0.833882606259234,,7,7,Score,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · PLAGE,0.489795918367347,0.14570923047546,0.833882606259234,0.571428571428571,7,7,Logistic regression,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · zScore,0.714285714285714,0.421260952438939,1,,7,7,Score,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · zScore,0.714285714285714,0.421260952438939,1,0.642857142857143,7,7,Logistic regression,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · singscore,0.469387755102041,0.126854513915317,0.811920996288765,,7,7,Score,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · singscore,0.469387755102041,0.126854513915317,0.811920996288765,0.571428571428571,7,7,Logistic regression,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Random forest,0.622448979591837,0.305805675772755,0.939092283410918,0.571428571428571,7,7,Random forest,genes
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · GSVA,0.333333333333333,0,0.986654661513351,,3,3,Score,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · GSVA,0.333333333333333,0,0.986654661513351,0.333333333333333,3,3,Logistic regression,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · ssGSEA,0.666666666666667,0.133232035960521,1,,3,3,Score,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · ssGSEA,0.666666666666667,0.133232035960521,1,0.5,3,3,Logistic regression,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · PLAGE,0,0,0,,3,3,Score,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · PLAGE,0,0,0,0,3,3,Logistic regression,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · zScore,0.222222222222222,0,0.709179189209212,,3,3,Score,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · zScore,0.222222222222222,0,0.709179189209212,0.333333333333333,3,3,Logistic regression,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · singscore,1,1,1,,3,3,Score,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · singscore,1,1,1,1,3,3,Logistic regression,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE134933 liver · mouse VAD diet,External,Random forest,0.666666666666667,0.0133453384866487,1,0.833333333333333,3,3,Random forest,genes
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · GSVA,0.259259259259259,0.00261040289820791,0.515908115620311,,9,9,Score,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · GSVA,0.259259259259259,0.00261040289820791,0.515908115620311,0.333333333333333,9,9,Logistic regression,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · ssGSEA,0.518518518518519,0.208408525470413,0.828628511566624,,9,9,Score,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · ssGSEA,0.518518518518519,0.208408525470413,0.828628511566624,0.5,9,9,Logistic regression,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · PLAGE,0.185185185185185,0,0.399913024158163,,9,9,Score,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · PLAGE,0.185185185185185,0,0.399913024158163,0.166666666666667,9,9,Logistic regression,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · zScore,0.395061728395062,0.0781815059015046,0.711941950888619,,9,9,Score,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · zScore,0.395061728395062,0.0781815059015046,0.711941950888619,0.333333333333333,9,9,Logistic regression,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · singscore,0.444444444444444,0.158652373202816,0.730236515686073,,9,9,Score,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · singscore,0.444444444444444,0.158652373202816,0.730236515686073,0.444444444444444,9,9,Logistic regression,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE37313 liver · rat VAD diet,External,Random forest,0.234567901234568,0.00247760341691869,0.466658199052217,0.277777777777778,9,9,Random forest,genes
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · GSVA,0.1875,0,0.574871895190351,,4,4,Score,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · GSVA,0.1875,0,0.574871895190351,0.125,4,4,Logistic regression,GSVA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · ssGSEA,0.4375,0,0.957213934131129,,4,4,Score,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · ssGSEA,0.4375,0,0.957213934131129,0.5,4,4,Logistic regression,ssGSEA
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · PLAGE,0.875,0.592103566480957,1,,4,4,Score,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · PLAGE,0.875,0.592103566480957,1,0.875,4,4,Logistic regression,PLAGE
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · zScore,0.1875,0,0.51922547254389,,4,4,Score,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · zScore,0.1875,0,0.51922547254389,0.25,4,4,Logistic regression,zScore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · singscore,0.5625,0.042786065868871,1,,4,4,Score,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · singscore,0.5625,0.042786065868871,1,0.75,4,4,Logistic regression,singscore
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE46268 monocytes · human ATRA,External,Random forest,0.75,0.260009003864987,1,0.75,4,4,Random forest,genes
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),Score · GSVA,0.938775510204082,0.806112956340219,1,,7,7,Score,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),LR · GSVA,0.857142857142857,0.577148002208564,1,0.928571428571429,7,7,Logistic regression,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (leave-pair-out),LR · GSVA,0.908163265306122,,,,7,7,Logistic regression,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),Score · ssGSEA,0.897959183673469,0.731428963804278,1,,7,7,Score,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),LR · ssGSEA,0.775510204081633,0.471761498974077,1,0.785714285714286,7,7,Logistic regression,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (leave-pair-out),LR · ssGSEA,0.897959183673469,,,,7,7,Logistic regression,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),Score · PLAGE,1,1,1,,7,7,Score,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),LR · PLAGE,1,1,1,1,7,7,Logistic regression,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (leave-pair-out),LR · PLAGE,1,,,,7,7,Logistic regression,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),Score · zScore,1,1,1,,7,7,Score,zScore
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),LR · zScore,1,1,1,1,7,7,Logistic regression,zScore
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (leave-pair-out),LR · zScore,1,,,,7,7,Logistic regression,zScore
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),Score · singscore,0.979591836734694,0.923024333700013,1,,7,7,Score,singscore
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),LR · singscore,0.73469387755102,0.395288859342936,1,0.857142857142857,7,7,Logistic regression,singscore
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (leave-pair-out),LR · singscore,0.918367346938776,,,,7,7,Logistic regression,singscore
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (LOOCV),Random forest,1,1,1,1,7,7,Random forest,genes
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,Internal (leave-pair-out),Random forest,1,,,,7,7,Random forest,genes
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · GSVA,0.777777777777778,0.290820810790788,1,,3,3,Score,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · GSVA,0.777777777777778,0.290820810790788,1,0.5,3,3,Logistic regression,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · ssGSEA,1,1,1,,3,3,Score,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · ssGSEA,1,1,1,0.833333333333333,3,3,Logistic regression,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · PLAGE,1,1,1,,3,3,Score,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · PLAGE,1,1,1,1,3,3,Logistic regression,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · zScore,0.333333333333333,0,0.986654661513351,,3,3,Score,zScore
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · zScore,0.333333333333333,0,0.986654661513351,0.333333333333333,3,3,Logistic regression,zScore
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · singscore,1,1,1,,3,3,Score,singscore
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · singscore,1,1,1,1,3,3,Logistic regression,singscore
+A_Retinol_GLM_43,Vitamin A,GSE134933 liver · mouse VAD diet,External,Random forest,0.666666666666667,0.0133453384866487,1,0.833333333333333,3,3,Random forest,genes
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,Score · GSVA,0.56640625,0.353370049907177,0.779442450092823,,16,16,Score,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,LR · GSVA,0.56640625,0.353370049907177,0.779442450092823,0.53125,16,16,Logistic regression,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,Score · ssGSEA,0.62890625,0.427020971916541,0.830791528083459,,16,16,Score,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,LR · ssGSEA,0.62890625,0.427020971916541,0.830791528083459,0.53125,16,16,Logistic regression,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,Score · PLAGE,0.4296875,0.222660867913695,0.636714132086305,,16,16,Score,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,LR · PLAGE,0.4140625,0.211462307941767,0.616662692058233,0.40625,16,16,Logistic regression,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,Score · zScore,0.51953125,0.30547030363945,0.73359219636055,,16,16,Score,zScore
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,LR · zScore,0.541015625,0.331181422061707,0.750849827938293,0.59375,16,16,Logistic regression,zScore
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,Score · singscore,0.58984375,0.383971744019774,0.795715755980226,,16,16,Score,singscore
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,LR · singscore,0.58984375,0.383971744019774,0.795715755980226,0.5,16,16,Logistic regression,singscore
+A_Retinol_GLM_43,Vitamin A,GSE299530 lung · mouse VAD diet,External,Random forest,0.537109375,0.32817098633054,0.74604776366946,0.5625,16,16,Random forest,genes
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · GSVA,0.691358024691358,0.435852376046426,0.94686367333629,,9,9,Score,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · GSVA,0.691358024691358,0.435852376046426,0.94686367333629,0.611111111111111,9,9,Logistic regression,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · ssGSEA,0.790123456790123,0.569677509892998,1,,9,9,Score,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · ssGSEA,0.790123456790123,0.569677509892998,1,0.666666666666667,9,9,Logistic regression,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · PLAGE,0.740740740740741,0.49191044245866,0.989571039022822,,9,9,Score,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · PLAGE,0.728395061728395,0.475046831226825,0.981743292229965,0.722222222222222,9,9,Logistic regression,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · zScore,0.654320987654321,0.385417428226248,0.923224547082394,,9,9,Score,zScore
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · zScore,0.604938271604938,0.334609598159223,0.875266945050654,0.666666666666667,9,9,Logistic regression,zScore
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · singscore,0.938271604938272,0.834196001810479,1,,9,9,Score,singscore
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · singscore,0.938271604938272,0.834196001810479,1,0.777777777777778,9,9,Logistic regression,singscore
+A_Retinol_GLM_43,Vitamin A,GSE37313 liver · rat VAD diet,External,Random forest,0.777777777777778,0.551111645178045,1,0.777777777777778,9,9,Random forest,genes
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · GSVA,0.75,0.349924026970391,1,,4,4,Score,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · GSVA,0.75,0.349924026970391,1,0.625,4,4,Logistic regression,GSVA
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · ssGSEA,0.9375,0.76426202195629,1,,4,4,Score,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · ssGSEA,0.9375,0.76426202195629,1,0.875,4,4,Logistic regression,ssGSEA
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · PLAGE,0.875,0.592103566480957,1,,4,4,Score,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · PLAGE,0.875,0.592103566480957,1,0.625,4,4,Logistic regression,PLAGE
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · zScore,0.6875,0.251527315956308,1,,4,4,Score,zScore
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · zScore,0.6875,0.251527315956308,1,0.75,4,4,Logistic regression,zScore
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · singscore,0.75,0.349924026970391,1,,4,4,Score,singscore
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · singscore,0.75,0.349924026970391,1,0.75,4,4,Logistic regression,singscore
+A_Retinol_GLM_43,Vitamin A,GSE46268 monocytes · human ATRA,External,Random forest,0.125,0,0.407896433519043,0.125,4,4,Random forest,genes
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · GSVA,0.73046875,0.546233635459482,0.914703864540518,,16,16,Score,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · GSVA,0.69140625,0.494221176548576,0.888591323451424,0.65625,16,16,Logistic regression,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · GSVA,0.73046875,,,,16,16,Logistic regression,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · ssGSEA,0.80859375,0.649685672678902,0.967501827321098,,16,16,Score,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · ssGSEA,0.7734375,0.592174631820182,0.954700368179818,0.75,16,16,Logistic regression,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · ssGSEA,0.80859375,,,,16,16,Logistic regression,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · PLAGE,0.83984375,0.699755777306011,0.979931722693989,,16,16,Score,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · PLAGE,0.80078125,0.637411047252084,0.964151452747916,0.78125,16,16,Logistic regression,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · PLAGE,0.83984375,,,,16,16,Logistic regression,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · zScore,0.7109375,0.515404205265204,0.906470794734796,,16,16,Score,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · zScore,0.68359375,0.476812645183142,0.890374854816858,0.65625,16,16,Logistic regression,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · zScore,0.7109375,,,,16,16,Logistic regression,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Score · singscore,0.78515625,0.620452001868144,0.949860498131856,,16,16,Score,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),LR · singscore,0.734375,0.548934823380906,0.919815176619094,0.71875,16,16,Logistic regression,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),LR · singscore,0.78515625,,,,16,16,Logistic regression,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (LOOCV),Random forest,0.849609375,0.714903908226678,0.984314841773322,0.6875,16,16,Random forest,genes
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,Internal (leave-pair-out),Random forest,0.849609375,,,,16,16,Random forest,genes
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · GSVA,1,1,1,,7,7,Score,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · GSVA,1,1,1,0.928571428571429,7,7,Logistic regression,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · ssGSEA,0.816326530612245,0.533489015438841,1,,7,7,Score,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · ssGSEA,0.816326530612245,0.533489015438841,1,0.785714285714286,7,7,Logistic regression,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · PLAGE,0.510204081632653,0.14506241964956,0.875345743615746,,7,7,Score,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · PLAGE,0.510204081632653,0.14506241964956,0.875345743615746,0.571428571428571,7,7,Logistic regression,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · zScore,0.693877551020408,0.395442644457959,0.992312457582858,,7,7,Score,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · zScore,0.693877551020408,0.395442644457959,0.992312457582858,0.642857142857143,7,7,Logistic regression,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Score · singscore,0.612244897959184,0.286469771653695,0.938020024264673,,7,7,Score,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,LR · singscore,0.612244897959184,0.286469771653695,0.938020024264673,0.642857142857143,7,7,Logistic regression,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 kidney · mouse VAD diet,External,Random forest,0.857142857142857,0.654497458820421,1,0.642857142857143,7,7,Random forest,genes
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · GSVA,1,1,1,,3,3,Score,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · GSVA,1,1,1,1,3,3,Logistic regression,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · ssGSEA,1,1,1,,3,3,Score,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · ssGSEA,1,1,1,1,3,3,Logistic regression,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · PLAGE,0.555555555555556,0,1,,3,3,Score,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · PLAGE,0.555555555555556,0,1,0.333333333333333,3,3,Logistic regression,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · zScore,0.555555555555556,0,1,,3,3,Score,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · zScore,0.555555555555556,0,1,0.5,3,3,Logistic regression,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,Score · singscore,1,1,1,,3,3,Score,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,LR · singscore,1,1,1,0.833333333333333,3,3,Logistic regression,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE134933 liver · mouse VAD diet,External,Random forest,0.666666666666667,0.0133453384866487,1,0.5,3,3,Random forest,genes
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · GSVA,0.530864197530864,0.234758688379556,0.826969706682172,,9,9,Score,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · GSVA,0.530864197530864,0.234758688379556,0.826969706682172,0.611111111111111,9,9,Logistic regression,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · ssGSEA,0.407407407407407,0.123929480091802,0.690885334723012,,9,9,Score,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · ssGSEA,0.407407407407407,0.123929480091802,0.690885334723012,0.444444444444444,9,9,Logistic regression,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · PLAGE,0.728395061728395,0.458676229405616,0.998113894051174,,9,9,Score,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · PLAGE,0.728395061728395,0.458676229405616,0.998113894051174,0.722222222222222,9,9,Logistic regression,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · zScore,0.45679012345679,0.164415618126086,0.749164628787495,,9,9,Score,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · zScore,0.45679012345679,0.164415618126086,0.749164628787495,0.5,9,9,Logistic regression,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,Score · singscore,0.382716049382716,0.101051156190989,0.664380942574443,,9,9,Score,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,LR · singscore,0.382716049382716,0.101051156190989,0.664380942574443,0.444444444444444,9,9,Logistic regression,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE37313 liver · rat VAD diet,External,Random forest,0.555555555555555,0.262930836652886,0.848180274458225,0.555555555555556,9,9,Random forest,genes
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · GSVA,0.5625,0.0828257592061479,1,,4,4,Score,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · GSVA,0.5625,0.0828257592061479,1,0.5,4,4,Logistic regression,GSVA
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · ssGSEA,0.625,0.135009003864987,1,,4,4,Score,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · ssGSEA,0.625,0.135009003864987,1,0.625,4,4,Logistic regression,ssGSEA
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · PLAGE,0.6875,0.251527315956308,1,,4,4,Score,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · PLAGE,0.6875,0.251527315956308,1,0.625,4,4,Logistic regression,PLAGE
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · zScore,0.75,0.349924026970391,1,,4,4,Score,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · zScore,0.75,0.349924026970391,1,0.5,4,4,Logistic regression,zScore
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,Score · singscore,0.5625,0.042786065868871,1,,4,4,Score,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,LR · singscore,0.5625,0.042786065868871,1,0.5,4,4,Logistic regression,singscore
+A_Retinol_Quiles_20,Vitamin A,GSE46268 monocytes · human ATRA,External,Random forest,0.4375,0,0.957213934131129,0.375,4,4,Random forest,genes
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),Score · GSVA,0.472222222222222,0.0966019123615666,0.847842532082878,,6,6,Score,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),LR · GSVA,0.277777777777778,0,0.597096815277552,0.5,6,6,Logistic regression,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (leave-pair-out),LR · GSVA,0.25,,,,6,6,Logistic regression,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),Score · ssGSEA,0.527777777777778,0.161749357366329,0.893806198189226,,6,6,Score,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),LR · ssGSEA,0.166666666666667,0,0.419696929042999,0.416666666666667,6,6,Logistic regression,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (leave-pair-out),LR · ssGSEA,0.222222222222222,,,,6,6,Logistic regression,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),Score · PLAGE,0.611111111111111,0.249974158926151,0.972248063296071,,6,6,Score,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),LR · PLAGE,0.0277777777777778,0,0.104772434686093,0.0833333333333333,6,6,Logistic regression,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (leave-pair-out),LR · PLAGE,0.361111111111111,,,,6,6,Logistic regression,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),Score · zScore,0.638888888888889,0.282710574111045,0.995067203666733,,6,6,Score,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),LR · zScore,0.527777777777778,0.142804493236201,0.912751062319355,0.666666666666667,6,6,Logistic regression,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (leave-pair-out),LR · zScore,0.638888888888889,,,,6,6,Logistic regression,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),Score · singscore,0.638888888888889,0.282710574111045,0.995067203666733,,6,6,Score,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),LR · singscore,0.527777777777778,0.152157467917122,0.903398087638434,0.583333333333333,6,6,Logistic regression,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (leave-pair-out),LR · singscore,0.611111111111111,,,,6,6,Logistic regression,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (LOOCV),Random forest,1,1,1,0.916666666666667,6,6,Random forest,genes
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",Internal (leave-pair-out),Random forest,1,,,,6,6,Random forest,genes
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,Score · GSVA,0.5,0.255417300032067,0.744582699967933,,12,12,Score,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,LR · GSVA,0.5,0.255417300032067,0.744582699967933,0.5,12,12,Logistic regression,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,Score · ssGSEA,0.506944444444445,0.260783110970614,0.753105777918275,,12,12,Score,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,LR · ssGSEA,0.506944444444445,0.260783110970614,0.753105777918275,0.5,12,12,Logistic regression,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,Score · PLAGE,0.458333333333333,0.214578326771171,0.702088339895496,,12,12,Score,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,LR · PLAGE,0.458333333333333,0.214578326771171,0.702088339895496,0.5,12,12,Logistic regression,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,Score · zScore,0.472222222222222,0.226266222859037,0.718178221585408,,12,12,Score,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,LR · zScore,0.472222222222222,0.226266222859037,0.718178221585408,0.5,12,12,Logistic regression,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,Score · singscore,0.506944444444445,0.261605478525595,0.752283410363294,,12,12,Score,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,LR · singscore,0.506944444444445,0.261605478525595,0.752283410363294,0.5,12,12,Logistic regression,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE221690 prostate lines · human 1,25D",External,Random forest,0.5,0.255417300032067,0.744582699967933,0.541666666666667,12,12,Random forest,genes
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,Score · GSVA,0.520833333333333,0.272763743910506,0.76890292275616,,12,12,Score,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,LR · GSVA,0.520833333333333,0.272763743910506,0.76890292275616,0.541666666666667,12,12,Logistic regression,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,Score · ssGSEA,0.326388888888889,0.104402463826301,0.548375313951476,,12,12,Score,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,LR · ssGSEA,0.326388888888889,0.104402463826301,0.548375313951476,0.416666666666667,12,12,Logistic regression,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,Score · PLAGE,0.25,0.0372331869341775,0.462766813065823,,12,12,Score,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,LR · PLAGE,0.25,0.0372331869341775,0.462766813065823,0.208333333333333,12,12,Logistic regression,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,Score · zScore,0.534722222222222,0.287741259398975,0.781703185045469,,12,12,Score,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,LR · zScore,0.534722222222222,0.287741259398975,0.781703185045469,0.541666666666667,12,12,Logistic regression,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,Score · singscore,0.305555555555556,0.0884013363016397,0.522709774809471,,12,12,Score,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,LR · singscore,0.305555555555556,0.0884013363016397,0.522709774809471,0.375,12,12,Logistic regression,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE15947 RWPE1 · human 1,25D",External,Random forest,0.309027777777778,0.0778433870839108,0.540212168471645,0.333333333333333,12,12,Random forest,genes
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,Score · GSVA,0.375,0,0.864990996135014,,4,4,Score,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,LR · GSVA,0.375,0,0.864990996135014,0.25,4,4,Logistic regression,GSVA
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,Score · ssGSEA,0.375,0,0.864990996135014,,4,4,Score,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,LR · ssGSEA,0.375,0,0.864990996135014,0.625,4,4,Logistic regression,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,Score · PLAGE,0.4375,0,0.917174240793852,,4,4,Score,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,LR · PLAGE,0.4375,0,0.917174240793852,0.375,4,4,Logistic regression,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,Score · zScore,0.4375,0,0.917174240793852,,4,4,Score,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,LR · zScore,0.4375,0,0.917174240793852,0.375,4,4,Logistic regression,zScore
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,Score · singscore,0.5625,0.0828257592061479,1,,4,4,Score,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,LR · singscore,0.5625,0.0828257592061479,1,0.5,4,4,Logistic regression,singscore
+Vitamin_D_Aigner_35,Vitamin D,"GSE46268 monocytes · human 1,25D",External,Random forest,0.625,0.135009003864987,1,0.5,4,4,Random forest,genes
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,Score · GSVA,0,0,0,,7,3,Score,GSVA
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,LR · GSVA,0,0,0,0.3,7,3,Logistic regression,GSVA
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,Score · ssGSEA,0,0,0,,7,3,Score,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,LR · ssGSEA,0,0,0,0.2,7,3,Logistic regression,ssGSEA
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,Score · PLAGE,0,0,0,,7,3,Score,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,LR · PLAGE,0,0,0,0,7,3,Logistic regression,PLAGE
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,Score · zScore,0,0,0,,7,3,Score,zScore
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,LR · zScore,0,0,0,0.1,7,3,Logistic regression,zScore
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,Score · singscore,0,0,0,,7,3,Score,singscore
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,LR · singscore,0,0,0,0.2,7,3,Logistic regression,singscore
+Vitamin_D_Aigner_35,Vitamin D,GSE283020 TH2 · mouse VitD-deficient diet,External,Random forest,0.857142857142857,0.60439963996656,1,0.7,7,3,Random forest,genes
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),Score · GSVA,0.652777777777778,0.320433499056235,0.98512205649932,,6,12,Score,GSVA
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),LR · GSVA,0.597222222222222,0.221064261945826,0.973380182498618,0.611111111111111,6,12,Logistic regression,GSVA
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (leave-pair-out),LR · GSVA,0.652777777777778,,,,6,12,Logistic regression,GSVA
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),Score · ssGSEA,0.763888888888889,0.464562454397082,1,,6,12,Score,ssGSEA
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),LR · ssGSEA,0.722222222222222,0.397381408860909,1,0.666666666666667,6,12,Logistic regression,ssGSEA
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (leave-pair-out),LR · ssGSEA,0.763888888888889,,,,6,12,Logistic regression,ssGSEA
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),Score · PLAGE,0.902777777777778,0.761663334454038,1,,6,12,Score,PLAGE
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),LR · PLAGE,0.861111111111111,0.68553627976951,1,0.777777777777778,6,12,Logistic regression,PLAGE
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (leave-pair-out),LR · PLAGE,0.902777777777778,,,,6,12,Logistic regression,PLAGE
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),Score · zScore,0.541666666666667,0.205132670411662,0.878200662921671,,6,12,Score,zScore
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),LR · zScore,0.166666666666667,0,0.368514988601648,0.277777777777778,6,12,Logistic regression,zScore
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (leave-pair-out),LR · zScore,0.347222222222222,,,,6,12,Logistic regression,zScore
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),Score · singscore,0.638888888888889,0.276188404808709,1,,6,12,Score,singscore
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),LR · singscore,0.597222222222222,0.210259218010232,0.984185226434212,0.777777777777778,6,12,Logistic regression,singscore
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (leave-pair-out),LR · singscore,0.638888888888889,,,,6,12,Logistic regression,singscore
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (LOOCV),Random forest,0.958333333333333,0.866202600734705,1,0.888888888888889,6,12,Random forest,genes
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,Internal (leave-pair-out),Random forest,0.972222222222222,,,,6,12,Random forest,genes
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Score · GSVA,0,0,0,,2,2,Score,GSVA
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,LR · GSVA,0,0,0,0.25,2,2,Logistic regression,GSVA
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Score · ssGSEA,0.5,0,1,,2,2,Score,ssGSEA
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,LR · ssGSEA,0.5,0,1,0.75,2,2,Logistic regression,ssGSEA
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Score · PLAGE,1,1,1,,2,2,Score,PLAGE
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,LR · PLAGE,1,1,1,1,2,2,Logistic regression,PLAGE
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Score · zScore,0.75,0.0570480878251613,1,,2,2,Score,zScore
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,LR · zScore,0.75,0.0570480878251613,1,0.75,2,2,Logistic regression,zScore
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Score · singscore,0.5,0,1,,2,2,Score,singscore
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,LR · singscore,0.5,0,1,0.5,2,2,Logistic regression,singscore
+Vitamin_C,Vitamin C,GSE190371 kidney · mouse Gulo-/- (pseudobulk),External,Random forest,1,1,1,0.75,2,2,Random forest,genes
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),Score · GSVA,1,1,1,,3,3,Score,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),LR · GSVA,1,1,1,1,3,3,Logistic regression,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (leave-pair-out),LR · GSVA,1,,,,3,3,Logistic regression,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),Score · ssGSEA,0.555555555555556,0,1,,3,3,Score,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),LR · ssGSEA,0,0,0,0.333333333333333,3,3,Logistic regression,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (leave-pair-out),LR · ssGSEA,0.222222222222222,,,,3,3,Logistic regression,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),Score · PLAGE,1,1,1,,3,3,Score,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),LR · PLAGE,1,1,1,1,3,3,Logistic regression,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (leave-pair-out),LR · PLAGE,1,,,,3,3,Logistic regression,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),Score · zScore,1,1,1,,3,3,Score,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),LR · zScore,1,1,1,1,3,3,Logistic regression,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (leave-pair-out),LR · zScore,1,,,,3,3,Logistic regression,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),Score · singscore,0.666666666666667,0.0133453384866487,1,,3,3,Score,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),LR · singscore,0.444444444444444,0,1,0.666666666666667,3,3,Logistic regression,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (leave-pair-out),LR · singscore,0.555555555555556,,,,3,3,Logistic regression,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (LOOCV),Random forest,1,1,1,1,3,3,Random forest,genes
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),Internal (leave-pair-out),Random forest,1,,,,3,3,Random forest,genes
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · GSVA,0.4140625,0.158494539586179,0.669630460413821,,8,16,Score,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · GSVA,0.44140625,0.194032044039344,0.688780455960656,0.416666666666667,8,16,Logistic regression,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · ssGSEA,0.734375,0.508223673561271,0.960526326438729,,8,16,Score,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · ssGSEA,0.734375,0.508223673561271,0.960526326438729,0.541666666666667,8,16,Logistic regression,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · PLAGE,0.4296875,0.153040561782319,0.706334438217681,,8,16,Score,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · PLAGE,0.5078125,0.261752926049978,0.753872073950022,0.541666666666667,8,16,Logistic regression,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · zScore,0.421875,0.155600845228758,0.688149154771242,,8,16,Score,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · zScore,0.47265625,0.218215712258935,0.727096787741066,0.541666666666667,8,16,Logistic regression,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · singscore,0.265625,0.0394736735612709,0.491776326438729,,8,16,Score,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · singscore,0.265625,0.0394736735612709,0.491776326438729,0.458333333333333,8,16,Logistic regression,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Random forest,0.421875,0.185602337015953,0.658147662984047,0.5,8,16,Random forest,genes
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,Score · GSVA,0.0833333333333333,0,0.31431730405828,,3,4,Score,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,LR · GSVA,0.0833333333333333,0,0.31431730405828,0.142857142857143,3,4,Logistic regression,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,Score · ssGSEA,0,0,0,,3,4,Score,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,LR · ssGSEA,0,0,0,0,3,4,Logistic regression,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,Score · PLAGE,0,0,0,,3,4,Score,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,LR · PLAGE,0,0,0,0,3,4,Logistic regression,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,Score · zScore,0,0,0,,3,4,Score,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,LR · zScore,0,0,0,0.142857142857143,3,4,Logistic regression,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,Score · singscore,1,1,1,,3,4,Score,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,LR · singscore,1,1,1,1,3,4,Logistic regression,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,External,Random forest,0,0,0,0.142857142857143,3,4,Random forest,genes
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · GSVA,1,1,1,,2,2,Score,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · GSVA,1,1,1,1,2,2,Logistic regression,GSVA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · ssGSEA,1,1,1,,2,2,Score,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · ssGSEA,1,1,1,1,2,2,Logistic regression,ssGSEA
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · PLAGE,1,1,1,,2,2,Score,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · PLAGE,1,1,1,1,2,2,Logistic regression,PLAGE
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · zScore,1,1,1,,2,2,Score,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · zScore,1,1,1,1,2,2,Logistic regression,zScore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · singscore,0,0,0,,2,2,Score,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · singscore,0,0,0,0,2,2,Logistic regression,singscore
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Random forest,1,1,1,1,2,2,Random forest,genes
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),Score · GSVA,0.5,0,1,,3,4,Score,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),LR · GSVA,0,0,0,0.285714285714286,3,4,Logistic regression,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (leave-pair-out),LR · GSVA,0.166666666666667,,,,3,4,Logistic regression,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),Score · ssGSEA,0.833333333333333,0.456138088641276,1,,3,4,Score,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),LR · ssGSEA,0.666666666666667,0.0133453384866487,1,0.714285714285714,3,4,Logistic regression,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (leave-pair-out),LR · ssGSEA,0.791666666666667,,,,3,4,Logistic regression,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),Score · PLAGE,1,1,1,,3,4,Score,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),LR · PLAGE,1,1,1,0.857142857142857,3,4,Logistic regression,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (leave-pair-out),LR · PLAGE,1,,,,3,4,Logistic regression,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),Score · zScore,0.75,0.328282896039447,1,,3,4,Score,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),LR · zScore,0.5,0,1,0.571428571428571,3,4,Logistic regression,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (leave-pair-out),LR · zScore,0.666666666666667,,,,3,4,Logistic regression,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),Score · singscore,0.833333333333333,0.456138088641276,1,,3,4,Score,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),LR · singscore,0.666666666666667,0.0133453384866487,1,0.714285714285714,3,4,Logistic regression,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (leave-pair-out),LR · singscore,0.791666666666667,,,,3,4,Logistic regression,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (LOOCV),Random forest,0.833333333333333,0.456138088641276,1,0.714285714285714,3,4,Random forest,genes
+B9_Folate,Vitamin B12 / methyl donors,GSE104164 cerebellum · rat methyl-donor deficiency,Internal (leave-pair-out),Random forest,0.916666666666667,,,,3,4,Random forest,genes
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,Score · GSVA,0.777777777777778,0.290820810790788,1,,3,3,Score,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,LR · GSVA,0.777777777777778,0.290820810790788,1,0.833333333333333,3,3,Logistic regression,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,Score · ssGSEA,1,1,1,,3,3,Score,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,LR · ssGSEA,1,1,1,1,3,3,Logistic regression,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,Score · PLAGE,1,1,1,,3,3,Score,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,LR · PLAGE,1,1,1,1,3,3,Logistic regression,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,Score · zScore,1,1,1,,3,3,Score,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,LR · zScore,1,1,1,1,3,3,Logistic regression,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,Score · singscore,1,1,1,,3,3,Score,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,LR · singscore,1,1,1,0.833333333333333,3,3,Logistic regression,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),External,Random forest,1,1,1,1,3,3,Random forest,genes
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · GSVA,0.546875,0.311056416864823,0.782693583135177,,8,16,Score,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · GSVA,0.546875,0.311056416864823,0.782693583135177,0.5,8,16,Logistic regression,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · ssGSEA,0.5078125,0.257827536543218,0.757797463456782,,8,16,Score,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · ssGSEA,0.5078125,0.257827536543218,0.757797463456782,0.5,8,16,Logistic regression,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · PLAGE,0.515625,0.267910267729367,0.763339732270633,,8,16,Score,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · PLAGE,0.5,0.275712644382163,0.724287355617837,0.5,8,16,Logistic regression,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · zScore,0.5703125,0.333614928296871,0.807010071703129,,8,16,Score,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · zScore,0.5703125,0.333614928296871,0.807010071703129,0.5,8,16,Logistic regression,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Score · singscore,0.5078125,0.257827536543218,0.757797463456782,,8,16,Score,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,LR · singscore,0.5078125,0.257827536543218,0.757797463456782,0.5,8,16,Logistic regression,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE103417 N1E-115 · mouse B12 sequestration,External,Random forest,0.57421875,0.335087935995674,0.813349564004327,0.5,8,16,Random forest,genes
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · GSVA,0.5,0,1,,2,2,Score,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · GSVA,0.5,0,1,0.5,2,2,Logistic regression,GSVA
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · ssGSEA,0.5,0,1,,2,2,Score,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · ssGSEA,0.5,0,1,0.5,2,2,Logistic regression,ssGSEA
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · PLAGE,0,0,0,,2,2,Score,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · PLAGE,0,0,0,0,2,2,Logistic regression,PLAGE
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · zScore,0,0,0,,2,2,Score,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · zScore,0,0,0,0,2,2,Logistic regression,zScore
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Score · singscore,0.5,0,1,,2,2,Score,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,LR · singscore,0.5,0,1,0.5,2,2,Logistic regression,singscore
+B9_Folate,Vitamin B12 / methyl donors,GSE99113 astrocytes · mouse B12-free medium,External,Random forest,0.5,0,1,0.75,2,2,Random forest,genes
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),Score · GSVA,0.573913043478261,0.408420860195034,0.739405226761488,,25,23,Score,GSVA
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),LR · GSVA,0.542608695652174,0.375276878071265,0.709940513233083,0.541666666666667,25,23,Logistic regression,GSVA
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),LR · GSVA,0.573913043478261,,,,25,23,Logistic regression,GSVA
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),Score · ssGSEA,0.695652173913044,0.544555527197425,0.846748820628662,,25,23,Score,ssGSEA
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),LR · ssGSEA,0.666086956521739,0.507910168108217,0.824263744935262,0.625,25,23,Logistic regression,ssGSEA
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),LR · ssGSEA,0.695652173913044,,,,25,23,Logistic regression,ssGSEA
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),Score · PLAGE,0.6,0.430484168471484,0.769515831528516,,25,23,Score,PLAGE
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),LR · PLAGE,0.565217391304348,0.392409548065665,0.738025234543031,0.604166666666667,25,23,Logistic regression,PLAGE
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),LR · PLAGE,0.6,,,,25,23,Logistic regression,PLAGE
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),Score · zScore,0.63304347826087,0.472892678410666,0.793194278111074,,25,23,Score,zScore
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),LR · zScore,0.612173913043478,0.449652586300662,0.774695239786294,0.5625,25,23,Logistic regression,zScore
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),LR · zScore,0.63304347826087,,,,25,23,Logistic regression,zScore
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),Score · singscore,0.667826086956522,0.511196064528824,0.824456109384219,,25,23,Score,singscore
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),LR · singscore,0.641739130434783,0.481489705316277,0.801988555553289,0.604166666666667,25,23,Logistic regression,singscore
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),LR · singscore,0.667826086956522,,,,25,23,Logistic regression,singscore
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (LOOCV),Random forest,0.38,0.216787305912704,0.543212694087296,0.395833333333333,25,23,Random forest,genes
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",Internal (leave-pair-out),Random forest,0.425217391304348,,,,25,23,Random forest,genes

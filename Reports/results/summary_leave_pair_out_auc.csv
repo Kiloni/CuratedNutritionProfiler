@@ -1,0 +1,10 @@
+signature,LR · GSVA,LR · ssGSEA,LR · PLAGE,LR · zScore,LR · singscore,Random forest
+A_Retinol_GWAS,0.36,0.61,0.57,0.56,0.52,0.41
+A_Retinol_MSigDB_Filtered,0.22,0.6,0.09,0.48,0.46,0.51
+A_Retinol_GLM_43,0.91,0.9,1,1,0.92,1
+A_Retinol_Quiles_20,0.73,0.81,0.84,0.71,0.79,0.85
+Vitamin_D_Aigner_35,0.25,0.22,0.36,0.64,0.61,1
+Vitamin_C,0.65,0.76,0.9,0.35,0.64,0.97
+B12_Cobalamin,1,0.22,1,1,0.56,1
+B9_Folate,0.17,0.79,1,0.67,0.79,0.92
+Omega_3_FattyAcids,0.57,0.7,0.6,0.63,0.67,0.43

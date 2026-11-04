@@ -1,0 +1,508 @@
+---
+title: "CNP Nutrition Signature Validation"
+subtitle: "ANOVA, ROC/AUC, logistic regression and random forest — leave-one-out internal and cross-dataset external validation"
+date: "`r format(Sys.Date(), '%B %d, %Y')`"
+output:
+  html_document:
+    toc: true
+    toc_float: true
+    toc_depth: 3
+    code_folding: hide
+    self_contained: true
+    theme: flatly
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, message = FALSE, warning = FALSE,
+                      fig.width = 10, fig.height = 5, dpi = 110, fig.align = "center")
+invisible(Sys.setlocale("LC_CTYPE", "en_US.UTF-8"))   # render symbols such as the middle dot correctly
+suppressPackageStartupMessages({
+  library(data.table); library(dplyr); library(tidyr); library(ggplot2); library(patchwork)
+  library(GSVA); library(singscore); library(pROC); library(randomForest)
+  library(babelgene); library(knitr); library(kableExtra)
+})
+PROJECT_DIR <- normalizePath(if (file.exists("curatedNutritionDataset.Rproj")) "." else "..")
+RESULTS_DIR <- file.path(PROJECT_DIR, "Reports", "results")
+dir.create(RESULTS_DIR, showWarnings = FALSE, recursive = TRUE)
+theme_set(theme_minimal(base_size = 11) + theme(panel.grid.minor = element_blank(),
+                                                strip.text = element_text(face = "bold")))
+ALGS <- c("GSVA", "ssGSEA", "PLAGE", "zScore", "singscore")
+METHOD_COLS <- c("LR · GSVA" = "#1b9e77", "LR · ssGSEA" = "#7570b3", "LR · PLAGE" = "#e7298a",
+                 "LR · zScore" = "#66a61e", "LR · singscore" = "#e6ab02", "Random forest" = "#252525")
+model_label <- function(model, algorithm) switch(model, "Random forest" = "Random forest",
+  "Logistic regression" = paste("LR ·", algorithm), "Score" = paste("Score ·", algorithm))
+ROLE_COLS   <- c("Low / deficient (case)" = "#d95f02", "Replete / treated (control)" = "#1f77b4",
+                 "Not in binary contrast" = "#bdbdbd")
+```
+
+```{r config}
+# ---- Signatures: single source of truth is Signatures/NutSignaturesList.R --------
+sig_exprs <- parse(file.path(PROJECT_DIR, "Signatures", "NutSignaturesList.R"))
+eval(sig_exprs[[1]])                      # defines NutSignatures (first expression only)
+
+# ---- Validation panels ------------------------------------------------------------
+# case    = study arm(s) representing LOW nutrient status / no supplementation
+# control = study arm(s) representing replete status / nutrient treatment
+# covar   = study covariates adjusted for in the binary ANOVA
+# Each signature is trained on one dataset (its discovery dataset where known,
+# otherwise the largest true-deficiency dataset in the panel) and tested on all others.
+D <- function(id, file, group, case, control, covar = NULL, label = id)
+  list(id = id, file = file, group = group, case = case, control = control, covar = covar, label = label)
+
+panels <- list(
+  "Vitamin A" = list(space = "human", datasets = list(
+      D("GSE134933_kidney", "GSE134933_kidney", "Vitamin_A", "VAD", "Chow", "genotype", "GSE134933 kidney · mouse VAD diet"),
+      D("GSE134933_liver",  "GSE134933_liver",  "Vitamin_A", "VAD", "Chow", NULL, "GSE134933 liver · mouse VAD diet"),
+      D("GSE299530",        "GSE299530",        "Vitamin_A", "VAD", "VAS", c("timepoint", "batch"), "GSE299530 lung · mouse VAD diet"),
+      D("GSE37313",         "GSE37313",         "Vitamin_A", "VAD_Vehicle", "VAS_Vehicle", "surgery", "GSE37313 liver · rat VAD diet"),
+      D("GSE46268_ATRA",    "GSE46268",         "Vitamin_A", "Control", "ATRA", "donor", "GSE46268 monocytes · human ATRA")),
+    signatures = c(A_Retinol_GWAS = "GSE299530", A_Retinol_MSigDB_Filtered = "GSE299530",
+                   A_Retinol_GLM_43 = "GSE134933_kidney", A_Retinol_Quiles_20 = "GSE299530")),
+  "Vitamin D" = list(space = "human", datasets = list(
+      D("GSE63086",  "GSE63086",  "Vitamin_D", "Vehicle", "Calcitriol", "knockdown", "GSE63086 MG63 · human 1,25D"),
+      D("GSE221690", "GSE221690", "Vitamin_D", "Vehicle", "Calcitriol", "cell_line", "GSE221690 prostate lines · human 1,25D"),
+      D("GSE15947",  "GSE15947",  "Vitamin_D", "Vehicle", "Calcitriol", "time", "GSE15947 RWPE1 · human 1,25D"),
+      D("GSE46268_D3", "GSE46268", "Vitamin_A", "Control", "Calcitriol", "donor", "GSE46268 monocytes · human 1,25D"),
+      D("GSE283020", "GSE283020", "Vitamin_D", "VitD_deficient", "Regular", "batch", "GSE283020 TH2 · mouse VitD-deficient diet")),
+    signatures = c(Vitamin_D_Aigner_35 = "GSE63086")),
+  "Vitamin C" = list(space = "human", datasets = list(
+      D("GSE233598", "GSE233598", "Vitamin_C", "Gulo_0pct", c("Gulo_0.40pct", "WT"), "sex", "GSE233598 liver · mouse Gulo-/- no vitC"),
+      D("GSE190371", "GSE190371", "Vitamin_C", "VitC_deficient", "Control", NULL, "GSE190371 kidney · mouse Gulo-/- (pseudobulk)")),
+    signatures = c(Vitamin_C = "GSE233598")),
+  "Vitamin B12 / methyl donors" = list(space = "human", datasets = list(
+      D("GSE161763", "GSE161763", "Vitamin_B12", "cblX_F80L", "Control", NULL, "GSE161763 brain · mouse cblX (Ronin F80L)"),
+      D("GSE103417", "GSE103417", "Vitamin_B12", "TO_B12_sequestered", c("WT", "OT_control_fusion"), "medium", "GSE103417 N1E-115 · mouse B12 sequestration"),
+      D("GSE104164", "GSE104164", "Vitamin_B12", "MDD", "Control", NULL, "GSE104164 cerebellum · rat methyl-donor deficiency"),
+      D("GSE99113",  "GSE99113",  "Vitamin_B12", "B12_deficient", "B12_sufficient", NULL, "GSE99113 astrocytes · mouse B12-free medium")),
+    signatures = c(B12_Cobalamin = "GSE161763", B9_Folate = "GSE104164")),
+  "Vitamin K" = list(space = "native", datasets = list(
+      D("GSE148011", "GSE148011", "Vitamin_K", "K3_0", c("K3_10", "K3_20"), NULL, "GSE148011 MEF · mouse vitamin K precursor")),
+    signatures = c(Vitamin_K = "GSE148011")),
+  "Omega-3" = list(space = "native", datasets = list(
+      D("GSE12375", "GSE12375", "Omega_3", "MUFA_END", "EPADHA_END", NULL, "GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo")),
+    signatures = c(Omega_3_FattyAcids = "GSE12375"))
+)
+tested <- unlist(lapply(panels, function(p) names(p$signatures)))
+untested <- setdiff(names(NutSignatures), tested)
+index <- fread(file.path(PROJECT_DIR, "data", "processed", "dataset_index.csv"), data.table = FALSE)
+```
+
+```{r helpers}
+species_code <- c("Homo sapiens" = "human", "Mus musculus" = "mouse", "Rattus norvegicus" = "rat")
+sig_species <- function(g) if (mean(g == toupper(g)) > 0.8) "human" else "mouse"
+
+sig_to_human <- function(genes) {
+  if (sig_species(genes) == "human") return(unique(genes))
+  o <- orthologs(genes, species = "mouse", human = FALSE)
+  map <- setNames(o$human_symbol, o$symbol)
+  h <- unname(map[genes]); h[is.na(h)] <- toupper(genes[is.na(h)])   # e.g. E2F1 written in human case
+  unique(h)
+}
+
+collapse_dup_rows <- function(m, new_names) {
+  ok <- !is.na(new_names) & new_names != ""
+  m <- m[ok, , drop = FALSE]; new_names <- new_names[ok]
+  o <- order(rowMeans(m), decreasing = TRUE); m <- m[o, , drop = FALSE]; new_names <- new_names[o]
+  keep <- !duplicated(new_names); out <- m[keep, , drop = FALSE]; rownames(out) <- new_names[keep]; out
+}
+
+.cache <- new.env()
+load_ds <- function(d, space) {
+  key <- paste(d$file, space)
+  if (!is.null(.cache[[key]])) return(.cache[[key]])
+  e <- fread(file.path(PROJECT_DIR, "data", "processed", d$group, paste0(d$file, "_expr.csv.gz")), data.table = FALSE)
+  m <- as.matrix(e[, -1]); rownames(m) <- e$gene
+  p <- read.csv(file.path(PROJECT_DIR, "data", "processed", d$group, paste0(d$file, "_pheno.csv")),
+                stringsAsFactors = FALSE)
+  sp <- index$species[index$dataset == d$file]
+  if (space == "human" && sp != "Homo sapiens") {
+    o <- orthologs(rownames(m), species = species_code[[sp]], human = FALSE)
+    map <- setNames(o$human_symbol, o$symbol)
+    m <- collapse_dup_rows(m, unname(map[rownames(m)]))
+  }
+  m <- m[apply(m, 1, var) > 0, , drop = FALSE]
+  out <- list(expr = m, pheno = p, species = sp)
+  .cache[[key]] <- out; out
+}
+
+score_sets <- function(m, genes) {
+  g <- intersect(genes, rownames(m)); gs <- list(sig = g)
+  empty <- setNames(as.data.frame(matrix(NA_real_, ncol(m), length(ALGS))), ALGS)
+  if (length(g) < 2) return(list(scores = empty, n = length(g)))
+  run <- function(param) as.numeric(gsva(param, verbose = FALSE)[1, ])
+  s <- data.frame(GSVA   = run(gsvaParam(m, gs, kcdf = "Gaussian")),
+                  ssGSEA = run(ssgseaParam(m, gs)),
+                  PLAGE  = run(plageParam(m, gs)),
+                  zScore = run(zscoreParam(m, gs)),
+                  singscore = simpleScore(rankGenes(m), upSet = g)$TotalScore)
+  # PLAGE is the first singular vector, whose sign is arbitrary per dataset: orient it
+  # (without labels) so that it correlates positively with the zScore of the same genes
+  if (isTRUE(cor(s$PLAGE, s$zScore) < 0)) s$PLAGE <- -s$PLAGE
+  list(scores = s, n = length(g))
+}
+
+zfit   <- function(x) list(mu = colMeans(x), sd = pmax(apply(x, 2, sd), 1e-8))
+zapply <- function(x, z) sweep(sweep(x, 2, z$mu, "-"), 2, z$sd, "/")
+
+safe_auc <- function(y, pred, direction = "<") {
+  if (length(unique(y[!is.na(pred)])) < 2) return(NULL)
+  roc(y, pred, levels = c(0, 1), direction = direction, quiet = TRUE)
+}
+auc_row <- function(r, dataset, role, method, pred = NULL, y = NULL) {
+  if (is.null(r)) return(NULL)
+  ci <- tryCatch(as.numeric(ci.auc(r, method = "delong")), error = function(e) c(NA, NA, NA))
+  acc <- if (!is.null(pred)) mean((pred >= 0.5) == (y == 1)) else NA
+  data.frame(dataset = dataset, role = role, method = method, AUC = as.numeric(auc(r)),
+             CI_low = max(0, ci[1]), CI_high = min(1, ci[3]), accuracy = acc,
+             n_case = sum(y == 1), n_control = sum(y == 0))
+}
+roc_df <- function(r, dataset, method, auc_val) {
+  if (is.null(r)) return(NULL)
+  data.frame(fpr = 1 - r$specificities, tpr = r$sensitivities, dataset = dataset,
+             method = method, AUC = auc_val)[order(1 - r$specificities, r$sensitivities), ]
+}
+
+# Class-balanced fitting. Without it, leave-one-out AUC is biased downwards: holding out a
+# case leaves fewer cases in the fold, so the intercept (LR) or the vote share (RF)
+# predicts a lower case probability for exactly the held-out cases, which can drive the
+# pooled LOOCV AUC of an uninformative score towards 0 instead of 0.5.
+fit_lr <- function(s, y) {
+  w <- ifelse(y == 1, 0.5 / sum(y == 1), 0.5 / sum(y == 0)) * length(y)   # both classes weigh equally
+  suppressWarnings(glm(y ~ s, family = binomial, data = data.frame(s = s, y = y), weights = w))
+}
+pred_lr <- function(fit, s) suppressWarnings(predict(fit, data.frame(s = s), type = "response"))
+fit_rf <- function(x, y, seed = 2026) {
+  set.seed(seed); f <- factor(y, levels = c(0, 1)); k <- min(table(f))
+  randomForest(x, f, ntree = 500, strata = f, sampsize = c(k, k))      # balanced bootstrap per tree
+}
+pred_rf <- function(fit, x) predict(fit, x, type = "prob")[, "1"]
+
+# Leave-pair-out AUC: hold out one case and one control together, refit on the rest, and
+# score whether the case is ranked above the control. Nearly unbiased for small n.
+lpo_auc <- function(X, y, fit_pred) {
+  cases <- which(y == 1); ctrls <- which(y == 0); wins <- 0; k <- 0
+  for (i in cases) for (j in ctrls) {
+    tr <- setdiff(seq_along(y), c(i, j)); if (length(unique(y[tr])) < 2) next
+    p <- fit_pred(X[tr, , drop = FALSE], y[tr], X[c(i, j), , drop = FALSE])
+    wins <- wins + (p[1] > p[2]) + 0.5 * (p[1] == p[2]); k <- k + 1
+  }
+  if (k == 0) NA else wins / k
+}
+lr_fit_pred <- function(Xtr, ytr, Xte) { z <- zfit(Xtr); pred_lr(fit_lr(zapply(Xtr, z)[, 1], ytr), zapply(Xte, z)[, 1]) }
+rf_fit_pred <- function(Xtr, ytr, Xte) { z <- zfit(Xtr); pred_rf(fit_rf(zapply(Xtr, z), ytr), zapply(Xte, z)) }
+lpo_row <- function(auc, dataset, model, algorithm, y) data.frame(dataset = dataset, role = "Internal (leave-pair-out)",
+  method = model_label(model, algorithm), AUC = auc, CI_low = NA, CI_high = NA, accuracy = NA,
+  n_case = sum(y == 1), n_control = sum(y == 0), model = model, algorithm = algorithm)
+
+binary_anova <- function(df, covar, score) {
+  df <- df[!is.na(df$y) & !is.na(df[[score]]), ]
+  covar <- covar[vapply(covar, function(cv) length(unique(df[[cv]])) > 1, TRUE)]
+  rhs <- paste(c(covar, "factor(y)"), collapse = " + ")     # group entered last = adjusted for covariates
+  a <- tryCatch(summary(aov(as.formula(paste0("`", score, "` ~ ", rhs)), data = df))[[1]], error = function(e) NULL)
+  if (is.null(a) || !"factor(y)" %in% trimws(rownames(a))) return(c(F = NA, p = NA))
+  r <- a[trimws(rownames(a)) == "factor(y)", ]; c(F = r[["F value"]], p = r[["Pr(>F)"]])
+}
+oneway_anova <- function(df, score) {
+  if (length(unique(df$condition)) < 2 || all(is.na(df[[score]]))) return(c(F = NA, p = NA))
+  a <- summary(aov(as.formula(paste0("`", score, "` ~ condition")), data = df))[[1]]
+  c(F = a[1, "F value"], p = a[1, "Pr(>F)"])
+}
+
+# ---- Main validation routine -------------------------------------------------------
+validate_signature <- function(sig_name, panel, train_id) {
+  raw <- NutSignatures[[sig_name]]
+  genes <- if (panel$space == "human") sig_to_human(raw) else unique(raw)
+  ds <- setNames(panel$datasets, vapply(panel$datasets, `[[`, "", "id"))
+  dat <- list(); cover <- list(); expr <- list()
+  for (d in ds) {
+    L <- load_ds(d, panel$space)
+    sc <- score_sets(L$expr, genes)
+    p <- L$pheno
+    y <- ifelse(p$condition %in% d$case, 1, ifelse(p$condition %in% d$control, 0, NA))
+    dat[[d$id]] <- data.frame(dataset = d$label, id = d$id, p, y = y, sc$scores, check.names = FALSE)
+    cover[[d$id]] <- data.frame(dataset = d$label, species = L$species, genes_in_signature = length(genes),
+                                genes_found = sc$n, coverage = sprintf("%.0f%%", 100 * sc$n / length(genes)))
+    expr[[d$id]] <- L$expr
+  }
+
+  # ANOVA for every dataset x scoring algorithm
+  anova_tab <- do.call(rbind, lapply(ds, function(d) do.call(rbind, lapply(ALGS, function(a) {
+    df <- dat[[d$id]]; ow <- oneway_anova(df, a); bn <- binary_anova(df, d$covar, a)
+    data.frame(dataset = d$label, role = ifelse(d$id == train_id, "Training", "External"), algorithm = a,
+               arms = length(unique(df$condition)), F_all_arms = ow[["F"]], p_all_arms = ow[["p"]],
+               adjusted_for = if (length(d$covar)) paste(d$covar, collapse = ", ") else "—",
+               F_case_vs_control = bn[["F"]], p_case_vs_control = bn[["p"]])
+  }))))
+
+  # Training data
+  T  <- dat[[train_id]]; Tb <- T[!is.na(T$y), ]; n <- nrow(Tb)
+  XT <- t(expr[[train_id]][intersect(genes, rownames(expr[[train_id]])), Tb$sample, drop = FALSE])
+  XT <- XT[, apply(XT, 2, var) > 0, drop = FALSE]
+  metrics <- list(); rocs <- list()
+  add <- function(r, label, role, model, algorithm, pred = NULL, y = NULL, plot = TRUE) {
+    row <- auc_row(r, label, role, model_label(model, algorithm), pred, y)
+    if (is.null(row)) return(invisible())
+    row$model <- model; row$algorithm <- algorithm
+    metrics[[length(metrics) + 1]] <<- row
+    if (plot) rocs[[length(rocs) + 1]] <<- roc_df(r, label, row$method, row$AUC)
+  }
+  directions <- c(); lr_full <- list()
+  train_lab <- ds[[train_id]]$label
+
+  for (a in ALGS) {
+    s <- Tb[[a]]
+    if (all(is.na(s))) next
+    up <- mean(s[Tb$y == 1]) > mean(s[Tb$y == 0]); directions[a] <- if (up) "higher in case" else "lower in case"
+    # in-sample score AUC (table only)
+    add(safe_auc(Tb$y, s, if (up) "<" else ">"), train_lab, "Internal (LOOCV)", "Score", a, y = Tb$y, plot = FALSE)
+    # logistic regression, leave-one-out (z-scoring refitted inside each fold)
+    cv <- rep(NA_real_, n)
+    for (i in seq_len(n)) {
+      tr <- setdiff(seq_len(n), i); if (length(unique(Tb$y[tr])) < 2) next
+      zs <- zfit(matrix(s[tr]))
+      cv[i] <- pred_lr(fit_lr(zapply(matrix(s[tr]), zs)[, 1], Tb$y[tr]), zapply(matrix(s[i]), zs)[, 1])
+    }
+    add(safe_auc(Tb$y, cv), train_lab, "Internal (LOOCV)", "Logistic regression", a, cv, Tb$y)
+    metrics[[length(metrics) + 1]] <- lpo_row(lpo_auc(matrix(s), Tb$y, lr_fit_pred), train_lab, "Logistic regression", a, Tb$y)
+    lr_full[[a]] <- fit_lr(as.numeric(scale(s)), Tb$y)
+  }
+
+  # random forest on signature genes, leave-one-out
+  rf_full <- NULL; imp <- NULL
+  if (ncol(XT) >= 2) {
+    cv <- rep(NA_real_, n)
+    for (i in seq_len(n)) {
+      tr <- setdiff(seq_len(n), i); if (length(unique(Tb$y[tr])) < 2) next
+      zx <- zfit(XT[tr, , drop = FALSE])
+      cv[i] <- pred_rf(fit_rf(zapply(XT[tr, , drop = FALSE], zx), Tb$y[tr]), zapply(XT[i, , drop = FALSE], zx))
+    }
+    add(safe_auc(Tb$y, cv), train_lab, "Internal (LOOCV)", "Random forest", "genes", cv, Tb$y)
+    metrics[[length(metrics) + 1]] <- lpo_row(lpo_auc(XT, Tb$y, rf_fit_pred), train_lab, "Random forest", "genes", Tb$y)
+    rf_full <- fit_rf(zapply(XT, zfit(XT)), Tb$y)
+    imp <- data.frame(gene = rownames(importance(rf_full)), MeanDecreaseGini = importance(rf_full)[, 1])
+  }
+
+  # External: frozen models; each external dataset is z-scored on its own samples (no labels)
+  for (d in ds) {
+    if (d$id == train_id) next
+    Eb <- dat[[d$id]]; Eb <- Eb[!is.na(Eb$y), ]
+    if (length(unique(Eb$y)) < 2) next
+    for (a in names(lr_full)) {
+      if (all(is.na(Eb[[a]]))) next
+      add(safe_auc(Eb$y, Eb[[a]], if (directions[a] == "higher in case") "<" else ">"),
+          d$label, "External", "Score", a, y = Eb$y, plot = FALSE)
+      pe <- pred_lr(lr_full[[a]], as.numeric(scale(Eb[[a]])))
+      add(safe_auc(Eb$y, pe), d$label, "External", "Logistic regression", a, pe, Eb$y)
+    }
+    common <- intersect(colnames(XT), rownames(expr[[d$id]]))
+    if (length(common) >= 2) {
+      XE <- t(expr[[d$id]][common, Eb$sample, drop = FALSE])
+      keep <- apply(XE, 2, var) > 0; common <- common[keep]; XE <- XE[, keep, drop = FALSE]
+      if (length(common) >= 2) {
+        rf_e <- fit_rf(zapply(XT[, common, drop = FALSE], zfit(XT[, common, drop = FALSE])), Tb$y)
+        pr <- pred_rf(rf_e, zapply(XE, zfit(XE)))
+        add(safe_auc(Eb$y, pr), d$label, "External", "Random forest", "genes", pr, Eb$y)
+      }
+    }
+  }
+  list(signature = sig_name, train = train_lab, directions = directions,
+       scores = do.call(rbind, lapply(dat, function(x) x[, c("dataset", "id", "sample", "condition", "y", ALGS)])),
+       coverage = do.call(rbind, cover), anova = anova_tab,
+       metrics = do.call(rbind, metrics), rocs = do.call(rbind, rocs), importance = imp,
+       labels = setNames(vapply(ds, `[[`, "", "label"), names(ds)))
+}
+```
+
+```{r run-all}
+results <- list()
+for (pn in names(panels)) for (sg in names(panels[[pn]]$signatures)) {
+  r <- validate_signature(sg, panels[[pn]], panels[[pn]]$signatures[[sg]])
+  r$panel <- pn; results[[sg]] <- r
+}
+all_metrics <- do.call(rbind, lapply(results, function(r) if (!is.null(r$metrics)) cbind(signature = r$signature, panel = r$panel, r$metrics)))
+not_scorable <- names(results)[vapply(results, function(r) is.null(r$metrics), TRUE)]
+all_anova   <- do.call(rbind, lapply(results, function(r) cbind(signature = r$signature, panel = r$panel, r$anova)))
+all_scores  <- do.call(rbind, lapply(results, function(r) cbind(signature = r$signature, r$scores)))
+fwrite(all_metrics, file.path(RESULTS_DIR, "auc_summary.csv"))
+fwrite(all_anova,   file.path(RESULTS_DIR, "anova_summary.csv"))
+fwrite(all_scores,  file.path(RESULTS_DIR, "signature_scores.csv.gz"))
+```
+
+# Overview
+
+This report tests whether each nutrition signature in `Signatures/NutSignaturesList.R`
+separates **low-nutrient** samples from **replete or nutrient-treated** samples in the
+public datasets downloaded by `Scripts/download_cnp_source_data.R` and processed by
+`Scripts/process_cnp_source_data.R`.
+
+* **`r length(tested)` of `r length(NutSignatures)` signatures** could be tested across
+  **`r nrow(index)` processed datasets** (`r length(unique(unlist(lapply(panels, function(p) vapply(p$datasets, "[[", "", "id")))))` case/control contrasts).
+* **Could not be scored (`r length(not_scorable)`):** `r if (length(not_scorable)) paste(not_scorable, collapse = ", ") else "none"` —
+  none of the signature genes are present in the training data (see that signature's section).
+* **Not testable with the current data (`r length(untested)`):** `r paste(untested, collapse = ", ")` —
+  no downloaded expression dataset contrasts these nutrients.
+
+## Methods in brief
+
+| Step | What is done |
+|---|---|
+| Expression | Log2 scale per dataset (log2 CPM for counts, log2(x+1) for FPKM/TPM, log2 intensity for arrays). Mouse/rat genes are mapped to human orthologs (babelgene) whenever a signature is tested across species; Vitamin K and Omega-3 are scored in their native species. |
+| Signature scores | Five per-sample scores on all genes of each dataset: **GSVA**, **ssGSEA**, **PLAGE** and **zScore** (GSVA package `r packageVersion("GSVA")`, the implementations TBSignatureProfiler calls), plus **singscore**. PLAGE is oriented (no labels used) to correlate positively with zScore, because its sign is otherwise arbitrary in each dataset. |
+| ANOVA | For every scoring algorithm: (i) one-way ANOVA of the score across **all** study arms; (ii) case vs control with study covariates entered first (e.g. genotype, batch, donor), so the group effect is covariate-adjusted. |
+| ROC / AUC | AUC with DeLong 95% CI. The direction of the score (higher or lower in deficiency) is learned on the training set and **kept fixed** for external sets. |
+| Logistic regression | `case ~ z(score)`, fitted separately for each scoring algorithm. With one predictor its ranking equals the score's, so the external LR AUC equals the fixed-direction score AUC; LR adds calibrated probabilities (accuracy at p ≥ 0.5). |
+| Random forest | 500 trees on z-scored expression of the signature genes, with a class-balanced bootstrap (equal cases and controls per tree). |
+| Internal validation | Leave-one-out cross-validation (LOOCV) on the training dataset, plus a leave-pair-out AUC (one case + one control held out together), which is the less biased internal AUC for small groups. LOOCV: each sample is predicted by models fitted to all other samples, including the z-scoring. Both models are class-balanced (LR weights each class equally) — without this, pooled leave-one-out AUC is biased towards 0 for weak signatures, because holding out a case shifts the class balance of the fold against that case. |
+| External validation | Models fitted once on the full training set, then applied unchanged to every other dataset in the panel. Each external dataset is z-scored on its own samples (no labels used). Random forest uses the signature genes present in both datasets. |
+
+**Case = low nutrient** throughout: deficient diet, untreated/vehicle cells, or the
+no-supplement arm. For treatment studies (calcitriol, ATRA, vitamin K precursor), the
+vehicle arm is the "case", so an AUC above 0.5 means the signature tracks nutrient
+*exposure*, not necessarily clinical deficiency.
+
+## Datasets and contrasts
+
+```{r datasets-table}
+ctab <- do.call(rbind, lapply(names(panels), function(pn) do.call(rbind, lapply(panels[[pn]]$datasets, function(d) {
+  ix <- index[index$dataset == d$file, ]
+  p <- read.csv(file.path(PROJECT_DIR, "data", "processed", d$group, paste0(d$file, "_pheno.csv")))
+  data.frame(Panel = pn, Dataset = d$label, Species = ix$species, Platform = ix$platform, Units = ix$units,
+             `Case (low)` = paste(d$case, collapse = " + "), `Control (replete)` = paste(d$control, collapse = " + "),
+             n = sprintf("%d vs %d", sum(p$condition %in% d$case), sum(p$condition %in% d$control)),
+             Covariates = if (length(d$covar)) paste(d$covar, collapse = ", ") else "—", check.names = FALSE)
+}))))
+kable(ctab, format = "html", row.names = FALSE) |>
+  kable_styling(bootstrap_options = c("striped", "condensed", "hover"), font_size = 12) |>
+  collapse_rows(columns = 1, valign = "top") |> scroll_box(width = "100%")
+```
+
+# Summary of predictive performance
+
+```{r summary-heatmap, fig.height = 0.24 * nrow(distinct(filter(all_metrics, model != "Score"), signature, dataset, role)) + 2.5, fig.width = 11}
+hm <- all_metrics |>
+  filter(model != "Score") |>
+  mutate(row = case_when(role == "Internal (LOOCV)" ~ paste0(dataset, "  [train, LOOCV]"),
+                         role == "Internal (leave-pair-out)" ~ paste0(dataset, "  [train, leave-pair-out]"),
+                         TRUE ~ dataset),
+         order = match(role, c("Internal (LOOCV)", "Internal (leave-pair-out)", "External")),
+         method = factor(method, levels = names(METHOD_COLS)),
+         signature = factor(signature, levels = names(results)),
+         label = ifelse(is.na(AUC), "", sprintf("%.2f", AUC)))
+hm <- hm |> arrange(signature, order, dataset)
+hm$row <- factor(paste(hm$signature, hm$row, sep = "::"), levels = rev(unique(paste(hm$signature, hm$row, sep = "::"))))
+ggplot(hm, aes(method, row, fill = AUC)) +
+  geom_tile(color = "white", linewidth = 0.5) +
+  geom_text(aes(label = label), size = 2.9) +
+  facet_grid(signature ~ ., scales = "free_y", space = "free_y", switch = "y") +
+  scale_y_discrete(labels = function(x) sub("^.*::", "", x)) +
+  scale_fill_gradient2(low = "#2c7bb6", mid = "#f7f7f7", high = "#d7191c", midpoint = 0.5, limits = c(0, 1)) +
+  scale_x_discrete(position = "top", labels = function(x) sub(" · ", "\n", x)) +
+  labs(x = NULL, y = NULL, fill = "AUC", title = "Validated AUC by signature, dataset and model",
+       subtitle = "[train] rows = internal validation on the training dataset; other rows = external validation of the frozen model.\nAUC < 0.5 on an external set means the score moved in the opposite direction to the training set.") +
+  theme(plot.title.position = "plot", panel.grid = element_blank(), axis.text.y = element_text(size = 8), axis.text.x = element_text(size = 9, face = "bold"),
+        strip.placement = "outside", strip.text.y.left = element_text(angle = 0, hjust = 1, size = 9),
+        panel.spacing.y = unit(0.35, "lines"))
+```
+
+### Internal validation (leave-one-out AUC on the training dataset)
+
+```{r summary-loocv}
+wide <- function(df) df |> select(signature, method, AUC) |> mutate(AUC = round(AUC, 2)) |>
+  pivot_wider(names_from = method, values_from = AUC) |>
+  select(signature, any_of(names(METHOD_COLS)))
+loo <- all_metrics |> filter(role == "Internal (LOOCV)", model != "Score")
+lpo <- all_metrics |> filter(role == "Internal (leave-pair-out)")
+loo_w <- wide(loo) |> left_join(distinct(loo, signature, panel, Training = dataset), by = "signature") |>
+  relocate(panel, Training, .after = signature)
+loo_w <- loo_w[match(intersect(names(results), loo_w$signature), loo_w$signature), ]
+fwrite(loo_w, file.path(RESULTS_DIR, "summary_loocv_auc.csv"))
+lpo_w <- wide(lpo); lpo_w <- lpo_w[match(loo_w$signature, lpo_w$signature), ]
+fwrite(lpo_w, file.path(RESULTS_DIR, "summary_leave_pair_out_auc.csv"))
+kable(loo_w, format = "html", row.names = FALSE, caption = "Leave-one-out (LOOCV) AUC") |>
+  kable_styling(bootstrap_options = c("striped", "condensed", "hover"), font_size = 12) |> scroll_box(width = "100%")
+```
+
+```{r summary-lpo}
+kable(lpo_w, format = "html", row.names = FALSE, caption = "Leave-pair-out AUC (bias-corrected internal estimate)") |>
+  kable_styling(bootstrap_options = c("striped", "condensed", "hover"), font_size = 12) |>
+  footnote(general = "Pooled leave-one-out AUC is biased downwards for weak signals and very small training sets (it can fall far below 0.5 when there is no signal). Leave-pair-out removes one case and one control together and is close to unbiased; where the two disagree, trust leave-pair-out.") |>
+  scroll_box(width = "100%")
+```
+
+### External validation (median AUC across external datasets)
+
+```{r summary-external}
+ext <- all_metrics |> filter(role == "External", model != "Score") |>
+  group_by(signature, method) |> summarise(AUC = median(AUC), n = n(), .groups = "drop")
+ext_w <- wide(ext) |> left_join(ext |> group_by(signature) |> summarise(`External sets` = max(n)), by = "signature")
+ext_w <- ext_w[match(intersect(names(results), ext_w$signature), ext_w$signature), ]
+fwrite(ext_w, file.path(RESULTS_DIR, "summary_external_median_auc.csv"))
+kable(ext_w, format = "html", row.names = FALSE) |>
+  kable_styling(bootstrap_options = c("striped", "condensed", "hover"), font_size = 12) |>
+  footnote(general = paste("Signatures with no external dataset are omitted:",
+                           paste(setdiff(names(results), ext_w$signature), collapse = ", "),
+                           ". AUC 0.5 = chance; below 0.5 = the signature moves in the opposite direction to the training set.")) |>
+  scroll_box(width = "100%")
+```
+
+```{r per-signature, results = "asis", fig.width = 11}
+for (pn in names(panels)) {
+  cat("\n\n# ", pn, "\n\n", sep = "")
+  for (sg in names(panels[[pn]]$signatures)) {
+    r <- results[[sg]]
+    n_ds  <- length(unique(r$scores$dataset))
+    h_box <- 1.9 * length(ALGS) + 1.6
+    w_box <- min(13, 2.6 * n_ds + 1.5)
+    h_roc <- 3.8 * ceiling(length(unique(r$rocs$dataset)) / 3) + 1
+    h_imp <- 0.22 * min(20, max(1, nrow(r$importance %||% data.frame()))) + 1.4
+    cat(knitr::knit_child(file.path(PROJECT_DIR, "Reports", "_signature_section.Rmd"), envir = environment(), quiet = TRUE))
+  }
+}
+```
+
+# Caveats for interpreting these results
+
+* **Circular training sets.** `A_Retinol_Quiles_20` was derived from GSE299530 and
+  `A_Retinol_GLM_43` from GSE134933 kidney; `B12_Cobalamin` was built from the cblX
+  study (GSE161763). Their internal (LOOCV) AUCs re-use the discovery data and are
+  optimistic — the external columns are the real test.
+* **Vitamin_K signature looks like an annotation artifact.** GSE148011's vitamin K arm
+  and erastin arm were quantified against different Ensembl releases (45,323 vs 53,384
+  gene IDs). Every Vitamin_K signature gene with an Ensembl ID that occurs in this series
+  (24 of 50) is present **only** in the erastin-arm files (recent IDs ENSMUSG00000106xxx–114xxx,
+  including the newer IDs of Nup62, Mpv17 and Prmt1); none occur in the vitamin K-arm files. A comparison that zero-fills
+  missing genes would call all of them "differential". The signature cannot be scored in
+  the vitamin K arm and should be re-derived from one consistently quantified dataset.
+  One vitamin K library (GSM4452216, 20 µM, replicate 2; ~20,000 reads) also failed QC and was excluded.
+* **Direction reversals.** An external AUC near 0 is not "no signal" — it means the
+  samples separate, but in the opposite direction to the training set. Example:
+  `Vitamin_D_Aigner_35` scores are clearly *higher* in vitamin D-deficient mouse TH2 cells
+  (GSE283020) for every algorithm, but the signature has no signal in the human calcitriol
+  training set, so the direction learned there is arbitrary and the external AUC reads 0.00.
+  Read the boxplots alongside the AUCs.
+* **Small groups.** GSE161763 (3 vs 3), GSE99113 (2 vs 2), GSE190371 (2 vs 2),
+  GSE134933 liver (3 vs 3) and GSE104164 (3 vs 4) give very wide confidence intervals;
+  an AUC of 1.0 on four samples is weak evidence.
+* **Deficiency vs. treatment.** The vitamin D, ATRA and vitamin K contrasts compare
+  vehicle with pharmacological doses of the active compound in cell culture, which is
+  not the same biology as dietary deficiency in vivo.
+* **Cross-species mapping.** Rodent datasets are scored on human orthologs; mouse-only
+  genes (e.g. most `Gm*` and `*Rik` genes in `Vitamin_K` and `A_Retinol_GLM_43`) have no
+  ortholog and drop out (see each coverage table).
+* **External calibration.** Each external dataset is z-scored on its own samples so that
+  platforms are comparable. This uses no labels, but it assumes cases and controls are
+  both present, so accuracy at the 0.5 threshold depends on each study's case/control mix.
+  AUC is unaffected.
+* **Excluded datasets.** GSE266352 (LAMN vs colorectal metastases), GSE124395 (liver cell
+  atlas), GSE246328 (NASH diet), GSE296260 (ccRCC), GSE143307 (methylation) and
+  GSE271214/GSE271249 (RA-treated hESC, 2 per arm) have no usable nutrient contrast for
+  expression-signature validation and were not processed.
+
+# Reproducibility
+
+Results tables written to `Reports/results/`: `auc_summary.csv`, `anova_summary.csv`,
+`signature_summary.csv`, `signature_scores.csv.gz`.
+
+```{r session}
+cat(paste(capture.output(sessionInfo()), collapse = "\n"))
+```
