@@ -665,106 +665,56 @@ Carnitine_GWAS,Carnitine,GSE344237 liver · mouse resveratrol + L-carnitine,Exte
 Carnitine_GWAS,Carnitine,GSE344237 liver · mouse resveratrol + L-carnitine,External,Score · singscore,0.40625,0.121214670399076,0.691285329600924,,8,16,Score,singscore
 Carnitine_GWAS,Carnitine,GSE344237 liver · mouse resveratrol + L-carnitine,External,LR · singscore,0.40625,0.121214670399076,0.691285329600924,0.458333333333333,8,16,Logistic regression,singscore
 Carnitine_GWAS,Carnitine,GSE344237 liver · mouse resveratrol + L-carnitine,External,Random forest,0.5859375,0.312277040380925,0.859597959619076,0.541666666666667,8,16,Random forest,genes
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · GSVA,0.857142857142857,0.577148002208564,1,,4,7,Score,GSVA
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · GSVA,0.857142857142857,0.577148002208564,1,0.909090909090909,4,7,Logistic regression,GSVA
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · GSVA,0.910714285714286,,,,4,7,Logistic regression,GSVA
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · ssGSEA,0.892857142857143,0.671501774176942,1,,4,7,Score,ssGSEA
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · ssGSEA,0.857142857142857,0.577148002208564,1,0.909090909090909,4,7,Logistic regression,ssGSEA
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · ssGSEA,0.892857142857143,,,,4,7,Logistic regression,ssGSEA
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · PLAGE,0.714285714285714,0.335170888521269,1,,4,7,Score,PLAGE
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · PLAGE,0.607142857142857,0.241180548611368,0.973105165674346,0.454545454545455,4,7,Logistic regression,PLAGE
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · PLAGE,0.714285714285714,,,,4,7,Logistic regression,PLAGE
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · zScore,0.857142857142857,0.577148002208564,1,,4,7,Score,zScore
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · zScore,0.857142857142857,0.577148002208564,1,0.909090909090909,4,7,Logistic regression,zScore
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · zScore,0.910714285714286,,,,4,7,Logistic regression,zScore
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · singscore,0.892857142857143,0.671501774176942,1,,4,7,Score,singscore
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · singscore,0.857142857142857,0.577148002208564,1,0.909090909090909,4,7,Logistic regression,singscore
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · singscore,0.892857142857143,,,,4,7,Logistic regression,singscore
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Random forest,0.857142857142857,0.577148002208564,1,0.818181818181818,4,7,Random forest,genes
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),Random forest,0.875,,,,4,7,Random forest,genes
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · GSVA,0.333333333333333,0,0.986654661513351,,3,3,Score,GSVA
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · GSVA,0.333333333333333,0,0.986654661513351,0.5,3,3,Logistic regression,GSVA
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · ssGSEA,0.666666666666667,0.0133453384866487,1,,3,3,Score,ssGSEA
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · ssGSEA,0.666666666666667,0.0133453384866487,1,0.666666666666667,3,3,Logistic regression,ssGSEA
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · PLAGE,0.111111111111111,0,0.419089738744373,,3,3,Score,PLAGE
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · PLAGE,0.111111111111111,0,0.419089738744373,0.333333333333333,3,3,Logistic regression,PLAGE
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · zScore,0.333333333333333,0,0.986654661513351,,3,3,Score,zScore
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · zScore,0.333333333333333,0,0.986654661513351,0.333333333333333,3,3,Logistic regression,zScore
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · GSVA,1,1,1,,4,7,Score,GSVA
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · GSVA,1,1,1,1,4,7,Logistic regression,GSVA
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · GSVA,1,,,,4,7,Logistic regression,GSVA
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · ssGSEA,1,1,1,,4,7,Score,ssGSEA
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · ssGSEA,1,1,1,1,4,7,Logistic regression,ssGSEA
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · ssGSEA,1,,,,4,7,Logistic regression,ssGSEA
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · PLAGE,1,1,1,,4,7,Score,PLAGE
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · PLAGE,1,1,1,1,4,7,Logistic regression,PLAGE
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · PLAGE,1,,,,4,7,Logistic regression,PLAGE
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · zScore,1,1,1,,4,7,Score,zScore
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · zScore,1,1,1,1,4,7,Logistic regression,zScore
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · zScore,1,,,,4,7,Logistic regression,zScore
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · singscore,1,1,1,,4,7,Score,singscore
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · singscore,1,1,1,1,4,7,Logistic regression,singscore
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · singscore,1,,,,4,7,Logistic regression,singscore
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Random forest,1,1,1,1,4,7,Random forest,genes
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),Random forest,1,,,,4,7,Random forest,genes
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · GSVA,0.888888888888889,0.580910261255627,1,,3,3,Score,GSVA
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · GSVA,0.888888888888889,0.580910261255627,1,0.666666666666667,3,3,Logistic regression,GSVA
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · ssGSEA,0.888888888888889,0.580910261255627,1,,3,3,Score,ssGSEA
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · ssGSEA,0.888888888888889,0.580910261255627,1,0.666666666666667,3,3,Logistic regression,ssGSEA
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · PLAGE,0.777777777777778,0.290820810790788,1,,3,3,Score,PLAGE
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · PLAGE,0.777777777777778,0.290820810790788,1,0.5,3,3,Logistic regression,PLAGE
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · zScore,0.888888888888889,0.580910261255627,1,,3,3,Score,zScore
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · zScore,0.888888888888889,0.580910261255627,1,0.833333333333333,3,3,Logistic regression,zScore
 Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · singscore,1,1,1,,3,3,Score,singscore
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · singscore,1,1,1,0.666666666666667,3,3,Logistic regression,singscore
-Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Random forest,0.222222222222222,0,0.709179189209212,0.166666666666667,3,3,Random forest,genes
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · singscore,1,1,1,1,3,3,Logistic regression,singscore
+Vitamin_K,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Random forest,0.777777777777778,0.290820810790788,1,0.5,3,3,Random forest,genes
 Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · GSVA,0.5,0,1,,2,3,Score,GSVA
 Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · GSVA,0.5,0,1,0.6,2,3,Logistic regression,GSVA
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · ssGSEA,0.666666666666667,0.0133453384866487,1,,2,3,Score,ssGSEA
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · ssGSEA,0.666666666666667,0.0133453384866487,1,0.6,2,3,Logistic regression,ssGSEA
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · PLAGE,1,1,1,,2,3,Score,PLAGE
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · PLAGE,1,1,1,0.8,2,3,Logistic regression,PLAGE
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · zScore,0.833333333333333,0.371365391883441,1,,2,3,Score,zScore
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · zScore,0.833333333333333,0.371365391883441,1,0.8,2,3,Logistic regression,zScore
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · singscore,0.666666666666667,0.0133453384866487,1,,2,3,Score,singscore
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · singscore,0.666666666666667,0.0133453384866487,1,0.4,2,3,Logistic regression,singscore
-Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Random forest,0.333333333333333,0,1,0.4,2,3,Random forest,genes
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · GSVA,0.333333333333333,0,0.986654661513351,,3,3,Score,GSVA
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · GSVA,0.333333333333333,0,0.986654661513351,0.5,3,3,Logistic regression,GSVA
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · ssGSEA,0.777777777777778,0.290820810790788,1,,3,3,Score,ssGSEA
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · ssGSEA,0.777777777777778,0.290820810790788,1,0.5,3,3,Logistic regression,ssGSEA
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · PLAGE,0,0,0,,3,3,Score,PLAGE
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · PLAGE,0,0,0,0,3,3,Logistic regression,PLAGE
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · zScore,0.444444444444444,0,1,,3,3,Score,zScore
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · zScore,0.444444444444444,0,1,0.5,3,3,Logistic regression,zScore
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · singscore,0.777777777777778,0.290820810790788,1,,3,3,Score,singscore
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · singscore,0.777777777777778,0.290820810790788,1,0.5,3,3,Logistic regression,singscore
-Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Random forest,1,1,1,0.833333333333333,3,3,Random forest,genes
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · GSVA,1,1,1,,4,7,Score,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · GSVA,1,1,1,1,4,7,Logistic regression,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · GSVA,1,,,,4,7,Logistic regression,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · ssGSEA,1,1,1,,4,7,Score,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · ssGSEA,1,1,1,1,4,7,Logistic regression,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · ssGSEA,1,,,,4,7,Logistic regression,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · PLAGE,1,1,1,,4,7,Score,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · PLAGE,1,1,1,1,4,7,Logistic regression,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · PLAGE,1,,,,4,7,Logistic regression,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · zScore,1,1,1,,4,7,Score,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · zScore,1,1,1,1,4,7,Logistic regression,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · zScore,1,,,,4,7,Logistic regression,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · singscore,1,1,1,,4,7,Score,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · singscore,1,1,1,1,4,7,Logistic regression,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · singscore,1,,,,4,7,Logistic regression,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Random forest,1,1,1,1,4,7,Random forest,genes
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),Random forest,1,,,,4,7,Random forest,genes
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · GSVA,0.888888888888889,0.580910261255627,1,,3,3,Score,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · GSVA,0.888888888888889,0.580910261255627,1,0.666666666666667,3,3,Logistic regression,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · ssGSEA,0.888888888888889,0.580910261255627,1,,3,3,Score,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · ssGSEA,0.888888888888889,0.580910261255627,1,0.666666666666667,3,3,Logistic regression,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · PLAGE,0.777777777777778,0.290820810790788,1,,3,3,Score,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · PLAGE,0.777777777777778,0.290820810790788,1,0.5,3,3,Logistic regression,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · zScore,0.888888888888889,0.580910261255627,1,,3,3,Score,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · zScore,0.888888888888889,0.580910261255627,1,0.833333333333333,3,3,Logistic regression,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Score · singscore,1,1,1,,3,3,Score,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,LR · singscore,1,1,1,1,3,3,Logistic regression,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE267133 ARPE-19 · human vitamin K1 (+ erastin),External,Random forest,0.777777777777778,0.290820810790788,1,0.5,3,3,Random forest,genes
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · GSVA,0.5,0,1,,2,3,Score,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · GSVA,0.5,0,1,0.6,2,3,Logistic regression,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · ssGSEA,0,0,0,,2,3,Score,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · ssGSEA,0,0,0,0,2,3,Logistic regression,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · PLAGE,0,0,0,,2,3,Score,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · PLAGE,0,0,0,0.2,2,3,Logistic regression,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · zScore,0.333333333333333,0,1,,2,3,Score,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · zScore,0.333333333333333,0,1,0.6,2,3,Logistic regression,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · singscore,0.5,0,1,,2,3,Score,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · singscore,0.5,0,1,0.6,2,3,Logistic regression,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Random forest,0.333333333333333,0,1,0.6,2,3,Random forest,genes
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · GSVA,0.777777777777778,0.290820810790788,1,,3,3,Score,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · GSVA,0.722222222222222,0.167005855382844,1,0.666666666666667,3,3,Logistic regression,GSVA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · ssGSEA,0.666666666666667,0.133232035960521,1,,3,3,Score,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · ssGSEA,0.611111111111111,0.0558947442717332,1,0.5,3,3,Logistic regression,ssGSEA
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · PLAGE,0.555555555555556,0,1,,3,3,Score,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · PLAGE,0.611111111111111,0.0558947442717332,1,0.666666666666667,3,3,Logistic regression,PLAGE
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · zScore,0.555555555555556,0,1,,3,3,Score,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · zScore,0.611111111111111,0.0558947442717332,1,0.666666666666667,3,3,Logistic regression,zScore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · singscore,0.666666666666667,0.133232035960521,1,,3,3,Score,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · singscore,0.611111111111111,0.0558947442717332,1,0.5,3,3,Logistic regression,singscore
-Vitamin_K_GSE148011_Up,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Random forest,0.666666666666667,0.133232035960521,1,0.5,3,3,Random forest,genes
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · ssGSEA,0,0,0,,2,3,Score,ssGSEA
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · ssGSEA,0,0,0,0,2,3,Logistic regression,ssGSEA
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · PLAGE,0,0,0,,2,3,Score,PLAGE
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · PLAGE,0,0,0,0.2,2,3,Logistic regression,PLAGE
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · zScore,0.333333333333333,0,1,,2,3,Score,zScore
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · zScore,0.333333333333333,0,1,0.6,2,3,Logistic regression,zScore
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Score · singscore,0.5,0,1,,2,3,Score,singscore
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,LR · singscore,0.5,0,1,0.6,2,3,Logistic regression,singscore
+Vitamin_K,Vitamin K,GSE237219 Jurkat · human vitamin K1,External,Random forest,0.333333333333333,0,1,0.6,2,3,Random forest,genes
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · GSVA,0.777777777777778,0.290820810790788,1,,3,3,Score,GSVA
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · GSVA,0.722222222222222,0.167005855382844,1,0.666666666666667,3,3,Logistic regression,GSVA
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · ssGSEA,0.666666666666667,0.133232035960521,1,,3,3,Score,ssGSEA
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · ssGSEA,0.611111111111111,0.0558947442717332,1,0.5,3,3,Logistic regression,ssGSEA
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · PLAGE,0.555555555555556,0,1,,3,3,Score,PLAGE
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · PLAGE,0.611111111111111,0.0558947442717332,1,0.666666666666667,3,3,Logistic regression,PLAGE
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · zScore,0.555555555555556,0,1,,3,3,Score,zScore
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · zScore,0.611111111111111,0.0558947442717332,1,0.666666666666667,3,3,Logistic regression,zScore
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Score · singscore,0.666666666666667,0.133232035960521,1,,3,3,Score,singscore
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,LR · singscore,0.611111111111111,0.0558947442717332,1,0.5,3,3,Logistic regression,singscore
+Vitamin_K,Vitamin K,GSE272401 BMDM · mouse RANKL ± vitamins D+K,External,Random forest,0.666666666666667,0.133232035960521,1,0.5,3,3,Random forest,genes
 Vitamin_K_GSE148011_Down,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),Score · GSVA,1,1,1,,4,7,Score,GSVA
 Vitamin_K_GSE148011_Down,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (LOOCV),LR · GSVA,1,1,1,1,4,7,Logistic regression,GSVA
 Vitamin_K_GSE148011_Down,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,Internal (leave-pair-out),LR · GSVA,1,,,,4,7,Logistic regression,GSVA

@@ -13,8 +13,7 @@ Vitamin_E_Curated_Fixed,0.52,0.55,0.34,0.55,0.6,0.59
 Vitamin_E_GWAS,0.57,0.55,0.45,0.6,0.52,0.28
 Carnitine_Mito,0.86,0.75,0.81,0.81,0.75,0.97
 Carnitine_GWAS,0.39,0.36,0.19,0.08,0.03,1
-Vitamin_K,0.91,0.89,0.71,0.91,0.89,0.88
-Vitamin_K_GSE148011_Up,1,1,1,1,1,1
+Vitamin_K,1,1,1,1,1,1
 Vitamin_K_GSE148011_Down,1,1,1,1,1,1
 Vitamin_K_GWAS,0.5,0.86,0.79,0.61,0.64,0.96
 Omega_3_FattyAcids,0.57,0.7,0.6,0.63,0.67,0.43

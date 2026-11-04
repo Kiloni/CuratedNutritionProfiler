@@ -13,8 +13,7 @@ Vitamin_E_Curated_Fixed,Vitamin E,GSE110747 liver · mouse vitamin E diet,0.41,0
 Vitamin_E_GWAS,Vitamin E,GSE110747 liver · mouse vitamin E diet,0.5,0.49,0.37,0.54,0.45,0.25
 Carnitine_Mito,Carnitine,GSE343742 BMM · mouse L-carnitine ± LPS,0.78,0.67,0.72,0.72,0.72,1
 Carnitine_GWAS,Carnitine,GSE343742 BMM · mouse L-carnitine ± LPS,0.28,0.06,0.08,0,0,1
-Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,0.86,0.86,0.61,0.86,0.86,0.86
-Vitamin_K_GSE148011_Up,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,1,1,1,1,1,1
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,1,1,1,1,1,1
 Vitamin_K_GSE148011_Down,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,1,1,1,1,1,1
 Vitamin_K_GWAS,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,0.36,0.82,0.75,0.57,0.57,1
 Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",0.54,0.67,0.57,0.61,0.64,0.38

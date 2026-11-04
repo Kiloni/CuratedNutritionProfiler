@@ -107,8 +107,9 @@ panels <- list(
       D("GSE267133", "GSE267133", "Vitamin_K", "Erastin", "Erastin_VitK1", NULL, "GSE267133 ARPE-19 · human vitamin K1 (+ erastin)"),
       D("GSE237219", "GSE237219", "Vitamin_K", "Control", "VitK1", NULL, "GSE237219 Jurkat · human vitamin K1"),
       D("GSE272401", "GSE272401", "Vitamin_K", "RANKL", "RANKL_VitD_VitK", NULL, "GSE272401 BMDM · mouse RANKL ± vitamins D+K")),
-    signatures = c(Vitamin_K = "GSE148011", Vitamin_K_GSE148011_Up = "GSE148011", Vitamin_K_GSE148011_Down = "GSE148011",
-                   Vitamin_K_GWAS = "GSE148011")),
+    # Vitamin_K in NutSignaturesList.R is now the GSE148011 "Up" list (replaced 2026-11-04), so the
+    # identical candidate Vitamin_K_GSE148011_Up is not repeated here
+    signatures = c(Vitamin_K = "GSE148011", Vitamin_K_GSE148011_Down = "GSE148011", Vitamin_K_GWAS = "GSE148011")),
   "Omega-3" = list(space = "native", datasets = list(
       D("GSE12375", "GSE12375", "Omega_3", "MUFA_END", "EPADHA_END", NULL, "GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo")),
     signatures = c(Omega_3_FattyAcids = "GSE12375"))
@@ -525,26 +526,18 @@ for (pn in names(panels)) {
 
 * **Circular training sets.** `A_Retinol_Quiles_20` was derived from GSE299530 and
   `A_Retinol_GLM_43` from GSE134933 kidney; `B12_Cobalamin` was built from the cblX
-  study (GSE161763). Their internal (LOOCV) AUCs re-use the discovery data and are
+  study (GSE161763); `Vitamin_K` was derived from GSE148011. Their internal (LOOCV) AUCs re-use the discovery data and are
   optimistic — the external columns are the real test.
-* **Vitamin_K signature looks like an annotation artifact.** GSE148011's vitamin K arm
-  and erastin arm were quantified against different Ensembl releases (45,323 vs 53,384
-  gene IDs). Every Vitamin_K signature gene with an Ensembl ID that occurs in this series
-  (24 of 50) is present **only** in the erastin-arm files (recent IDs ENSMUSG00000106xxx–114xxx,
-  including the newer IDs of Nup62, Mpv17 and Prmt1); none occur in the vitamin K-arm files. A comparison that zero-fills
-  missing genes would call all of them "differential". In the vitamin K training data the curated
-  `Vitamin_K` score therefore rests on only 2 of its 50 genes (see its coverage table), so its
-  internal AUCs say little about the signature as a whole. Re-deriving from the vitamin K arm alone gives only a weak response
-  (no gene reaches 2-fold; top genes are cell-cycle genes; ~48% of genes have p < 0.1, which
-  suggests a broad, possibly technical, shift), so `Vitamin_K_GSE148011_Up/Down` are taken at
-  FDR < 0.1 and are only as credible as their external results.
-  One vitamin K library (GSM4452216, 20 µM, replicate 2; ~20,000 reads) also failed QC and was excluded.
-* **Direction reversals.** An external AUC near 0 is not "no signal" — it means the
-  samples separate, but in the opposite direction to the training set. Example:
-  `Vitamin_D_Aigner_35` scores are clearly *higher* in vitamin D-deficient mouse TH2 cells
-  (GSE283020) for every algorithm, but the signature has no signal in the human calcitriol
-  training set, so the direction learned there is arbitrary and the external AUC reads 0.00.
-  Read the boxplots alongside the AUCs.
+* **Vitamin_K was replaced (2026-11-04).** The previous 50-gene list came from
+  `~/Downloads/vitK_GSE148011_raw_counts.csv`, which merged GSE148011's vitamin K and erastin
+  arms across two gene annotations (45,323 vs 53,384 IDs): all 50 genes had **zero counts in
+  every vitamin K-arm sample** and ~460,000 counts in the erastin arm, so the list captured the
+  annotation mismatch, not vitamin K. The new `Vitamin_K` is the set of genes higher with the
+  vitamin K precursor within the vitamin K arm only (`Scripts/derive_candidate_signatures.R`).
+  That response is weak (no gene reaches 2-fold; top genes are cell-cycle genes; ~48% of genes
+  have p < 0.1, suggesting a broad, possibly technical, shift), and the list was derived from
+  the training set, so its internal AUC is circular — only the external columns test it.
+  One vitamin K library (GSM4452216, 20 µM, replicate 2; ~20,000 reads) failed QC and was excluded.
 * **Added datasets (2026-11-04) have their own limits.** GSE1063 is a ~590-gene cDNA array
   (symbols parsed from gene names), so most signatures barely overlap it. GSE344237 always gives
   L-carnitine together with resveratrol, and GSE272401 gives vitamins D and K together. GSE271941
