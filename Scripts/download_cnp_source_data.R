@@ -46,6 +46,12 @@ DOWNLOAD_NCBI_COUNTS <- TRUE
 # Skip GEO accessions already converted by Scripts/process_cnp_source_data.R (their raw
 # files are deleted after processing to save space). Set FALSE to re-download everything.
 SKIP_PROCESSED <- TRUE
+# Accessions reviewed on 2026-11-04 and excluded from signature validation (no usable nutrient
+# contrast, or not expression data); their raw files were deleted. Remove an ID here to fetch it.
+#   GSE266352 LAMN vs CRC metastases | GSE124395 liver cell atlas | GSE246328 NASH diet, no iron arm
+#   GSE296260 ccRCC vs kidney | GSE143307 DNA methylation (vitamin K responders)
+#   GSE271214 / GSE271249 RA-treated hESC, 2 per arm (RAW tar 7.1 GB) | GDS4860 subset of GSE46268
+EXCLUDED <- c("GSE266352", "GSE124395", "GSE246328", "GSE296260", "GSE143307", "GSE271214", "GSE271249", "GDS4860")
 
 options(timeout = 3600)   # allow up to 1 h per file
 if (!requireNamespace("jsonlite", quietly = TRUE)) install.packages("jsonlite")
@@ -324,6 +330,7 @@ logmsg("==== CNP source-data download started; output: ", OUT_DIR)
 for (i in seq_len(nrow(geo))) {
   acc <- geo$accession[i]
   if (acc %in% processed_acc) { logmsg(acc, ": already processed into data/processed - skipped"); next }
+  if (acc %in% EXCLUDED) { logmsg(acc, ": excluded from validation - skipped (see EXCLUDED)"); next }
   tryCatch(
     if (startsWith(acc, "GDS")) download_gds(acc, geo$group[i], geo$role[i])
     else download_gse(acc, geo$group[i], geo$role[i]),
