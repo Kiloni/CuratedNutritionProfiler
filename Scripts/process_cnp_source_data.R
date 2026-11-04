@@ -121,6 +121,30 @@ log_cpm <- function(counts) {
 log_plus <- function(x) log2(x + 1)
 log_array <- function(x) if (max(x, na.rm = TRUE) > 100) log2(pmax(x, 1)) else x
 
+# Run a dataset block only when its raw download is present. Raw files are deleted after
+# processing, so a re-run keeps the existing processed output (and index row) instead.
+skipped_acc <- character(0)
+with_raw <- function(group, acc, expr) {
+  if (!dir.exists(raw_path(group, acc))) {
+    message(sprintf("  %-20s raw files not present - keeping existing processed output", acc))
+    skipped_acc <<- c(skipped_acc, acc); return(invisible())
+  }
+  eval(substitute(expr), envir = new.env(parent = globalenv()))
+}
+
+# Gene symbol from Affymetrix "gene_assignment"-style strings: "NM_x // SYMBOL // name // ..."
+parse_assignment <- function(x) {
+  s <- trimws(sub(" *//.*$", "", sub("^[^/]*// *", "", as.character(x))))
+  s[is.na(x) | s %in% c("", "---")] <- NA; s
+}
+# Clontech Atlas arrays (e.g. GPL155) give only names such as "cyclin G-associated kinase (GAK)":
+# take the last parenthesised symbol and write it in rodent case (Gak)
+parse_paren_symbol <- function(x) {
+  m <- regmatches(x, gregexpr("\\(([A-Za-z0-9-]+)\\)", x))
+  s <- vapply(m, function(v) if (length(v)) gsub("[()]", "", tail(v, 1)) else NA_character_, "")
+  ifelse(is.na(s), NA, paste0(substr(s, 1, 1), tolower(substring(s, 2))))
+}
+
 index <- list()
 save_dataset <- function(id, accession, group, species, platform, units, expr, pheno, note = "") {
   # samples removed by QC are dropped from the phenotype table and recorded in the note
@@ -149,20 +173,22 @@ save_dataset <- function(id, accession, group, species, platform, units, expr, p
                   format(structure(file.size(ef), class = "object_size"), units = "auto")))
 }
 
-array_dataset <- function(group, acc, symbol_from = c("platform", "entrez")) {
+array_dataset <- function(group, acc, symbol_from = c("platform", "entrez"), sym_fun = NULL,
+                          force_log2 = FALSE) {
   symbol_from <- match.arg(symbol_from)
   sm <- read_series_matrix(list.files(raw_path(group, acc, "matrix"), full.names = TRUE)[1])
-  x  <- log_array(sm$expr)
+  x  <- if (force_log2) log2(pmax(sm$expr, 1e-3)) else log_array(sm$expr)
   sym <- if (symbol_from == "platform") {
     pl <- read_soft_platform(raw_path(group, acc, "soft", paste0(acc, "_family.soft.gz")))
-    pl[[symbol_col(pl)]][match(rownames(x), as.character(pl$ID))]
+    sy <- if (is.null(sym_fun)) pl[[symbol_col(pl)]] else sym_fun(pl)
+    sy[match(rownames(x), as.character(pl$ID))]
   } else {
     map_ids(sub("_at$", "", rownames(x)), "Homo sapiens", "ENTREZID")
   }
   list(expr = collapse_to_symbol(x, sym), pheno = sm$pheno)
 }
 
-ncbi_counts_dataset <- function(group, acc) {
+ncbi_counts_dataset <- function(group, acc) {   # human series only (GRCh38)
   f <- raw_path(group, acc, "ncbi_counts", paste0(acc, "_raw_counts_GRCh38.p13_NCBI.tsv.gz"))
   x <- fread(f, data.table = FALSE); ids <- x$GeneID
   x <- as.matrix(x[, -1]); rownames(x) <- ids
@@ -175,7 +201,7 @@ message("==== Processing CNP source data -> ", OUT)
 
 # ---- Vitamin A --------------------------------------------------------------
 # GSE134933: mouse kidney (WT / TRACK x chow / VAD) and liver (WT chow / VAD), FPKM
-local({
+with_raw("Vitamin_A", "GSE134933", {
   tf <- tempfile(fileext = ".xls")
   R.utils::gunzip(raw_path("Vitamin_A", "GSE134933", "suppl",
                            "GSE134933_2018-2-27_expression.genes.protein_coding.xls.gz"),
@@ -198,7 +224,7 @@ local({
 })
 
 # GSE299530: mouse lung VAD vs VAS, counts keyed by Entrez ID
-local({
+with_raw("Vitamin_A", "GSE299530", {
   x <- fread(raw_path("Vitamin_A", "GSE299530", "suppl", "GSE299530_features_combined_2021.txt.gz"),
              data.table = FALSE)
   ids <- x[[1]]; x <- as.matrix(x[, -1]); rownames(x) <- ids
@@ -215,7 +241,7 @@ local({
 })
 
 # GSE37313: rat liver VAD/VAS x SHAM/BDL x vehicle/retinyl palmitate, Illumina array
-local({
+with_raw("Vitamin_A", "GSE37313", {
   a <- array_dataset("Vitamin_A", "GSE37313")
   p <- a$pheno
   ph <- data.frame(sample = p$gsm,
@@ -227,7 +253,7 @@ local({
 })
 
 # GSE46268: human monocytes, control vs ATRA vs 1,25D3 (4 donors), Affymetrix GPL570
-local({
+with_raw("Vitamin_A", "GSE46268", {
   a <- array_dataset("Vitamin_A", "GSE46268")
   p <- a$pheno
   cond <- c("control" = "Control", "all-trans retinoic acid" = "ATRA",
@@ -239,7 +265,7 @@ local({
 })
 
 # ---- Vitamin D --------------------------------------------------------------
-local({   # GSE63086: MG63 cells, vehicle vs 1,25D x control vs HNRNPC knock-down
+with_raw("Vitamin_D", "GSE63086", {   # GSE63086: MG63 cells, vehicle vs 1,25D x control vs HNRNPC knock-down
   d <- ncbi_counts_dataset("Vitamin_D", "GSE63086"); p <- d$pheno
   ph <- data.frame(sample = p$gsm,
                    condition = ifelse(grepl("^Vitamin D", p$title), "Calcitriol", "Vehicle"),
@@ -248,7 +274,7 @@ local({   # GSE63086: MG63 cells, vehicle vs 1,25D x control vs HNRNPC knock-dow
                "log2 CPM (NCBI counts)", d$expr[, intersect(ph$sample, colnames(d$expr))], ph)
 })
 
-local({   # GSE221690: 4 prostate cell lines, vehicle vs 1,25D3
+with_raw("Vitamin_D", "GSE221690", {   # GSE221690: 4 prostate cell lines, vehicle vs 1,25D3
   d <- ncbi_counts_dataset("Vitamin_D", "GSE221690"); p <- d$pheno
   ph <- data.frame(sample = p$gsm,
                    condition = ifelse(grepl("treat", p$title), "Calcitriol", "Vehicle"),
@@ -257,7 +283,7 @@ local({   # GSE221690: 4 prostate cell lines, vehicle vs 1,25D3
                "log2 CPM (NCBI counts)", d$expr[, intersect(ph$sample, colnames(d$expr))], ph)
 })
 
-local({   # GSE15947: RWPE1 cells, vehicle vs 1,25D at 6/24/48 h, GPL570 (already log2)
+with_raw("Vitamin_D", "GSE15947", {   # GSE15947: RWPE1 cells, vehicle vs 1,25D at 6/24/48 h, GPL570 (already log2)
   a <- array_dataset("Vitamin_D", "GSE15947"); p <- a$pheno
   ph <- data.frame(sample = p$gsm,
                    condition = ifelse(grepl("Vehicle", p$treatment), "Vehicle", "Calcitriol"),
@@ -266,7 +292,7 @@ local({   # GSE15947: RWPE1 cells, vehicle vs 1,25D at 6/24/48 h, GPL570 (alread
                "Affymetrix HG-U133 Plus 2 (GPL570)", "log2 intensity (RMA)", a$expr[, ph$sample], ph)
 })
 
-local({   # GSE283020: mouse TH2 cells, regular vs vitamin D-deficient diet, counts keyed by Ensembl
+with_raw("Vitamin_D", "GSE283020", {   # GSE283020: mouse TH2 cells, regular vs vitamin D-deficient diet, counts keyed by Ensembl
   x <- fread(raw_path("Vitamin_D", "GSE283020", "suppl", "GSE283020_mouse_vitd_def_th2_matrix.csv.gz"),
              data.table = FALSE)
   ids <- x[[1]]; x <- as.matrix(x[, -1]); rownames(x) <- ids
@@ -281,7 +307,7 @@ local({   # GSE283020: mouse TH2 cells, regular vs vitamin D-deficient diet, cou
 })
 
 # ---- Vitamin C --------------------------------------------------------------
-local({   # GSE233598: mouse liver, Gulo-/- vitamin C dose series + WT, TPM
+with_raw("Vitamin_C", "GSE233598", {   # GSE233598: mouse liver, Gulo-/- vitamin C dose series + WT, TPM
   x <- as.data.frame(read_excel(raw_path("Vitamin_C", "GSE233598", "suppl", "GSE233598_tpm.xlsx"), sheet = "tpm"))
   smp <- setdiff(names(x), c("ENSEMBL", "SYMBOL"))
   m <- as.matrix(x[, smp]); storage.mode(m) <- "double"
@@ -295,7 +321,7 @@ local({   # GSE233598: mouse liver, Gulo-/- vitamin C dose series + WT, TPM
                "log2(TPM+1)", m, ph)
 })
 
-local({   # GSE190371: mouse kidney scRNA-seq, Gulo-/- control vs vitamin C-deficient -> pseudobulk
+with_raw("Vitamin_C", "GSE190371", {   # GSE190371: mouse kidney scRNA-seq, Gulo-/- control vs vitamin C-deficient -> pseudobulk
   tarf <- raw_path("Vitamin_C", "GSE190371", "suppl", "GSE190371_RAW.tar")
   td <- tempfile(); dir.create(td)
   members <- grep("(barcodes|genes|matrix)\\.(tsv|mtx)\\.gz$", untar(tarf, list = TRUE), value = TRUE)
@@ -320,7 +346,7 @@ local({   # GSE190371: mouse kidney scRNA-seq, Gulo-/- control vs vitamin C-defi
 })
 
 # ---- Vitamin B12 ------------------------------------------------------------
-local({   # GSE161763: mouse embryonic brain, Ronin F80L (cblX) vs control, counts
+with_raw("Vitamin_B12", "GSE161763", {   # GSE161763: mouse embryonic brain, Ronin F80L (cblX) vs control, counts
   x <- fread(raw_path("Vitamin_B12", "GSE161763", "suppl", "GSE161763_RONIN_F80L_RNAseq_raw_counts.txt.gz"),
              data.table = FALSE)
   g <- x$Gene; x <- as.matrix(x[, -1]); rownames(x) <- g
@@ -329,7 +355,7 @@ local({   # GSE161763: mouse embryonic brain, Ronin F80L (cblX) vs control, coun
   save_dataset("GSE161763", "GSE161763", "Vitamin_B12", "Mus musculus", "RNA-seq (GPL17021)", "log2 CPM", m, ph)
 })
 
-local({   # GSE103417: N1E-115 cells, WT / OT (no Cbl binding) / TO (sequesters Cbl), Agilent
+with_raw("Vitamin_B12", "GSE103417", {   # GSE103417: N1E-115 cells, WT / OT (no Cbl binding) / TO (sequesters Cbl), Agilent
   a <- array_dataset("Vitamin_B12", "GSE103417"); p <- a$pheno
   arm <- sub("^(proliferated|differentiated)_neuroblastoma_", "", p$source)
   ph <- data.frame(sample = p$gsm,
@@ -339,14 +365,14 @@ local({   # GSE103417: N1E-115 cells, WT / OT (no Cbl binding) / TO (sequesters 
                "Agilent Whole Mouse Genome (GPL4134)", "log2 intensity", a$expr[, ph$sample], ph)
 })
 
-local({   # GSE104164: rat cerebellum, control vs methyl-donor (B12/folate) deficiency, Agilent
+with_raw("Vitamin_B12", "GSE104164", {   # GSE104164: rat cerebellum, control vs methyl-donor (B12/folate) deficiency, Agilent
   a <- array_dataset("Vitamin_B12", "GSE104164"); p <- a$pheno
   ph <- data.frame(sample = p$gsm, condition = ifelse(grepl("^MDD", p$source), "MDD", "Control"))
   save_dataset("GSE104164", "GSE104164", "Vitamin_B12", "Rattus norvegicus",
                "Agilent Rat Gene Expression (GPL14797)", "log2 intensity", a$expr[, ph$sample], ph)
 })
 
-local({   # GSE99113: mouse astrocytes, B12-sufficient vs B12-free medium (2 vs 2)
+with_raw("Vitamin_B12", "GSE99113", {   # GSE99113: mouse astrocytes, B12-sufficient vs B12-free medium (2 vs 2)
   x <- fread(raw_path("Vitamin_B12", "GSE99113", "suppl", "GSE99113_JC_NS190_AstrocyteB12.txt.gz"),
              data.table = FALSE)
   g <- x$name; x <- as.matrix(x[, -1]); rownames(x) <- g
@@ -357,7 +383,7 @@ local({   # GSE99113: mouse astrocytes, B12-sufficient vs B12-free medium (2 vs 
 })
 
 # ---- Vitamin K --------------------------------------------------------------
-local({   # GSE148011: p53/PTEN-null MEFs, vitamin K precursor (MSB) 0/10/20 uM (+ erastin arms)
+with_raw("Vitamin_K", "GSE148011", {   # GSE148011: p53/PTEN-null MEFs, vitamin K precursor (MSB) 0/10/20 uM (+ erastin arms)
   tarf <- raw_path("Vitamin_K", "GSE148011", "suppl", "GSE148011_RAW.tar")
   td <- tempfile(); dir.create(td); untar(tarf, exdir = td)
   p <- read_series_matrix(list.files(raw_path("Vitamin_K", "GSE148011", "matrix"), full.names = TRUE)[1])$pheno
@@ -379,7 +405,7 @@ local({   # GSE148011: p53/PTEN-null MEFs, vitamin K precursor (MSB) 0/10/20 uM 
 })
 
 # ---- Omega-3 ----------------------------------------------------------------
-local({   # GSE12375: human PBMC, EPA/DHA vs MUFA (oleic acid) at baseline and 6 months, NuGO array
+with_raw("Omega_3", "GSE12375", {   # GSE12375: human PBMC, EPA/DHA vs MUFA (oleic acid) at baseline and 6 months, NuGO array
   a <- array_dataset("Omega_3", "GSE12375", symbol_from = "entrez"); p <- a$pheno
   ph <- data.frame(sample = p$gsm, condition = sub(".*_(EPADHA|MUFA)_(BASE|END)$", "\\1_\\2", p$title),
                    subject = sub("^A101_([^_]+)_.*", "\\1", p$title))
@@ -387,7 +413,179 @@ local({   # GSE12375: human PBMC, EPA/DHA vs MUFA (oleic acid) at baseline and 6
                "NuGO Hs1a520180 custom Affymetrix (GPL7144)", "log2 intensity", a$expr[, ph$sample], ph)
 })
 
+# ---- Vitamin B6 (added 2026-11-04) -------------------------------------------
+with_raw("Vitamin_B6", "GSE345689", {   # mouse kidney, low vs high B6 diet x WT / Sgpl1 R222Q; FPKM in DE workbooks
+  d <- raw_path("Vitamin_B6", "GSE345689", "suppl")
+  rd <- function(f) { x <- as.data.frame(read_excel(file.path(d, f)));
+    x[, c("gene_id", "gene_name", grep("^FPKM\\.", names(x), value = TRUE))] }
+  a <- rd("GSE345689_WT_HVSWT_L_Gene_differential_expression.xlsx")       # WT high + WT low
+  b <- rd("GSE345689_KI_HVSKI_L_Gene_differential_expression.xlsx")       # KI high + KI low
+  x <- merge(a, b[, c("gene_id", grep("^FPKM\\.", names(b), value = TRUE))], by = "gene_id")
+  m <- as.matrix(x[, grep("^FPKM\\.", names(x))]); storage.mode(m) <- "double"
+  colnames(m) <- sub("^FPKM\\.", "", colnames(m))
+  m <- collapse_to_symbol(log_plus(m), x$gene_name)
+  ph <- data.frame(sample = colnames(m),
+                   condition = ifelse(grepl("low", colnames(m), ignore.case = TRUE), "Low_B6", "High_B6"),
+                   genotype = ifelse(startsWith(colnames(m), "KI"), "Sgpl1_R222Q", "WT"))
+  save_dataset("GSE345689", "GSE345689", "Vitamin_B6", "Mus musculus", "RNA-seq (GPL24247)",
+               "log2(FPKM+1)", m, ph, "Expression taken from the deposited DE workbooks (the 'raw_counts' file holds read QC only)")
+})
+
+with_raw("Vitamin_B6", "GSE139892", {   # mouse leukemic cells, PDXK inhibitor 4-O-methylpyridoxine vs vehicle
+  x <- fread(raw_path("Vitamin_B6", "GSE139892", "suppl", "GSE139892_Chen_RNASeq_OMP_RPKM.csv.gz"), data.table = FALSE)
+  m <- as.matrix(x[, grep("Day6", names(x))]); m <- collapse_to_symbol(log_plus(m), x$Gene_name)
+  ph <- data.frame(sample = colnames(m), condition = ifelse(grepl("^OMP", colnames(m)), "OMP_B6_antagonist", "Vehicle"))
+  save_dataset("GSE139892", "GSE139892", "Vitamin_B6", "Mus musculus", "RNA-seq", "log2(RPKM+1)", m, ph)
+})
+
+# ---- Folate (added 2026-11-04) ----------------------------------------------
+with_raw("Folate", "GSE275393", {   # E11.5 brain, maternal folic acid 0.1 / 3 / 30 ppm x Tet1 genotype, counts
+  x <- fread(raw_path("Folate", "GSE275393", "suppl", "GSE275393_E11-5_brains_FA_counts.txt.gz"), data.table = FALSE)
+  smp <- names(x)[-(1:4)]; m <- as.matrix(x[, smp]); rownames(m) <- x$ensembl_gene_id
+  m <- collapse_to_symbol(log_cpm(m), x$mgi_symbol)
+  ppm <- sub(".*_(01|3|30)ppm_.*", "\\1", colnames(m))
+  ph <- data.frame(sample = colnames(m),
+                   condition = c("01" = "FA_0.1ppm", "3" = "FA_3ppm", "30" = "FA_30ppm")[ppm],
+                   genotype = sub(".*ppm_(WT|HET|KO)_.*", "Tet1_\\1", colnames(m)),
+                   sex = sub(".*ppm_(WT|HET|KO)_([FM])_.*", "\\2", colnames(m)))
+  save_dataset("GSE275393", "GSE275393", "Folate", "Mus musculus", "RNA-seq", "log2 CPM", m, ph)
+})
+
+with_raw("Folate", "GSE324232", {   # pachytene spermatocytes + round spermatids, folate-deficient vs sufficient, counts
+  rd <- function(f) { x <- fread(raw_path("Folate", "GSE324232", "suppl", f), data.table = FALSE)
+    m <- as.matrix(x[, -1]); rownames(m) <- sub("\\.\\d+$", "", x[[1]]); m }
+  a <- rd("GSE324232_WT_PS_RNA_counts_matrix.csv.gz"); b <- rd("GSE324232_WT_RS_RNA_counts_matrix.csv.gz")
+  g <- intersect(rownames(a), rownames(b)); cnt <- cbind(a[g, ], b[g, ])
+  m <- collapse_to_symbol(log_cpm(cnt), map_ids(rownames(cnt), "Mus musculus", "ENSEMBL"))
+  ph <- data.frame(sample = colnames(m),
+                   condition = ifelse(grepl("FD", colnames(m)), "Folate_deficient", "Folate_sufficient"),
+                   cell_type = ifelse(startsWith(colnames(m), "PS"), "Pachytene_spermatocyte", "Round_spermatid"))
+  save_dataset("GSE324232", "GSE324232", "Folate", "Mus musculus", "RNA-seq", "log2 CPM", m, ph,
+               "Labels from count-matrix column names (3 FD + 3 FS per cell type); GEO characteristics list 5 FD / 7 FS")
+})
+
+with_raw("Folate", "GSE271941", {   # MEFs, moderate vs fortified folic acid x Rsg1 genotype; columns follow GEO sample order
+  x <- fread(raw_path("Folate", "GSE271941", "suppl", "GSE271941_salmon.merged.gene_counts.tsv.gz"), data.table = FALSE)
+  m <- as.matrix(x[, -(1:2)]); rownames(m) <- x$gene_id
+  m <- collapse_to_symbol(log_cpm(round(m)), x$gene_name)
+  # GEO: "Processed matrix column 1-6" = moderate FA (BHOM, BWT), 7-12 = fortified FA (PHOM, PWT)
+  ph <- data.frame(sample = colnames(m),
+                   condition = ifelse(startsWith(colnames(m), "B"), "Moderate_FA", "Fortified_FA"),
+                   genotype = ifelse(grepl("HOM", colnames(m)), "Rsg1_L3P", "WT"))
+  save_dataset("GSE271941", "GSE271941", "Folate", "Mus musculus", "RNA-seq", "log2 CPM", m, ph,
+               "Folic acid dose contrast (moderate vs fortified), not deficiency")
+})
+
+# ---- Carnitine (added 2026-11-04) -------------------------------------------
+with_raw("Carnitine", "GSE343742", {   # BMM +/- L-carnitine, +/- LPS priming, TPM
+  x <- fread(raw_path("Carnitine", "GSE343742", "suppl", "GSE343742_20250115_Elliott_RNAseq_tpm.csv.gz"), data.table = FALSE)
+  smp <- grep("^Neg", names(x), value = TRUE)
+  m <- collapse_to_symbol(log_plus(as.matrix(x[, smp])), x$symbol)
+  arm <- sub("_\\d+$", "", colnames(m))
+  ph <- data.frame(sample = colnames(m),
+                   condition = c(NegCtrl = "Untreated", NegLC6 = "Carnitine", NegLPS = "LPS", NegLPSLC6 = "LPS_Carnitine")[arm],
+                   lps = ifelse(grepl("LPS", arm), "LPS", "None"))
+  save_dataset("GSE343742", "GSE343742", "Carnitine", "Mus musculus", "RNA-seq", "log2(TPM+1)", m, ph)
+})
+
+with_raw("Carnitine", "GSE344237", {   # liver, control vs high-fat diet x resveratrol + L-carnitine (none/low/high), Agilent
+  a <- array_dataset("Carnitine", "GSE344237"); p <- a$pheno
+  arm <- trimws(sub(".* - ", "", p$title))
+  ph <- data.frame(sample = p$gsm, condition = arm,
+                   diet = ifelse(startsWith(arm, "HFCD"), "HFCD", "CD"),
+                   supplement = ifelse(grepl("RCh", arm), "High", ifelse(grepl("RCl", arm), "Low", "None")))
+  save_dataset("GSE344237", "GSE344237", "Carnitine", "Mus musculus", "Agilent SurePrint G3 Mouse (GPL21163)",
+               "log2 intensity", a$expr[, intersect(ph$sample, colnames(a$expr))], ph,
+               "L-carnitine always co-administered with resveratrol")
+})
+
+# ---- Vitamin K external sets (added 2026-11-04) ------------------------------
+with_raw("Vitamin_K", "GSE267133", {   # ARPE-19, erastin vs erastin + vitamin K1, per-sample FPKM files
+  tarf <- raw_path("Vitamin_K", "GSE267133", "suppl", "GSE267133_RAW.tar")
+  td <- tempfile(); dir.create(td); untar(tarf, exdir = td)
+  p <- read_series_matrix(list.files(raw_path("Vitamin_K", "GSE267133", "matrix"), full.names = TRUE)[1])$pheno
+  vals <- lapply(p$gsm, function(gsm) {
+    y <- fread(list.files(td, pattern = paste0("^", gsm, "_"), full.names = TRUE), data.table = FALSE)
+    setNames(y[[grep("^FPKM", names(y))]], y$gene_name) })
+  unlink(td, recursive = TRUE)
+  g <- Reduce(intersect, lapply(vals, names))
+  m <- vapply(vals, function(v) tapply(v, names(v), max)[g], numeric(length(g))); colnames(m) <- p$gsm
+  m <- collapse_to_symbol(log_plus(m), g)
+  ph <- data.frame(sample = p$gsm, condition = ifelse(grepl("vk", p$title), "Erastin_VitK1", "Erastin"))
+  save_dataset("GSE267133", "GSE267133", "Vitamin_K", "Homo sapiens", "RNA-seq", "log2(FPKM+1)", m, ph)
+})
+
+with_raw("Vitamin_K", "GSE237219", {   # Jurkat, vitamin K1 vs control (NCBI counts)
+  d <- ncbi_counts_dataset("Vitamin_K", "GSE237219"); p <- d$pheno
+  ph <- data.frame(sample = p$gsm, condition = ifelse(grepl("^VK1", p$title), "VitK1", "Control"))
+  save_dataset("GSE237219", "GSE237219", "Vitamin_K", "Homo sapiens", "RNA-seq",
+               "log2 CPM (NCBI counts)", d$expr[, intersect(ph$sample, colnames(d$expr))], ph)
+})
+
+with_raw("Vitamin_K", "GSE272401", {   # mouse BMDM: PBS / RANKL / RANKL + vitamins D and K, FPKM
+  x <- fread(raw_path("Vitamin_K", "GSE272401", "suppl", "GSE272401_genes_fpkm_expression_updated_240717.txt.gz"),
+             data.table = FALSE, quote = "")
+  smp <- grep("^FPKM\\.", names(x), value = TRUE)
+  m <- as.matrix(x[, smp]); colnames(m) <- sub("^FPKM\\.", "", smp)
+  m <- collapse_to_symbol(log_plus(m), x$gene_name)
+  arm <- sub("_\\d+$", "", colnames(m))
+  ph <- data.frame(sample = colnames(m),
+                   condition = c(Rankl = "RANKL", Negative = "PBS", Rankl_Vit_D_K = "RANKL_VitD_VitK")[arm])
+  save_dataset("GSE272401", "GSE272401", "Vitamin_K", "Mus musculus", "RNA-seq", "log2(FPKM+1)", m, ph,
+               "Vitamins D and K given together")
+})
+
+# ---- Vitamin E (added 2026-11-04) -------------------------------------------
+with_raw("Vitamin_E", "GSE110747", {   # mouse liver, vitamin E-enriched vs control diet x exercise, Mouse Gene 2.0 ST
+  a <- array_dataset("Vitamin_E", "GSE110747", sym_fun = function(pl) parse_assignment(pl$gene_assignment))
+  # deposited values are already log2 (e.g. Alb ~ 11.6), so they are used as is
+  p <- a$pheno
+  ph <- data.frame(sample = p$gsm, condition = ifelse(grepl("VitE", p$title), "VitE_diet", "Control_diet"),
+                   exercise = ifelse(grepl("Exercise", p$title), "Treadmill", "Sedentary"))
+  save_dataset("GSE110747", "GSE110747", "Vitamin_E", "Mus musculus", "Affymetrix Mouse Gene 2.0 ST (GPL17400)",
+               "log2 intensity (as deposited)", a$expr[, ph$sample], ph)
+})
+
+with_raw("Vitamin_E", "GSE1063", {   # rat, vitamin E-deficient vs sufficient diet, Clontech Atlas (~590 genes)
+  a <- array_dataset("Vitamin_E", "GSE1063", sym_fun = function(pl) parse_paren_symbol(pl$GENE_NAME))
+  p <- a$pheno
+  ph <- data.frame(sample = p$gsm, condition = ifelse(grepl("minus", p$title), "VitE_deficient", "VitE_sufficient"))
+  save_dataset("GSE1063", "GSE1063", "Vitamin_E", "Rattus norvegicus", "Clontech Atlas Rat 1.2 (GPL155)",
+               "log2 intensity", a$expr[, ph$sample], ph,
+               "Small cDNA array; symbols parsed from gene names, so coverage is limited")
+})
+
+for (vE in list(c("GSE8150", "Affymetrix MOE430 2.0 (GPL1261)", "brain"), c("GSE8146", "Affymetrix MG-U74Av2 (GPL81)", "heart"))) {
+  with_raw("Vitamin_E", vE[1], {   # old mice +/- tocopherol supplementation (and young controls), MAS5
+    a <- array_dataset("Vitamin_E", vE[1]); p <- a$pheno
+    arm <- ifelse(grepl("a- & g-tocopherol|agT", p$title), "Old_aT_gT",
+           ifelse(grepl("a-tocopherol|aT-", p$title), "Old_aT",
+           ifelse(grepl("young|C5", p$title), "Young_control", "Old_control")))
+    ph <- data.frame(sample = p$gsm, condition = arm)
+    save_dataset(vE[1], vE[1], "Vitamin_E", "Mus musculus", vE[2], "log2 MAS5", a$expr[, ph$sample], ph,
+                 paste("Aged mouse", vE[3], "- tocopherol supplementation from middle age"))
+  })
+}
+
+with_raw("Vitamin_E", "GSE195619", {   # HepaRG: untreated / oleic acid / oleic acid + three vitamin E sources
+  a <- array_dataset("Vitamin_E", "GSE195619", sym_fun = function(pl) parse_assignment(pl$SPOT_ID))
+  p <- a$pheno
+  arm <- sub(".*\\[([A-Za-z-]+?)_?(OA)? ?[0-9]+ *\\]$", "\\1", p$title)
+  cond <- ifelse(grepl("DMSO", p$title), "Untreated",
+          ifelse(grepl("nVE", p$title), "OA_nVE", ifelse(grepl("sVE", p$title), "OA_sVE",
+          ifelse(grepl("WGO", p$title), "OA_WGO_VE", "OA"))))
+  ph <- data.frame(sample = p$gsm, condition = cond)
+  save_dataset("GSE195619", "GSE195619", "Vitamin_E", "Homo sapiens", "Affymetrix GO_Screen_hu (GPL31262)",
+               "log2 intensity", a$expr[, ph$sample], ph)
+})
+
 # ---- Index ------------------------------------------------------------------
 idx <- do.call(rbind, index)
+old_idx_file <- file.path(OUT, "dataset_index.csv")
+if (file.exists(old_idx_file)) {               # keep rows for datasets not re-processed this run
+  old_idx <- fread(old_idx_file, data.table = FALSE)
+  keep <- old_idx[old_idx$accession %in% skipped_acc & !old_idx$dataset %in% idx$dataset, names(idx)]
+  idx <- rbind(keep, idx)
+}
 fwrite(idx, file.path(OUT, "dataset_index.csv"))
 message("==== Done: ", nrow(idx), " datasets. Index: ", file.path(OUT, "dataset_index.csv"))

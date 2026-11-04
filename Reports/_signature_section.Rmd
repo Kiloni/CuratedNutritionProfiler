@@ -1,5 +1,7 @@
 ## `r r$signature`
 
+*Source:* `r sig_source[[r$signature]]`
+
 *Panel:* `r r$panel` · *Training set:* `r r$train` · *Signature size:* `r length(NutSignatures[[r$signature]])` genes ·
 *Score direction learned in training:* `r paste(sprintf("%s %s", names(r$directions), r$directions), collapse = "; ")`
 

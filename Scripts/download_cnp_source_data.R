@@ -43,6 +43,9 @@ PROJECT_DIR <- if (file.exists("curatedNutritionDataset.Rproj")) getwd() else
 OUT_DIR     <- file.path(PROJECT_DIR, "data-raw", "CNP_Source_Data")
 MAX_FILE_GB <- 5          # skip any single file larger than this (set Inf to take all)
 DOWNLOAD_NCBI_COUNTS <- TRUE
+# Skip GEO accessions already converted by Scripts/process_cnp_source_data.R (their raw
+# files are deleted after processing to save space). Set FALSE to re-download everything.
+SKIP_PROCESSED <- TRUE
 
 options(timeout = 3600)   # allow up to 1 h per file
 if (!requireNamespace("jsonlite", quietly = TRUE)) install.packages("jsonlite")
@@ -51,6 +54,9 @@ library(jsonlite)
 dir.create(OUT_DIR, recursive = TRUE, showWarnings = FALSE)
 manifest_file <- file.path(OUT_DIR, "download_manifest.csv")
 log_file      <- file.path(OUT_DIR, "download_log.txt")
+processed_index <- file.path(PROJECT_DIR, "data", "processed", "dataset_index.csv")
+processed_acc <- if (SKIP_PROCESSED && file.exists(processed_index))
+  unique(read.csv(processed_index, stringsAsFactors = FALSE)$accession) else character(0)
 
 # ---- Accessions -------------------------------------------------------------
 # group = folder the files go in; role = why the dataset is here.
@@ -80,6 +86,21 @@ Vitamin_K,GSE143307,"Accession list entry for K (listed as GSA143307)"
 Iron,GSE246328,"Iron_Homeostasis testing"
 Omega_3,GSE12375,"Omega-3 fish-oil PBMC testing"
 Unverified,GSE296260,"In Downloads, nutrient not confirmed"
+Vitamin_B6,GSE345689,"Low vs high vitamin B6 diet, mouse kidney (WT and Sgpl1 R222Q) - added 2026-11-04"
+Vitamin_B6,GSE139892,"PDXK inhibitor 4-O-methylpyridoxine vs vehicle, mouse leukemic cells - added 2026-11-04"
+Folate,GSE275393,"Maternal folic acid 0.1 / 3 / 30 ppm x Tet1 genotype, E11.5 brain - added 2026-11-04"
+Folate,GSE324232,"Folate-deficient vs sufficient spermatocytes/spermatids - added 2026-11-04"
+Folate,GSE271941,"Moderate vs fortified folic acid MEFs x Rsg1 genotype - added 2026-11-04"
+Carnitine,GSE343742,"L-carnitine vs none, +/- LPS, mouse BMM - added 2026-11-04"
+Carnitine,GSE344237,"Resveratrol + L-carnitine vs none x diet, mouse liver - added 2026-11-04"
+Vitamin_K,GSE267133,"Erastin +/- vitamin K1, ARPE-19 cells - added 2026-11-04"
+Vitamin_K,GSE237219,"Vitamin K1 vs control, Jurkat cells - added 2026-11-04"
+Vitamin_K,GSE272401,"RANKL +/- vitamins D and K, mouse BMDM - added 2026-11-04"
+Vitamin_E,GSE1063,"Vitamin E deficient vs sufficient diet, rat - added 2026-11-04"
+Vitamin_E,GSE110747,"Vitamin E-enriched vs control diet x exercise, mouse liver - added 2026-11-04"
+Vitamin_E,GSE8150,"Old mice +/- tocopherol supplementation, brain - added 2026-11-04"
+Vitamin_E,GSE8146,"Old mice +/- tocopherol supplementation, heart - added 2026-11-04"
+Vitamin_E,GSE195619,"HepaRG oleic acid +/- vitamin E sources - added 2026-11-04"
 ', stringsAsFactors = FALSE)
 
 gwas_studies <- read.csv(text = '
@@ -108,6 +129,11 @@ Vitamin_A,OBA_1000995,"Current GWAS Catalog ID for retinol (amount of retinol); 
 Vitamin_B1,EFO_0010540,"Thiamine_GWAS_EFO_0010540 export used for B1_Thiamine"
 Vitamin_B3,OBA_2040014,"Vitamin-B3 GWAS export used for B3_Niacin"
 Vitamin_B5,EFO_0010519,"Vitamin-B5 GWAS export used for B5_Pantothenic Acid"
+Vitamin_B6,EFO_0004621,"Vitamin B6 measurement - source of the B6_Pyridoxine gene list"
+Vitamin_E,EFO_0007898,"Alpha-tocopherol measurement - basis for Vitamin_E_GWAS"
+Vitamin_E,EFO_0004738,"Tocopherol measurement - basis for Vitamin_E_GWAS"
+Vitamin_K,EFO_0004618,"Vitamin K measurement - basis for Vitamin_K_GWAS"
+Carnitine,EFO_0010469,"Carnitine measurement - basis for Carnitine_GWAS"
 ', stringsAsFactors = FALSE)
 
 # ---- Helpers ----------------------------------------------------------------
@@ -127,7 +153,14 @@ add_manifest <- function(group, accession, file, url, status, role = "") {
     downloaded = format(Sys.time(), "%Y-%m-%d %H:%M:%S"),
     stringsAsFactors = FALSE))
 }
-save_manifest <- function() if (nrow(manifest)) write.csv(manifest, manifest_file, row.names = FALSE)
+# Rows from earlier runs are kept for every accession this run does not touch
+old_manifest <- if (file.exists(manifest_file)) read.csv(manifest_file, stringsAsFactors = FALSE) else NULL
+save_manifest <- function() {
+  if (!nrow(manifest)) return(invisible())
+  m <- manifest
+  if (!is.null(old_manifest)) m <- rbind(old_manifest[!old_manifest$accession %in% manifest$accession, names(manifest)], manifest)
+  write.csv(m, manifest_file, row.names = FALSE)
+}
 
 remote_size <- function(url) {
   h <- tryCatch(curlGetHeaders(url, redirect = TRUE), error = function(e) NULL)
@@ -290,6 +323,7 @@ logmsg("==== CNP source-data download started; output: ", OUT_DIR)
 
 for (i in seq_len(nrow(geo))) {
   acc <- geo$accession[i]
+  if (acc %in% processed_acc) { logmsg(acc, ": already processed into data/processed - skipped"); next }
   tryCatch(
     if (startsWith(acc, "GDS")) download_gds(acc, geo$group[i], geo$role[i])
     else download_gse(acc, geo$group[i], geo$role[i]),

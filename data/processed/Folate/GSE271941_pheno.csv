@@ -1,0 +1,13 @@
+sample,condition,genotype
+BHOM1,Moderate_FA,Rsg1_L3P
+BHOM2,Moderate_FA,Rsg1_L3P
+BHOM3,Moderate_FA,Rsg1_L3P
+BWT1,Moderate_FA,WT
+BWT2,Moderate_FA,WT
+BWT3,Moderate_FA,WT
+PHOM1,Fortified_FA,Rsg1_L3P
+PHOM2,Fortified_FA,Rsg1_L3P
+PHOM3,Fortified_FA,Rsg1_L3P
+PWT1,Fortified_FA,WT
+PWT2,Fortified_FA,WT
+PWT3,Fortified_FA,WT

@@ -1,10 +1,20 @@
 signature,LR · GSVA,LR · ssGSEA,LR · PLAGE,LR · zScore,LR · singscore,Random forest
-A_Retinol_GWAS,0.36,0.61,0.57,0.56,0.52,0.41
-A_Retinol_MSigDB_Filtered,0.22,0.6,0.09,0.48,0.46,0.51
-A_Retinol_GLM_43,0.91,0.9,1,1,0.92,1
-A_Retinol_Quiles_20,0.73,0.81,0.84,0.71,0.79,0.85
-Vitamin_D_Aigner_35,0.25,0.22,0.36,0.64,0.61,1
-Vitamin_C,0.65,0.76,0.9,0.35,0.64,0.97
+A_Retinol_GWAS,0.36,0.62,0.61,0.56,0.51,0.66
+A_Retinol_MSigDB_Filtered,0.21,0.6,0.09,0.47,0.47,0.77
+A_Retinol_GLM_43,1,0.94,1,1,1,1
+A_Retinol_Quiles_20,0.75,0.86,0.89,0.7,0.85,0.93
+Vitamin_D_Aigner_35,0.31,0.31,0.72,0.75,0.61,1
+Vitamin_C,0.72,0.76,0.95,0.36,0.6,1
 B12_Cobalamin,1,0.22,1,1,0.56,1
-B9_Folate,0.17,0.79,1,0.67,0.79,0.92
+B9_Folate,0.75,0.85,0.89,0.72,0.82,0.91
+B6_Pyridoxine,0.92,1,0.69,0.81,1,0.68
+Vitamin_E,0.56,0.6,0.7,0.58,0.6,0.66
+Vitamin_E_Curated_Fixed,0.52,0.55,0.34,0.55,0.6,0.59
+Vitamin_E_GWAS,0.57,0.55,0.45,0.6,0.52,0.28
+Carnitine_Mito,0.86,0.75,0.81,0.81,0.75,0.97
+Carnitine_GWAS,0.39,0.36,0.19,0.08,0.03,1
+Vitamin_K,0.91,0.89,0.71,0.91,0.89,0.88
+Vitamin_K_GSE148011_Up,1,1,1,1,1,1
+Vitamin_K_GSE148011_Down,1,1,1,1,1,1
+Vitamin_K_GWAS,0.5,0.86,0.79,0.61,0.64,0.96
 Omega_3_FattyAcids,0.57,0.7,0.6,0.63,0.67,0.43

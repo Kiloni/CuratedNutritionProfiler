@@ -1,0 +1,111 @@
+signature,gene,species,source,method
+Vitamin_E_Curated_Fixed,CD36,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,SRD5A1,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,GCLC,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,PRKCA,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,CCNB2,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,CDK1,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,CDC6,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,TGM2,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,MMP1,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,MIR122,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_Curated_Fixed,MIR125B,human,NutSignatures$Vitamin_E (curated),"CDC2 -> CDK1, PKC -> PRKCA; MIR122/MIR125B kept (not on mRNA platforms)"
+Vitamin_E_GWAS,BUD13,human,GWAS Catalog EFO_0007898 + EFO_0004738,protein-coding mapped genes of 5 associations with p <= 5e-08
+Vitamin_E_GWAS,RNF215,human,GWAS Catalog EFO_0007898 + EFO_0004738,protein-coding mapped genes of 5 associations with p <= 5e-08
+Vitamin_E_GWAS,SEC14L2,human,GWAS Catalog EFO_0007898 + EFO_0004738,protein-coding mapped genes of 5 associations with p <= 5e-08
+Vitamin_E_GWAS,TM6SF2,human,GWAS Catalog EFO_0007898 + EFO_0004738,protein-coding mapped genes of 5 associations with p <= 5e-08
+Vitamin_E_GWAS,ZPR1,human,GWAS Catalog EFO_0007898 + EFO_0004738,protein-coding mapped genes of 5 associations with p <= 5e-08
+Vitamin_K_GWAS,CDO1,human,GWAS Catalog EFO_0004618,protein-coding mapped genes of 6 associations with p <= 1e-05
+Vitamin_K_GWAS,COL22A1,human,GWAS Catalog EFO_0004618,protein-coding mapped genes of 6 associations with p <= 1e-05
+Vitamin_K_GWAS,CTNNA2,human,GWAS Catalog EFO_0004618,protein-coding mapped genes of 6 associations with p <= 1e-05
+Vitamin_K_GWAS,CYP4F2,human,GWAS Catalog EFO_0004618,protein-coding mapped genes of 6 associations with p <= 1e-05
+Vitamin_K_GWAS,KCNK9,human,GWAS Catalog EFO_0004618,protein-coding mapped genes of 6 associations with p <= 1e-05
+Vitamin_K_GWAS,MKI67,human,GWAS Catalog EFO_0004618,protein-coding mapped genes of 6 associations with p <= 1e-05
+Vitamin_K_GWAS,ZPR1,human,GWAS Catalog EFO_0004618,protein-coding mapped genes of 6 associations with p <= 1e-05
+Carnitine_GWAS,ABCC1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ABCC10,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ACAD8,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ACADL,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ACADM,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ACADS,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ANK3,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ARID5B,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,CCDC6,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,CD83,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,CHSY3,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,CPS1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,CPT2,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,CSF2,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ETFA,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ETFDH,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,FNIP1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,HINT1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,HNF1A,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,IL4,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,IVD,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,KIF3A,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,MAPK7,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,MARCHF8,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,MCCC1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,MRLN,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,MYCL,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,PCCA,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,PECR,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,PEX5L,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,PKD2L1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,PPID,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SFMBT1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC16A9,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC22A1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC22A16,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC22A4,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC22A5,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC36A1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC36A2,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC36A3,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC44A5,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC47A1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SLC7A13,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,STRIP1,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,SUCLG2,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,THEM4,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Carnitine_GWAS,ZNF318,human,GWAS Catalog EFO_0010469,protein-coding mapped genes of 199 associations with p <= 5e-08
+Vitamin_K_GSE148011_Up,Fos,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Cenpa,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Ccnb2,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Cdca3,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Cdc20,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Pttg1,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Npr3,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Knstrn,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Hpse,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Cep55,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Ddx4,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Spc24,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Fabp5,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Thbs3,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Cenpm,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Fam83d,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Gdf10,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Dkk1,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Mif,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Lockd,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Tspo,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Mboat1,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Ckap2,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Smco4,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Up,Rpp21,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - higher with vitamin K"
+Vitamin_K_GSE148011_Down,Hsd17b7,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Appl2,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Cgn,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Flcn,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Dcbld2,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Cntnap3,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Mroh1,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Ctns,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Pank3,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Stom,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Enpp5,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Adgrg2,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,Uvrag,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"
+Vitamin_K_GSE148011_Down,B3galt1,mouse,GSE148011 vitamin K arm,"limma-trend, vitamin K precursor 10/20 uM (n=7) vs 0 uM (n=4), FDR<0.1 (no gene reaches 2-fold), top 25 by p - lower with vitamin K"

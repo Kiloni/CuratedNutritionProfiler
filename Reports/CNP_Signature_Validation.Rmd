@@ -39,6 +39,12 @@ ROLE_COLS   <- c("Low / deficient (case)" = "#d95f02", "Replete / treated (contr
 # ---- Signatures: single source of truth is Signatures/NutSignaturesList.R --------
 sig_exprs <- parse(file.path(PROJECT_DIR, "Signatures", "NutSignaturesList.R"))
 eval(sig_exprs[[1]])                      # defines NutSignatures (first expression only)
+curated_names <- names(NutSignatures)
+# Candidate signatures (Scripts/derive_candidate_signatures.R) fill gaps without editing the curated list
+cand <- fread(file.path(PROJECT_DIR, "Signatures", "CNP_Candidate_Signatures.csv"), data.table = FALSE)
+NutSignatures <- c(NutSignatures, split(cand$gene, factor(cand$signature, levels = unique(cand$signature))))
+sig_source <- c(setNames(rep("Curated (Signatures/NutSignaturesList.R)", length(curated_names)), curated_names),
+                vapply(split(cand, cand$signature), function(x) paste0("Candidate — ", x$source[1], "; ", x$method[1]), ""))
 
 # ---- Validation panels ------------------------------------------------------------
 # case    = study arm(s) representing LOW nutrient status / no supplementation
@@ -74,10 +80,35 @@ panels <- list(
       D("GSE103417", "GSE103417", "Vitamin_B12", "TO_B12_sequestered", c("WT", "OT_control_fusion"), "medium", "GSE103417 N1E-115 · mouse B12 sequestration"),
       D("GSE104164", "GSE104164", "Vitamin_B12", "MDD", "Control", NULL, "GSE104164 cerebellum · rat methyl-donor deficiency"),
       D("GSE99113",  "GSE99113",  "Vitamin_B12", "B12_deficient", "B12_sufficient", NULL, "GSE99113 astrocytes · mouse B12-free medium")),
-    signatures = c(B12_Cobalamin = "GSE161763", B9_Folate = "GSE104164")),
-  "Vitamin K" = list(space = "native", datasets = list(
-      D("GSE148011", "GSE148011", "Vitamin_K", "K3_0", c("K3_10", "K3_20"), NULL, "GSE148011 MEF · mouse vitamin K precursor")),
-    signatures = c(Vitamin_K = "GSE148011")),
+    signatures = c(B12_Cobalamin = "GSE161763")),
+  "Folate" = list(space = "human", datasets = list(
+      D("GSE275393", "GSE275393", "Folate", "FA_0.1ppm", c("FA_3ppm", "FA_30ppm"), c("genotype", "sex"), "GSE275393 E11.5 brain · mouse maternal FA 0.1 ppm"),
+      D("GSE324232", "GSE324232", "Folate", "Folate_deficient", "Folate_sufficient", "cell_type", "GSE324232 germ cells · mouse folate-deficient diet"),
+      D("GSE104164", "GSE104164", "Vitamin_B12", "MDD", "Control", NULL, "GSE104164 cerebellum · rat methyl-donor deficiency"),
+      D("GSE271941", "GSE271941", "Folate", "Moderate_FA", "Fortified_FA", "genotype", "GSE271941 MEF · mouse moderate vs fortified FA")),
+    signatures = c(B9_Folate = "GSE275393")),
+  "Vitamin B6" = list(space = "human", datasets = list(
+      D("GSE345689", "GSE345689", "Vitamin_B6", "Low_B6", "High_B6", "genotype", "GSE345689 kidney · mouse low vs high B6 diet"),
+      D("GSE139892", "GSE139892", "Vitamin_B6", "OMP_B6_antagonist", "Vehicle", NULL, "GSE139892 leukemic cells · mouse B6 antagonist")),
+    signatures = c(B6_Pyridoxine = "GSE345689")),
+  "Vitamin E" = list(space = "human", datasets = list(
+      D("GSE110747", "GSE110747", "Vitamin_E", "Control_diet", "VitE_diet", "exercise", "GSE110747 liver · mouse vitamin E diet"),
+      D("GSE1063",   "GSE1063",   "Vitamin_E", "VitE_deficient", "VitE_sufficient", NULL, "GSE1063 · rat vitamin E-deficient diet"),
+      D("GSE8150",   "GSE8150",   "Vitamin_E", "Old_control", c("Old_aT", "Old_aT_gT"), NULL, "GSE8150 brain · aged mouse tocopherol"),
+      D("GSE8146",   "GSE8146",   "Vitamin_E", "Old_control", c("Old_aT", "Old_aT_gT"), NULL, "GSE8146 heart · aged mouse tocopherol"),
+      D("GSE195619", "GSE195619", "Vitamin_E", "OA", c("OA_nVE", "OA_sVE", "OA_WGO_VE"), NULL, "GSE195619 HepaRG · human oleic acid ± vitamin E")),
+    signatures = c(Vitamin_E = "GSE110747", Vitamin_E_Curated_Fixed = "GSE110747", Vitamin_E_GWAS = "GSE110747")),
+  "Carnitine" = list(space = "human", datasets = list(
+      D("GSE343742", "GSE343742", "Carnitine", c("Untreated", "LPS"), c("Carnitine", "LPS_Carnitine"), "lps", "GSE343742 BMM · mouse L-carnitine ± LPS"),
+      D("GSE344237", "GSE344237", "Carnitine", c("CD", "HFCD"), c("CD+RCl", "CD+RCh", "HFCD+RCl", "HFCD+RCh"), "diet", "GSE344237 liver · mouse resveratrol + L-carnitine")),
+    signatures = c(Carnitine_Mito = "GSE343742", Carnitine_GWAS = "GSE343742")),
+  "Vitamin K" = list(space = "human", datasets = list(
+      D("GSE148011", "GSE148011", "Vitamin_K", "K3_0", c("K3_10", "K3_20"), NULL, "GSE148011 MEF · mouse vitamin K precursor"),
+      D("GSE267133", "GSE267133", "Vitamin_K", "Erastin", "Erastin_VitK1", NULL, "GSE267133 ARPE-19 · human vitamin K1 (+ erastin)"),
+      D("GSE237219", "GSE237219", "Vitamin_K", "Control", "VitK1", NULL, "GSE237219 Jurkat · human vitamin K1"),
+      D("GSE272401", "GSE272401", "Vitamin_K", "RANKL", "RANKL_VitD_VitK", NULL, "GSE272401 BMDM · mouse RANKL ± vitamins D+K")),
+    signatures = c(Vitamin_K = "GSE148011", Vitamin_K_GSE148011_Up = "GSE148011", Vitamin_K_GSE148011_Down = "GSE148011",
+                   Vitamin_K_GWAS = "GSE148011")),
   "Omega-3" = list(space = "native", datasets = list(
       D("GSE12375", "GSE12375", "Omega_3", "MUFA_END", "EPADHA_END", NULL, "GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo")),
     signatures = c(Omega_3_FattyAcids = "GSE12375"))
@@ -116,7 +147,10 @@ load_ds <- function(d, space) {
                 stringsAsFactors = FALSE)
   sp <- index$species[index$dataset == d$file]
   if (space == "human" && sp != "Homo sapiens") {
-    o <- orthologs(rownames(m), species = species_code[[sp]], human = FALSE)
+    # numeric-only names (Entrez IDs used as placeholders, e.g. "100043387") make babelgene
+    # treat the whole query as IDs and return nothing, so they are left out of the lookup
+    keys <- rownames(m)[!grepl("^[0-9]+$", rownames(m))]
+    o <- orthologs(keys, species = species_code[[sp]], human = FALSE)
     map <- setNames(o$human_symbol, o$symbol)
     m <- collapse_dup_rows(m, unname(map[rownames(m)]))
   }
@@ -208,12 +242,31 @@ oneway_anova <- function(df, score) {
   c(F = a[1, "F value"], p = a[1, "Pr(>F)"])
 }
 
+# Remove known study covariates (genotype, batch, LPS, sex, ...) from scores and gene values
+# before classification. Uses design factors only, never the case/control labels; without it,
+# a strong covariate that is balanced across groups can make held-out samples systematically
+# mis-ranked and pushes cross-validated AUC towards 0.
+usable_covar <- function(df, covar) covar[vapply(covar, function(cv) length(unique(df[[cv]])) > 1, TRUE)]
+adjust_scores <- function(df, covar) {
+  covar <- usable_covar(df, covar); if (!length(covar)) return(df)
+  f <- as.formula(paste("s ~", paste(covar, collapse = " + ")))
+  for (a in ALGS) if (!all(is.na(df[[a]]))) {
+    s <- df[[a]]; df[[a]] <- resid(lm(f, data = cbind(df, s = s))) + mean(s)
+  }
+  df
+}
+adjust_expr <- function(m, pheno, covar) {
+  covar <- usable_covar(pheno, covar); if (!length(covar) || !nrow(m)) return(m)
+  mm <- model.matrix(as.formula(paste("~", paste(covar, collapse = " + "))), data = pheno)[, -1, drop = FALSE]
+  limma::removeBatchEffect(m, covariates = mm)
+}
+
 # ---- Main validation routine -------------------------------------------------------
 validate_signature <- function(sig_name, panel, train_id) {
   raw <- NutSignatures[[sig_name]]
   genes <- if (panel$space == "human") sig_to_human(raw) else unique(raw)
   ds <- setNames(panel$datasets, vapply(panel$datasets, `[[`, "", "id"))
-  dat <- list(); cover <- list(); expr <- list()
+  dat <- list(); datm <- list(); cover <- list(); expr <- list()
   for (d in ds) {
     L <- load_ds(d, panel$space)
     sc <- score_sets(L$expr, genes)
@@ -222,7 +275,9 @@ validate_signature <- function(sig_name, panel, train_id) {
     dat[[d$id]] <- data.frame(dataset = d$label, id = d$id, p, y = y, sc$scores, check.names = FALSE)
     cover[[d$id]] <- data.frame(dataset = d$label, species = L$species, genes_in_signature = length(genes),
                                 genes_found = sc$n, coverage = sprintf("%.0f%%", 100 * sc$n / length(genes)))
-    expr[[d$id]] <- L$expr
+    datm[[d$id]] <- adjust_scores(dat[[d$id]], d$covar)                       # for models
+    sg <- intersect(genes, rownames(L$expr))
+    expr[[d$id]] <- adjust_expr(L$expr[sg, p$sample, drop = FALSE], p, d$covar)   # signature genes, for RF
   }
 
   # ANOVA for every dataset x scoring algorithm
@@ -235,7 +290,7 @@ validate_signature <- function(sig_name, panel, train_id) {
   }))))
 
   # Training data
-  T  <- dat[[train_id]]; Tb <- T[!is.na(T$y), ]; n <- nrow(Tb)
+  T  <- datm[[train_id]]; Tb <- T[!is.na(T$y), ]; n <- nrow(Tb)
   XT <- t(expr[[train_id]][intersect(genes, rownames(expr[[train_id]])), Tb$sample, drop = FALSE])
   XT <- XT[, apply(XT, 2, var) > 0, drop = FALSE]
   metrics <- list(); rocs <- list()
@@ -285,7 +340,7 @@ validate_signature <- function(sig_name, panel, train_id) {
   # External: frozen models; each external dataset is z-scored on its own samples (no labels)
   for (d in ds) {
     if (d$id == train_id) next
-    Eb <- dat[[d$id]]; Eb <- Eb[!is.na(Eb$y), ]
+    Eb <- datm[[d$id]]; Eb <- Eb[!is.na(Eb$y), ]
     if (length(unique(Eb$y)) < 2) next
     for (a in names(lr_full)) {
       if (all(is.na(Eb[[a]]))) next
@@ -337,10 +392,15 @@ public datasets downloaded by `Scripts/download_cnp_source_data.R` and processed
 
 * **`r length(tested)` of `r length(NutSignatures)` signatures** could be tested across
   **`r nrow(index)` processed datasets** (`r length(unique(unlist(lapply(panels, function(p) vapply(p$datasets, "[[", "", "id")))))` case/control contrasts).
-* **Could not be scored (`r length(not_scorable)`):** `r if (length(not_scorable)) paste(not_scorable, collapse = ", ") else "none"` —
-  none of the signature genes are present in the training data (see that signature's section).
+* **Could not be scored:** `r if (length(not_scorable)) paste0(paste(not_scorable, collapse = ", "), " (fewer than two signature genes in the training data)") else "none"`.
 * **Not testable with the current data (`r length(untested)`):** `r paste(untested, collapse = ", ")` —
   no downloaded expression dataset contrasts these nutrients.
+
+Signatures come from two places: the **curated** list (`Signatures/NutSignaturesList.R`, not
+modified) and **candidate** lists in `Signatures/CNP_Candidate_Signatures.csv`, produced by
+`Scripts/derive_candidate_signatures.R` to fill gaps (GWAS-based vitamin E, vitamin K and carnitine
+lists; a symbol-corrected vitamin E list; vitamin K lists re-derived from GSE148011). Each
+signature's section states its source.
 
 ## Methods in brief
 
@@ -352,6 +412,7 @@ public datasets downloaded by `Scripts/download_cnp_source_data.R` and processed
 | ROC / AUC | AUC with DeLong 95% CI. The direction of the score (higher or lower in deficiency) is learned on the training set and **kept fixed** for external sets. |
 | Logistic regression | `case ~ z(score)`, fitted separately for each scoring algorithm. With one predictor its ranking equals the score's, so the external LR AUC equals the fixed-direction score AUC; LR adds calibrated probabilities (accuracy at p ≥ 0.5). |
 | Random forest | 500 trees on z-scored expression of the signature genes, with a class-balanced bootstrap (equal cases and controls per tree). |
+| Covariates in models | Before classification, known study covariates (the "Adjusted for" column — genotype, batch, LPS, sex, ...) are regressed out of each score and each signature gene within its dataset. This uses design factors only, never the labels. Boxplots and ANOVA use the unadjusted scores (ANOVA adjusts in the model). |
 | Internal validation | Leave-one-out cross-validation (LOOCV) on the training dataset, plus a leave-pair-out AUC (one case + one control held out together), which is the less biased internal AUC for small groups. LOOCV: each sample is predicted by models fitted to all other samples, including the z-scoring. Both models are class-balanced (LR weights each class equally) — without this, pooled leave-one-out AUC is biased towards 0 for weak signatures, because holding out a case shifts the class balance of the fold against that case. |
 | External validation | Models fitted once on the full training set, then applied unchanged to every other dataset in the panel. Each external dataset is z-scored on its own samples (no labels used). Random forest uses the signature genes present in both datasets. |
 
@@ -471,8 +532,12 @@ for (pn in names(panels)) {
   gene IDs). Every Vitamin_K signature gene with an Ensembl ID that occurs in this series
   (24 of 50) is present **only** in the erastin-arm files (recent IDs ENSMUSG00000106xxx–114xxx,
   including the newer IDs of Nup62, Mpv17 and Prmt1); none occur in the vitamin K-arm files. A comparison that zero-fills
-  missing genes would call all of them "differential". The signature cannot be scored in
-  the vitamin K arm and should be re-derived from one consistently quantified dataset.
+  missing genes would call all of them "differential". In the vitamin K training data the curated
+  `Vitamin_K` score therefore rests on only 2 of its 50 genes (see its coverage table), so its
+  internal AUCs say little about the signature as a whole. Re-deriving from the vitamin K arm alone gives only a weak response
+  (no gene reaches 2-fold; top genes are cell-cycle genes; ~48% of genes have p < 0.1, which
+  suggests a broad, possibly technical, shift), so `Vitamin_K_GSE148011_Up/Down` are taken at
+  FDR < 0.1 and are only as credible as their external results.
   One vitamin K library (GSM4452216, 20 µM, replicate 2; ~20,000 reads) also failed QC and was excluded.
 * **Direction reversals.** An external AUC near 0 is not "no signal" — it means the
   samples separate, but in the opposite direction to the training set. Example:
@@ -480,6 +545,14 @@ for (pn in names(panels)) {
   (GSE283020) for every algorithm, but the signature has no signal in the human calcitriol
   training set, so the direction learned there is arbitrary and the external AUC reads 0.00.
   Read the boxplots alongside the AUCs.
+* **Added datasets (2026-11-04) have their own limits.** GSE1063 is a ~590-gene cDNA array
+  (symbols parsed from gene names), so most signatures barely overlap it. GSE344237 always gives
+  L-carnitine together with resveratrol, and GSE272401 gives vitamins D and K together. GSE271941
+  compares two folic-acid doses (moderate vs fortified), not deficiency. GSE139892 uses a
+  B6-pathway inhibitor rather than a deficient diet. GSE237219 has only 2 controls.
+* **GWAS-based candidates.** `Vitamin_K_GWAS` uses the GWAS Catalog's suggestive threshold
+  (p ≤ 1e-5) because vitamin K measurement has no genome-wide significant hits. GWAS genes
+  affect circulating nutrient levels; they need not change expression in nutrient-exposed tissue.
 * **Small groups.** GSE161763 (3 vs 3), GSE99113 (2 vs 2), GSE190371 (2 vs 2),
   GSE134933 liver (3 vs 3) and GSE104164 (3 vs 4) give very wide confidence intervals;
   an AUC of 1.0 on four samples is weak evidence.
