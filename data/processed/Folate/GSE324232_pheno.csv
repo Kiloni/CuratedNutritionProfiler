@@ -1,0 +1,13 @@
+sample,condition,cell_type
+PS_FS1,Folate_sufficient,Pachytene_spermatocyte
+PS_FS2,Folate_sufficient,Pachytene_spermatocyte
+PS_FS3,Folate_sufficient,Pachytene_spermatocyte
+PS_FD1,Folate_deficient,Pachytene_spermatocyte
+PS_FD2,Folate_deficient,Pachytene_spermatocyte
+PS_FD3,Folate_deficient,Pachytene_spermatocyte
+R_FS1,Folate_sufficient,Round_spermatid
+R_FS2,Folate_sufficient,Round_spermatid
+R_FS3,Folate_sufficient,Round_spermatid
+R_FD1,Folate_deficient,Round_spermatid
+R_FD2,Folate_deficient,Round_spermatid
+R_FD3,Folate_deficient,Round_spermatid

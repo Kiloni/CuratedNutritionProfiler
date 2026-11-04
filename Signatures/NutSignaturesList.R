@@ -56,14 +56,17 @@ NutSignatures = list(
                             "TACSTD2", "TMEM30B", "TSPAN1", "TSPAN15"),
   "Vitamin_E" = c("CD36", "SRD5A1", "GCLC", "PKC", "CCNB2", "CDC2", "CDC6", "TGM2", "MMP1", 
                   "MIR122", "MIR125B"),
-  "Vitamin_K" = c("Gm35339", "Gm20559", "AC123061.1", "Gm7240", "Gm37494", "Btbd8",
-                  "D430020J02Rik", "Zfp862-ps", "Gm9856", "AC117588.1", "Gm19605", "AC174678.1",
-                  "Gm35315", "Gm10033", "BC024063", "Gm45250", "Tes3-ps", "Gm45871", "Nup62",
-                  "Mpv17", "Gm43682", "Chmp1b", "Gm46430", "Samd4b", "AC131586.2", "Peg13",
-                  "Gm44250", "Gm4130", "4933412E12Rik", "Gm18860", "Gm43597", "A830082N09Rik",
-                  "Gm45133", "Gm43681", "Gm20075", "AC154636.2", "Gm32856", "Gm4366", "Snhg1",
-                  "Gm45456", "AC163032.1", "Gtf3c2", "Hspa14", "Prmt1", "0610012G03Rik", 
-                  "Gm9616", "AC121965.1", "Mrpl33", "Gm10095", "AC129931.1"),
+  # Vitamin_K replaced 2026-11-04. The previous 50-gene list (Gm35339, Gm20559, ... see git
+  # history) came from ~/Downloads/vitK_GSE148011_raw_counts.csv, which merged GSE148011's
+  # vitamin K and erastin arms across two gene annotations: all 50 genes had zero counts in
+  # every vitamin K-arm sample, so they reflected the annotation mismatch, not vitamin K.
+  # New list: genes higher with the vitamin K precursor (10/20 uM vs 0 uM) in the vitamin K
+  # arm of GSE148011 only (limma-trend, FDR < 0.1, top 25; see
+  # Scripts/derive_candidate_signatures.R). The response is weak (no gene reaches 2-fold) and
+  # proliferation-dominated; external AUC 0.61-0.72 (Reports/CNP_Signature_Validation.html).
+  "Vitamin_K" = c("Fos", "Cenpa", "Ccnb2", "Cdca3", "Cdc20", "Pttg1", "Npr3", "Knstrn",
+                  "Hpse", "Cep55", "Ddx4", "Spc24", "Fabp5", "Thbs3", "Cenpm", "Fam83d",
+                  "Gdf10", "Dkk1", "Mif", "Lockd", "Tspo", "Mboat1", "Ckap2", "Smco4", "Rpp21"),
   "Iron_Homeostasis" = c("TFRC", "FTH1", "FTL", "SLC11A2", "ACO1", "IREB2"),
   "Omega_3_FattyAcids" = c("FADS1", "FADS2", "ELOVL2", "ELOVL5", "SCD"),
   "Carnitine_Mito" = c("TMLHE", "SLC22A5", "CPT1A", "CPT2", "CRAT")
@@ -98,8 +101,9 @@ Human_NutSignatures <- list(
                   "SYTL1", "TACSTD2", "TMEM30B", "TSPAN1", "TSPAN15"),
   "Vitamin_E" = c("CD36", "SRD5A1", "GCLC", "PKC", "CCNB2", "CDC2", "CDC6", "TGM2", 
                   "MMP1", "MIR122", "MIR125B"),
-  "Vitamin_K" = c("BTBD8", "NUP62", "MPV17", "CHMP1B", "SAMD4B", "PEG13", "SNHG1", 
-                  "GTF3C2", "HSPA14", "PRMT1", "MRPL33"),
+  "Vitamin_K" = c("FOS", "CENPA", "CCNB2", "CDCA3", "CDC20", "PTTG1", "NPR3", "KNSTRN",   # human orthologs of
+                  "HPSE", "CEP55", "DDX4", "SPC24", "FABP5", "THBS3", "CENPM", "FAM83D",   # NutSignatures$Vitamin_K
+                  "GDF10", "DKK1", "MIF", "TSPO", "MBOAT1", "CKAP2", "SMCO4", "RPP21"),    # (Lockd has none); replaced 2026-11-04
   "Iron_Homeostasis" = c("TFRC", "FTH1", "FTL", "SLC11A2", "ACO1", "IREB2"),
   "Omega_3_FattyAcids" = c("FADS1", "FADS2", "ELOVL2", "ELOVL5", "SCD"),
   "Carnitine_Mito" = c("TMLHE", "SLC22A5", "CPT1A", "CPT2", "CRAT")
@@ -145,8 +149,9 @@ TBsignatures[["Vitamin_D"]] = c("CD24", "CDH1", "CDH11", "CDH3", "CDH4", "CLDN7"
 TBsignatures[["Vitamin_E"]] = c("CD36", "SRD5A1", "GCLC", "PKC", "CCNB2", "CDC2", "CDC6", "TGM2", "MMP1", 
                               "MIR122", "MIR125B")
 
-TBsignatures[["Vitamin_K"]] = c("BTBD8", "NUP62", "MPV17", "CHMP1B", "SAMD4B", "PEG13", "SNHG1", 
-                              "GTF3C2", "HSPA14", "PRMT1", "MRPL33")
+TBsignatures[["Vitamin_K"]] = c("FOS", "CENPA", "CCNB2", "CDCA3", "CDC20", "PTTG1", "NPR3", "KNSTRN",   # replaced 2026-11-04
+                                "HPSE", "CEP55", "DDX4", "SPC24", "FABP5", "THBS3", "CENPM", "FAM83D",
+                                "GDF10", "DKK1", "MIF", "TSPO", "MBOAT1", "CKAP2", "SMCO4", "RPP21")
 
 TBsignatures[["Iron_Homeostasis"]] = c("TFRC", "FTH1", "FTL", "SLC11A2", "ACO1", "IREB2")
 

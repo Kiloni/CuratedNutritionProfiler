@@ -1,0 +1,13 @@
+sample,condition,genotype
+WT_on_high_B6_1,High_B6,WT
+WT_on_high_B6_2,High_B6,WT
+WT_on_high_B6_3,High_B6,WT
+WT_on_low_B6_1,Low_B6,WT
+WT_on_low_B6_2,Low_B6,WT
+WT_on_low_B6_3,Low_B6,WT
+KI_on_high_B6_1,High_B6,Sgpl1_R222Q
+KI_on_high_B6_2,High_B6,Sgpl1_R222Q
+KI_on_high_B6_3,High_B6,Sgpl1_R222Q
+KI_on_low_B6_1,Low_B6,Sgpl1_R222Q
+KI_on_low_B6_2,Low_B6,Sgpl1_R222Q
+KI_on_low_B6_3,Low_B6,Sgpl1_R222Q

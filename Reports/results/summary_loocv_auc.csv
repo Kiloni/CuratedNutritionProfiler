@@ -1,0 +1,19 @@
+signature,panel,Training,LR · GSVA,LR · ssGSEA,LR · PLAGE,LR · zScore,LR · singscore,Random forest
+A_Retinol_GWAS,Vitamin A,GSE299530 lung · mouse VAD diet,0.28,0.58,0.55,0.51,0.41,0.65
+A_Retinol_MSigDB_Filtered,Vitamin A,GSE299530 lung · mouse VAD diet,0.14,0.51,0.05,0.36,0.41,0.76
+A_Retinol_GLM_43,Vitamin A,GSE134933 kidney · mouse VAD diet,1,0.9,1,1,0.98,1
+A_Retinol_Quiles_20,Vitamin A,GSE299530 lung · mouse VAD diet,0.72,0.84,0.84,0.67,0.83,0.91
+Vitamin_D_Aigner_35,Vitamin D,"GSE63086 MG63 · human 1,25D",0.11,0.11,0.72,0.61,0.5,1
+Vitamin_C,Vitamin C,GSE233598 liver · mouse Gulo-/- no vitC,0.72,0.68,0.76,0.31,0.57,1
+B12_Cobalamin,Vitamin B12 / methyl donors,GSE161763 brain · mouse cblX (Ronin F80L),1,0,1,1,0.44,1
+B9_Folate,Folate,GSE275393 E11.5 brain · mouse maternal FA 0.1 ppm,0.71,0.82,0.87,0.69,0.8,0.89
+B6_Pyridoxine,Vitamin B6,GSE345689 kidney · mouse low vs high B6 diet,0.86,1,0.61,0.69,1,0.61
+Vitamin_E,Vitamin E,GSE110747 liver · mouse vitamin E diet,0.48,0.55,0.68,0.54,0.57,0.63
+Vitamin_E_Curated_Fixed,Vitamin E,GSE110747 liver · mouse vitamin E diet,0.41,0.46,0.22,0.5,0.58,0.57
+Vitamin_E_GWAS,Vitamin E,GSE110747 liver · mouse vitamin E diet,0.5,0.49,0.37,0.54,0.45,0.25
+Carnitine_Mito,Carnitine,GSE343742 BMM · mouse L-carnitine ± LPS,0.78,0.67,0.72,0.72,0.72,1
+Carnitine_GWAS,Carnitine,GSE343742 BMM · mouse L-carnitine ± LPS,0.28,0.06,0.08,0,0,1
+Vitamin_K,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,1,1,1,1,1,1
+Vitamin_K_GSE148011_Down,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,1,1,1,1,1,1
+Vitamin_K_GWAS,Vitamin K,GSE148011 MEF · mouse vitamin K precursor,0.36,0.82,0.75,0.57,0.57,1
+Omega_3_FattyAcids,Omega-3,"GSE12375 PBMC · human EPA/DHA vs MUFA, 6 mo",0.54,0.67,0.57,0.61,0.64,0.38

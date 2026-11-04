@@ -1,0 +1,13 @@
+sample,condition,knockdown
+GSM1540636,Vehicle,Control
+GSM1540638,Vehicle,Control
+GSM1540641,Vehicle,Control
+GSM1540644,Vehicle,HNRNPC_KD
+GSM1540646,Vehicle,HNRNPC_KD
+GSM1540649,Vehicle,HNRNPC_KD
+GSM1540651,Calcitriol,Control
+GSM1540653,Calcitriol,Control
+GSM1540656,Calcitriol,Control
+GSM1540658,Calcitriol,HNRNPC_KD
+GSM1540661,Calcitriol,HNRNPC_KD
+GSM1540663,Calcitriol,HNRNPC_KD

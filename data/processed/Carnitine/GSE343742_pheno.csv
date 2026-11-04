@@ -1,0 +1,13 @@
+sample,condition,lps
+NegCtrl_1,Untreated,None
+NegCtrl_2,Untreated,None
+NegCtrl_3,Untreated,None
+NegLC6_1,Carnitine,None
+NegLC6_2,Carnitine,None
+NegLC6_3,Carnitine,None
+NegLPS_1,LPS,LPS
+NegLPS_2,LPS,LPS
+NegLPS_3,LPS,LPS
+NegLPSLC6_1,LPS_Carnitine,LPS
+NegLPSLC6_2,LPS_Carnitine,LPS
+NegLPSLC6_3,LPS_Carnitine,LPS

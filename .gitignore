@@ -2,3 +2,13 @@
 .Rhistory
 .RData
 .Ruserdata
+
+# CNP source-data downloads (kept local until signatures are validated)
+data-raw/CNP_Source_Data/*
+!data-raw/CNP_Source_Data/download_manifest.csv
+!data-raw/CNP_Source_Data/download_log.txt
+!data-raw/CNP_Source_Data/sessionInfo.txt
+
+# R temp workspace and macOS metadata
+.RDataTmp
+.DS_Store
